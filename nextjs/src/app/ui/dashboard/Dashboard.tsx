@@ -18,7 +18,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
 
-import Chart from "./Chart";
 import Deposits from "./Deposits";
 import { mainListItems, secondaryListItems } from "./listItems";
 import Orders from "./Orders";
@@ -181,9 +180,7 @@ const DashboardContent = (): JSX.Element => {
                     flexDirection: "column",
                     height: 240,
                   }}
-                >
-                  <Chart />
-                </Paper>
+                ></Paper>
               </Grid>
               {/* Recent Deposits */}
               <Grid item xs={12} md={4} lg={3}>
