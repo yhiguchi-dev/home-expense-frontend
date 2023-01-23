@@ -1,7 +1,4 @@
-import { Add } from "@mui/icons-material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import MenuIcon from "@mui/icons-material/Menu";
-import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Add, ChevronLeft, Menu, Notifications } from "@mui/icons-material";
 import { Fab, Stack } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import Badge from "@mui/material/Badge";
@@ -119,7 +116,7 @@ const DashboardContent = (): JSX.Element => {
                 ...(open && { display: "none" }),
               }}
             >
-              <MenuIcon />
+              <Menu />
             </IconButton>
             <Typography
               component="h1"
@@ -132,7 +129,7 @@ const DashboardContent = (): JSX.Element => {
             </Typography>
             <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
+                <Notifications />
               </Badge>
             </IconButton>
           </Toolbar>
@@ -147,7 +144,7 @@ const DashboardContent = (): JSX.Element => {
             }}
           >
             <IconButton onClick={toggleDrawer}>
-              <ChevronLeftIcon />
+              <ChevronLeft />
             </IconButton>
           </Toolbar>
           <Divider />
