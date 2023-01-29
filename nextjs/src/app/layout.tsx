@@ -1,7 +1,5 @@
 import React from "react";
 
-import Provider from "@/app/ui/Provider";
-
 const RootLayout = ({
   children,
 }: {
@@ -14,9 +12,7 @@ const RootLayout = ({
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <Provider>{children}</Provider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 };
