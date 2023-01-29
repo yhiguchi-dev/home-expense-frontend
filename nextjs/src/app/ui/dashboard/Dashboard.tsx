@@ -1,52 +1,38 @@
 import { Add, ChevronLeft, Menu, Notifications } from "@mui/icons-material";
-import { Fab, Stack } from "@mui/material";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Badge from "@mui/material/Badge";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
-import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import MuiDrawer from "@mui/material/Drawer";
-import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import Link from "@mui/material/Link";
-import List from "@mui/material/List";
+import {
+  AppBar,
+  AppBarProps,
+  Badge,
+  Box,
+  Container,
+  CssBaseline,
+  Divider,
+  Drawer,
+  Fab,
+  Grid,
+  IconButton,
+  List,
+  Stack,
+  Toolbar,
+  Typography,
+} from "@mui/material";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import * as React from "react";
+import { useState } from "react";
 
+import Copyright from "@/app/ui/dashboard/Copyright";
 import MyTable from "@/app/ui/dashboard/MyTable";
 
 import { mainListItems, secondaryListItems } from "./listItems";
 
-const Copyright = (props: { sx?: { pt: number } }): JSX.Element => {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
-
 const drawerWidth: number = 240;
 
-type AppBarProps = {
+type MyAppBarProps = {
   open?: boolean;
-} & MuiAppBarProps;
+} & AppBarProps;
 
-const AppBar = styled(MuiAppBar, {
+const MyAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== "open",
-})<AppBarProps>(({ theme, open }) => ({
+})<MyAppBarProps>(({ theme, open }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -62,7 +48,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, {
+const MyDrawer = styled(Drawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
@@ -88,19 +74,18 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
-
-const DashboardContent = (): JSX.Element => {
-  const [open, setOpen] = React.useState(true);
+const Dashboard = (): JSX.Element => {
+  const [open, setOpen] = useState(true);
   const toggleDrawer = (): void => {
     setOpen(!open);
   };
+  const theme = createTheme();
 
   return (
-    <ThemeProvider theme={mdTheme}>
+    <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <MyAppBar position="absolute" open={open}>
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
@@ -133,8 +118,8 @@ const DashboardContent = (): JSX.Element => {
               </Badge>
             </IconButton>
           </Toolbar>
-        </AppBar>
-        <Drawer variant="permanent" open={open}>
+        </MyAppBar>
+        <MyDrawer variant="permanent" open={open}>
           <Toolbar
             sx={{
               display: "flex",
@@ -153,14 +138,10 @@ const DashboardContent = (): JSX.Element => {
             <Divider sx={{ my: 1 }} />
             {secondaryListItems}
           </List>
-        </Drawer>
+        </MyDrawer>
         <Box
           component="main"
           sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
             flexGrow: 1,
             height: "100vh",
             overflow: "auto",
@@ -182,9 +163,5 @@ const DashboardContent = (): JSX.Element => {
       </Box>
     </ThemeProvider>
   );
-};
-
-const Dashboard = (): JSX.Element => {
-  return <DashboardContent />;
 };
 export default Dashboard;
