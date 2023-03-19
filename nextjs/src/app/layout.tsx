@@ -1,18 +1,21 @@
-import React from "react";
+"use client";
+import "@/styles/globals.css";
+import dynamic from "next/dynamic";
+import React, { type PropsWithChildren } from "react";
+import { RecoilRoot } from "recoil";
 
-const RootLayout = ({
-  children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element => {
+const RootLayout = ({ children }: PropsWithChildren): JSX.Element => {
+  const CSR = dynamic(async () => import("@/ui/csr"), {
+    ssr: false,
+  });
   return (
     <html lang="ja">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body>
+        <RecoilRoot>
+          <CSR>{children}</CSR>
+        </RecoilRoot>
+      </body>
     </html>
   );
 };

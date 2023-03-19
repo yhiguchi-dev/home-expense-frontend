@@ -1,8 +1,12 @@
 "use client";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
-import Dashboard from "@/app/ui/dashboard/Dashboard";
-
-const Home = (): JSX.Element => {
-  return <Dashboard />;
+const Root = (): JSX.Element => {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/home");
+  }, [router]);
+  return <></>;
 };
-export default Home;
+export default Root;

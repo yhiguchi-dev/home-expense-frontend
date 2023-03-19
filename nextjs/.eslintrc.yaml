@@ -7,6 +7,9 @@ plugins:
 parserOptions:
   project: tsconfig.json
 rules:
+  "@next/next/no-html-link-for-pages":
+    - error
+    - src/
   "@typescript-eslint/no-explicit-any": error
   "@typescript-eslint/consistent-type-definitions":
     - error
