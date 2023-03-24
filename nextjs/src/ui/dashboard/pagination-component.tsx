@@ -2,6 +2,7 @@ import React from "react";
 
 import { useExpenseCriteriaMutation } from "@/hooks/store/expense-attribute";
 import { paginate, type Pagination } from "@/lib/pagination";
+import PaginationItem from "@/ui/dashboard/pagination-item";
 import Box from "@/ui/parts/box";
 
 type Props = {
@@ -49,16 +50,9 @@ const PaginationComponent = ({ pagination }: Props): JSX.Element => {
       });
     };
     return (
-      <li key={index} className="page-item">
-        <button
-          className="page-link relative block rounded rounded border-0 bg-transparent text-gray-800 outline-none transition-all duration-300 hover:bg-gray-200 hover:text-gray-800 focus:shadow-none"
-          onClick={handleClick}
-        >
-          <Box paddingX="3" paddingY="1.5">
-            {param.page}
-          </Box>
-        </button>
-      </li>
+      <PaginationItem key={index} onClick={handleClick}>
+        {param.page}
+      </PaginationItem>
     );
   });
   return (

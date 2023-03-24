@@ -1,4 +1,5 @@
 "use client";
+import { PlusIcon } from "@heroicons/react/24/outline";
 import React, { Suspense, useId, useRef, useState } from "react";
 
 import { useDoubleClickPrevention } from "@/hooks/double-click-prevention";
@@ -6,7 +7,6 @@ import { useExpenseAttributeSummary } from "@/hooks/store/expense-attribute";
 import { expenseAttributeService } from "@/lib/service/expense-attribute-service";
 import AttributeTable from "@/ui/dashboard/attribute-table";
 import PaginationComponent from "@/ui/dashboard/pagination-component";
-import AddIcon from "@/ui/icon/add-icon";
 import Box from "@/ui/parts/box";
 
 const Attribute = (): JSX.Element => {
@@ -44,7 +44,7 @@ const Attribute = (): JSX.Element => {
   );
 
   return (
-    <div className="none:container mx-auto h-1/2 w-full rounded-lg bg-white shadow">
+    <div className="container mx-auto h-1/2 w-full rounded-lg bg-white shadow">
       <Box padding="2">
         <Suspense fallback={<div>loading</div>}>
           <div className="h-3/4 w-full overflow-y-scroll">
@@ -59,7 +59,7 @@ const Attribute = (): JSX.Element => {
                   onClick={handleClick}
                 >
                   <Box padding="2">
-                    <AddIcon />
+                    <PlusIcon className="h-6" />
                   </Box>
                 </button>
               </div>

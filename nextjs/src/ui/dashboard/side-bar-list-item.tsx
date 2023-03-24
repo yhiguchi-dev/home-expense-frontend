@@ -17,7 +17,7 @@ const SideBarListItem = ({
       <a className="hover:opacity-75" href={href}>
         <HStack spacing="3">
           {children}
-          <span>{title}</span>
+          <span className="text-sm">{title}</span>
         </HStack>
       </a>
     </li>
