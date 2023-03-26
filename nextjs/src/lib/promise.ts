@@ -7,7 +7,7 @@ export const promiseWithCancellation = async <T>({
   promise: Promise<T>;
   signal: AbortSignal;
 }): Promise<T> => {
-  return new Promise((resolve, reject) => {
+  return await new Promise((resolve, reject) => {
     if (signal.aborted) {
       reject(new CancellationError("signal already aborted"));
     }

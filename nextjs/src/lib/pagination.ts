@@ -1,21 +1,15 @@
-type PaginationItem = { page: number; items: string[] };
-
-export type Pagination = {
-  page: number;
-  perPage: number;
-  totalNumber: number;
-};
+import { type Pagination } from "@/lib/type/pagination";
 
 export const paginate = ({
   page,
   perPage,
   totalNumber,
-}: Pagination): PaginationItem => {
+}: Pagination): Array<string | number> => {
   const division = Math.floor(totalNumber / perPage);
   const max = totalNumber % perPage > 0 ? division + 1 : division;
-  const items = ["1"];
+  const items: Array<string | number> = [1];
   if (page === 1 && max === 1) {
-    return { page, items };
+    return items;
   }
   if (page > 4) {
     items.push("&hellip;");
@@ -27,13 +21,14 @@ export const paginate = ({
     i <= Math.min(max, nextShowing);
     i++
   ) {
-    items.push(i.toString());
+    items.push(i);
   }
   if (nextShowing + 1 < max) {
     items.push("&hellip;");
   }
   if (nextShowing < max) {
-    items.push(max.toString());
+    items.push(max);
   }
-  return { page, items };
+  console.log(items);
+  return items;
 };

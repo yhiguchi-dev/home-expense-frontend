@@ -1,9 +1,8 @@
-import { type Pagination } from "@/lib/pagination";
+import { type Pagination } from "@/lib/type/pagination";
 
-export type ExpenseAttributeCategory = "fixed" | "variable";
+export type ExpenseAttributeCategory = "固定費" | "変動費";
 
 export type ExpenseAttributeCriteria = {
-  category: ExpenseAttributeCategory;
   page: number;
   perPage: number;
 };
@@ -24,14 +23,5 @@ export type ExpenseAttributeSummary = {
 export const isExpenseAttributeCategory = (
   value: unknown
 ): value is ExpenseAttributeCategory => {
-  return value === "fixed" || value === "variable";
-};
-
-export const getCategoryName = (category: ExpenseAttributeCategory): string => {
-  switch (category) {
-    case "fixed":
-      return "固定費";
-    case "variable":
-      return "変動費";
-  }
+  return value === "固定費" || value === "変動費";
 };

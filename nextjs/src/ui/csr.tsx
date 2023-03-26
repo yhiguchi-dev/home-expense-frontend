@@ -1,6 +1,6 @@
-import React, { type PropsWithChildren } from "react";
+import React from "react";
 
-const CSR = ({ children }: PropsWithChildren): JSX.Element => {
+const CSR = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return <>{children}</>;
 };
 

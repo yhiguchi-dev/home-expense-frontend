@@ -1,5 +1,4 @@
 import { expenseAttributesApi } from "@/lib/api/v1-expense-attributes";
-import { type Pagination } from "@/lib/pagination";
 import {
   type ExpenseAttribute,
   type ExpenseAttributeCriteria,
@@ -7,9 +6,9 @@ import {
   type ExpenseAttributeSummary,
   isExpenseAttributeCategory,
 } from "@/lib/type/expense-attribute";
+import { type Pagination } from "@/lib/type/pagination";
 
 const get = async ({
-  category,
   page,
   perPage,
 }: ExpenseAttributeCriteria): Promise<ExpenseAttributeSummary> => {
@@ -18,17 +17,17 @@ const get = async ({
     // eslint-disable-next-line @typescript-eslint/naming-convention
     total_number,
     page: _page,
+    perPage: _perPage,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     expense_attributes,
   } = await get({
-    category,
     page,
     perPage,
   });
   const pagination: Pagination = {
     totalNumber: total_number,
     page: _page,
-    perPage,
+    perPage: _perPage,
   };
   const expenseAttributes: ExpenseAttributes = expense_attributes.map(
     (value) => {
@@ -60,7 +59,20 @@ const register = async ({
   await expenseAttributesApi.post({ name, category });
 };
 
+const update = async ({
+  id,
+  name,
+  category,
+}: {
+  id: string;
+  name: string;
+  category: string;
+}): Promise<void> => {
+  await expenseAttributesApi.put({ id, name, category });
+};
+
 export const expenseAttributeService = {
   get,
   register,
+  update,
 };

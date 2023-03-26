@@ -1,79 +1,82 @@
 "use client";
 
 import {
-  type ExpenseAttributes,
-  getCategoryName,
-} from "@/lib/type/expense-attribute";
-import Box from "@/ui/parts/box";
+  Flex,
+  IconButton,
+  Table,
+  TableContainer,
+  Tbody,
+  Td,
+  Th,
+  Thead,
+  Tr,
+} from "@chakra-ui/react";
+import { PencilIcon } from "@heroicons/react/24/outline";
+import { useRouter } from "next/navigation";
+import React from "react";
 
-// type TableColumn = "index" | "attribute" | "price"
+import { type ExpenseAttributes } from "@/lib/type/expense-attribute";
+import { type Pagination } from "@/lib/type/pagination";
 
 type Props = {
   expenseAttributes: ExpenseAttributes;
+  pagination: Pagination;
 };
 
-const AttributeTable = ({ expenseAttributes }: Props): JSX.Element => {
+const AttributeTable = ({
+  expenseAttributes,
+  pagination,
+}: Props): JSX.Element => {
+  const router = useRouter();
   const rows = expenseAttributes.map((value, index) => {
-    const { name, category } = value;
-    const categoryName = getCategoryName(category);
+    const { id, name, category } = value;
+    const { page, perPage } = pagination;
+    const indexValue = index + 1 + (page - 1) * perPage;
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+      console.log(event);
+      if (id !== undefined) {
+        router.push(`/home/attribute/${id}`);
+      }
+    };
     return (
-      <tr
-        key={index}
-        className="border-b bg-white transition duration-300 ease-in-out hover:bg-gray-100"
-      >
-        <td className="whitespace-nowrap text-sm font-medium text-gray-900">
-          <Box paddingX="6" paddingY="4">
-            {index + 1}
-          </Box>
-        </td>
-        <td className="whitespace-nowrap text-sm font-light text-gray-900">
-          <Box paddingX="6" paddingY="4">
-            {name}
-          </Box>
-        </td>
-        <td className="whitespace-nowrap text-sm font-light text-gray-900">
-          <Box paddingX="6" paddingY="4">
-            {categoryName}
-          </Box>
-        </td>
-      </tr>
+      <Tr key={index}>
+        <Td>{indexValue}</Td>
+        <Td>{name}</Td>
+        <Td>
+          <Flex
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+          >
+            {category}
+            <IconButton
+              aria-label={`edit-button-${index}`}
+              size="xs"
+              bg="white"
+              onClick={handleClick}
+              as={PencilIcon}
+            />
+          </Flex>
+        </Td>
+      </Tr>
     );
   });
 
   return (
-    <table className="h-full w-full">
-      <thead className="sticky top-0 border-b bg-gray-50">
-        <tr>
-          <th
-            scope="col"
-            className="text-left text-sm font-medium text-gray-900"
-          >
-            <Box paddingX="6" paddingY="4">
-              #
-            </Box>
-          </th>
-
-          <th
-            scope="col"
-            className="text-left text-sm font-medium text-gray-900"
-          >
-            <Box paddingX="6" paddingY="4">
-              属性名
-            </Box>
-          </th>
-
-          <th
-            scope="col"
-            className="text-left text-sm font-medium text-gray-900"
-          >
-            <Box paddingX="6" paddingY="4">
-              分類
-            </Box>
-          </th>
-        </tr>
-      </thead>
-      <tbody>{rows}</tbody>
-    </table>
+    <>
+      <TableContainer overflowX="unset" overflowY="unset">
+        <Table variant="simple">
+          <Thead position="sticky" top={0} zIndex="docked" bg="gray.50">
+            <Tr>
+              <Th>#</Th>
+              <Th>属性名</Th>
+              <Th>分類</Th>
+            </Tr>
+          </Thead>
+          <Tbody>{rows}</Tbody>
+        </Table>
+      </TableContainer>
+    </>
   );
 };
 export default AttributeTable;

@@ -15,7 +15,6 @@ import {
 const expenseAttributeCriteriaState = atom<ExpenseAttributeCriteria>({
   key: "expenseAttributeCriteriaState",
   default: {
-    category: "fixed",
     page: 1,
     perPage: 20,
   },
@@ -25,7 +24,7 @@ const expenseAttributeQuery = selector({
   key: "expenseAttributeQuery",
   get: async ({ get }): Promise<ExpenseAttributeSummary> => {
     const criteria = get(expenseAttributeCriteriaState);
-    return expenseAttributeService.get(criteria);
+    return await expenseAttributeService.get(criteria);
   },
 });
 

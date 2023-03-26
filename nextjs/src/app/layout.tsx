@@ -1,25 +1,33 @@
 "use client";
-import "@/styles/globals.css";
+import { CacheProvider } from "@chakra-ui/next-js";
+import { ChakraProvider } from "@chakra-ui/react";
 import dynamic from "next/dynamic";
-import { Inter } from "next/font/google";
-import React, { type PropsWithChildren } from "react";
+import React from "react";
 import { RecoilRoot } from "recoil";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
+// const inter = Inter({
+//   subsets: ["latin"],
+//   variable: "--font-inter",
+// });
 
-const RootLayout = ({ children }: PropsWithChildren): JSX.Element => {
-  const CSR = dynamic(async () => import("@/ui/csr"), {
+const RootLayout = ({
+  children,
+}: {
+  children: React.ReactNode;
+}): JSX.Element => {
+  const CSR = dynamic(async () => await import("@/ui/csr"), {
     ssr: false,
   });
   return (
-    <html lang="ja" className={`${inter.variable} font-sans`}>
+    <html lang="ja">
       <head />
       <body>
         <RecoilRoot>
-          <CSR>{children}</CSR>
+          <CacheProvider>
+            <ChakraProvider>
+              <CSR>{children}</CSR>
+            </ChakraProvider>
+          </CacheProvider>
         </RecoilRoot>
       </body>
     </html>

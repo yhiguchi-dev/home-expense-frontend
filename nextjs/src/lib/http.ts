@@ -6,7 +6,7 @@ const get = async <T>({
   headers?: Headers;
 }): Promise<HttpResponse<T>> => {
   const response = await send({ url, method: "GET", headers });
-  return resolve(response);
+  return await resolve(response);
 };
 
 const post = async <T, R>({
@@ -19,7 +19,7 @@ const post = async <T, R>({
   requestBody?: T;
 }): Promise<HttpResponse<R>> => {
   const response = await send({ url, method: "POST", headers, requestBody });
-  return resolve(response);
+  return await resolve(response);
 };
 
 const postNoBody = async <T>({
@@ -32,7 +32,20 @@ const postNoBody = async <T>({
   requestBody?: T;
 }): Promise<HttpResponse<void>> => {
   const response = await send({ url, method: "POST", headers, requestBody });
-  return resolveNoBody(response);
+  return await resolveNoBody(response);
+};
+
+const put = async <T>({
+  url,
+  headers,
+  requestBody,
+}: {
+  url: string;
+  headers?: Headers;
+  requestBody?: T;
+}): Promise<HttpResponse<void>> => {
+  const response = await send({ url, method: "PUT", headers, requestBody });
+  return await resolveNoBody(response);
 };
 
 const send = async <T>({
@@ -74,7 +87,7 @@ const resolve = async <T>(response: Response): Promise<HttpResponse<T>> => {
       body,
     };
   }
-  return resolveError(response);
+  return await resolveError(response);
 };
 
 const resolveNoBody = async (
@@ -87,7 +100,7 @@ const resolveNoBody = async (
       body: undefined,
     };
   }
-  return resolveError(response);
+  return await resolveError(response);
 };
 
 const resolveError = async <R>(
@@ -113,7 +126,7 @@ const resolveError = async <R>(
   throw new Error("unknown http status");
 };
 
-type Method = "GET" | "POST";
+type Method = "GET" | "POST" | "PUT";
 
 export type Headers = Record<string, string>;
 
@@ -144,4 +157,5 @@ export const http = {
   get,
   post,
   postNoBody,
+  put,
 };

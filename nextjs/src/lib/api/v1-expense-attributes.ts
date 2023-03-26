@@ -2,7 +2,6 @@ import { NetworkError } from "@/lib/error";
 import { http } from "@/lib/http";
 
 type GetRequest = {
-  category: string;
   page: number;
   perPage: number;
 };
@@ -10,6 +9,7 @@ type GetRequest = {
 type GetResponse = {
   total_number: number;
   page: number;
+  perPage: number;
   expense_attributes: [
     {
       id: string;
@@ -19,13 +19,8 @@ type GetResponse = {
   ];
 };
 
-const get = async ({
-  category,
-  page,
-  perPage,
-}: GetRequest): Promise<GetResponse> => {
+const get = async ({ page, perPage }: GetRequest): Promise<GetResponse> => {
   const queryParam = new URLSearchParams({
-    category,
     page: page.toString(),
     "per-page": perPage.toString(),
   }).toString();
@@ -42,6 +37,12 @@ const get = async ({
 };
 
 type PostRequest = {
+  name: string;
+  category: string;
+};
+
+type PutRequest = {
+  id: string;
   name: string;
   category: string;
 };
@@ -63,7 +64,25 @@ const post = async ({ name, category }: PostRequest): Promise<void> => {
   }
 };
 
+const put = async ({ id, name, category }: PutRequest): Promise<void> => {
+  const { put } = http;
+  const response = await put<PostRequest>({
+    url: `http://127.0.0.1:8081/v1/expense-attributes/${id}`,
+    requestBody: {
+      name,
+      category,
+    },
+  });
+  switch (response.type) {
+    case "success":
+      return;
+    default:
+      throw new NetworkError(response.code, "network error");
+  }
+};
+
 export const expenseAttributesApi = {
   get,
   post,
+  put,
 };
