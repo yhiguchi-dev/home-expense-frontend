@@ -23,7 +23,9 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install
+        working-directory: nextjs
       - name: Run lint
         run: pnpm lint
+        working-directory: nextjs
 #      - name: Run test
 #        run: pnpm test
