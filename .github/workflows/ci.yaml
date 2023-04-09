@@ -5,6 +5,9 @@ on:
       - main
   workflow_dispatch:
 
+env:
+  NEXT_PUBLIC_BACKEND_URL: ${{ secrets.BACKEND_URL }}
+
 jobs:
   build:
     runs-on: ubuntu-latest

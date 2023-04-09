@@ -1,3 +1,4 @@
+import env from "@/lib/env";
 import { NetworkError } from "@/lib/error";
 import { http } from "@/lib/http";
 
@@ -42,7 +43,7 @@ const _get = async ({
   perPage: number;
 }): Promise<GetResponse> => {
   const response = await http.get<GetResponse>({
-    url: "http://127.0.0.1:8081/v1/expenses",
+    url: `${env.backendUrl}/v1/expenses`,
     queries: {
       page: page.toString(),
       per_page: perPage.toString(),
@@ -63,7 +64,7 @@ const _post = async ({
   payment_date: paymentDate,
 }: PostRequest): Promise<void> => {
   const response = await http.postNoBody<PostRequest>({
-    url: "http://127.0.0.1:8081/v1/expenses",
+    url: `${env.backendUrl}/v1/expenses`,
     requestBody: {
       description,
       attribute_id: attributeId,
@@ -87,7 +88,7 @@ const _put = async ({
   payment_date: paymentDate,
 }: { id: string } & PutRequest): Promise<void> => {
   const response = await http.put<PostRequest>({
-    url: `http://127.0.0.1:8081/v1/expenses/${id}`,
+    url: `${env.backendUrl}/v1/expenses/${id}`,
     requestBody: {
       description,
       attribute_id: attributeId,
@@ -105,7 +106,7 @@ const _put = async ({
 
 const _delete = async ({ id }: { id: string }): Promise<void> => {
   const response = await http.delete({
-    url: `http://127.0.0.1:8081/v1/expenses/${id}`,
+    url: `${env.backendUrl}/v1/expenses/${id}`,
   });
   switch (response.type) {
     case "success":

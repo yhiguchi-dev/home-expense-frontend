@@ -1,5 +1,5 @@
 const env = {
-  homeExpenseBackendUrl: process.env.HOME_EXPENSE_BACKEND_URL ?? "",
+  backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL ?? "",
 };
 
 export default env;
