@@ -55,12 +55,13 @@ const _get = async ({
 };
 
 const _post = async ({ name, category }: PostRequest): Promise<void> => {
+  const requestBody = {
+    name,
+    category,
+  };
   const response = await http.postNoBody<PostRequest>({
     url: `${env.backendUrl}/v1/expense-attributes`,
-    requestBody: {
-      name,
-      category,
-    },
+    requestBody,
   });
   console.log("POST /v1/expense-attributes");
   switch (response.type) {
@@ -80,12 +81,13 @@ const _put = async ({
   name,
   category,
 }: { id: string } & PutRequest): Promise<void> => {
+  const requestBody = {
+    name,
+    category,
+  };
   const response = await http.put<PutRequest>({
     url: `${env.backendUrl}/v1/expense-attributes/${id}`,
-    requestBody: {
-      name,
-      category,
-    },
+    requestBody,
   });
   console.log("PUT /v1/expense-attributes");
   switch (response.type) {
