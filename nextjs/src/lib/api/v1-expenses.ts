@@ -77,6 +77,7 @@ const _post = async ({
     url: `${env.backendUrl}/v1/expenses`,
     requestBody,
   });
+  console.log("POST /v1/expenses");
   switch (response.type) {
     case "success":
       return;
@@ -106,6 +107,7 @@ const _put = async ({
     url: `${env.backendUrl}/v1/expenses/${id}`,
     requestBody,
   });
+  console.log("PUT /v1/expenses");
   switch (response.type) {
     case "success":
       return;
