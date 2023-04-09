@@ -45,8 +45,12 @@ const _get = async ({
   switch (response.type) {
     case "success":
       return response.body;
-    default:
+    case "clientError":
+    case "serverError":
       throw new NetworkError(response.code, "network error");
+    case "unknownError":
+      // TODO
+      throw new Error("");
   }
 };
 
@@ -61,8 +65,12 @@ const _post = async ({ name, category }: PostRequest): Promise<void> => {
   switch (response.type) {
     case "success":
       return;
-    default:
+    case "clientError":
+    case "serverError":
       throw new NetworkError(response.code, "network error");
+    case "unknownError":
+      // TODO
+      throw new Error("");
   }
 };
 
@@ -81,8 +89,12 @@ const _put = async ({
   switch (response.type) {
     case "success":
       return;
-    default:
+    case "clientError":
+    case "serverError":
       throw new NetworkError(response.code, "network error");
+    case "unknownError":
+      // TODO
+      throw new Error("");
   }
 };
 
@@ -93,8 +105,12 @@ const _delete = async ({ id }: { id: string }): Promise<void> => {
   switch (response.type) {
     case "success":
       return;
-    default:
+    case "clientError":
+    case "serverError":
       throw new NetworkError(response.code, "network error");
+    case "unknownError":
+      // TODO
+      throw new Error("");
   }
 };
 

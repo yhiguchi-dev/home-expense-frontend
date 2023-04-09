@@ -2,11 +2,7 @@ const _get = async <T>({
   url,
   queries,
   headers,
-}: {
-  url: string;
-  queries?: Queries;
-  headers?: Headers;
-}): Promise<HttpResponse<T>> => {
+}: Omit<HttpRequest<T>, "method">): Promise<HttpResponse<T>> => {
   const response = await send({ url, queries, method: "GET", headers });
   return await resolve(response);
 };
@@ -15,11 +11,7 @@ const _post = async <T, R>({
   url,
   headers,
   requestBody,
-}: {
-  url: string;
-  headers?: Headers;
-  requestBody?: T;
-}): Promise<HttpResponse<R>> => {
+}: Omit<HttpRequest<T>, "method">): Promise<HttpResponse<R>> => {
   const response = await send({ url, method: "POST", headers, requestBody });
   return await resolve(response);
 };
@@ -28,11 +20,7 @@ const _postNoBody = async <T>({
   url,
   headers,
   requestBody,
-}: {
-  url: string;
-  headers?: Headers;
-  requestBody?: T;
-}): Promise<HttpResponse<void>> => {
+}: Omit<HttpRequest<T>, "method">): Promise<HttpResponse<void>> => {
   const response = await send({ url, method: "POST", headers, requestBody });
   return await resolveNoBody(response);
 };
@@ -41,11 +29,7 @@ const _put = async <T>({
   url,
   headers,
   requestBody,
-}: {
-  url: string;
-  headers?: Headers;
-  requestBody?: T;
-}): Promise<HttpResponse<void>> => {
+}: Omit<HttpRequest<T>, "method">): Promise<HttpResponse<void>> => {
   const response = await send({ url, method: "PUT", headers, requestBody });
   return await resolveNoBody(response);
 };
@@ -53,10 +37,7 @@ const _put = async <T>({
 const _delete = async ({
   url,
   headers,
-}: {
-  url: string;
-  headers?: Headers;
-}): Promise<HttpResponse<void>> => {
+}: Omit<HttpRequest<void>, "method">): Promise<HttpResponse<void>> => {
   const response = await send({ url, method: "DELETE", headers });
   return await resolveNoBody(response);
 };
@@ -67,13 +48,7 @@ const send = async <T>({
   method,
   headers,
   requestBody,
-}: {
-  url: string;
-  queries?: Queries;
-  method: Method;
-  headers?: Headers;
-  requestBody?: T;
-}): Promise<Response> => {
+}: HttpRequest<T>): Promise<Response> => {
   const controller = new AbortController();
   const timeout = setTimeout(() => {
     controller.abort();
@@ -165,6 +140,14 @@ type Headers = Record<string, string>;
 
 type Queries = Record<string, string | undefined>;
 
+type HttpRequest<T> = {
+  url: string;
+  queries?: Queries;
+  method: Method;
+  headers?: Headers;
+  requestBody?: T;
+};
+
 type Success<T> = {
   type: "success";
   code: number;
@@ -183,10 +166,16 @@ type ServerError = {
   body: string;
 };
 
+type UnknownError = {
+  type: "unknownError";
+  cause: Error;
+};
+
 type HttpResponse<T> =
   | Readonly<Success<T>>
   | Readonly<ClientError>
-  | Readonly<ServerError>;
+  | Readonly<ServerError>
+  | Readonly<UnknownError>;
 
 export const http = {
   get: _get,
