@@ -24,48 +24,79 @@ import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 
 import { useDoubleClickPrevention } from "@/hooks/double-click-prevention";
-import { useExpenseAttributeMutation } from "@/hooks/store/expense-attribute";
+import { useExpenseMutation } from "@/hooks/store/expense";
+import {
+  useExpenseAttributeCriteriaMutation,
+  useExpenseAttributeMutation,
+} from "@/hooks/store/expense-attribute";
 import { delay } from "@/lib/promise";
-import { expenseAttributeService } from "@/lib/service/expense-attribute-service";
-import { type ExpenseAttributes } from "@/lib/type/expense-attribute";
+import { expenseService } from "@/lib/service/expense-service";
+import { type Expenses } from "@/lib/type/expense";
 import { type Pagination } from "@/lib/type/pagination";
 import Form from "@/ui/parts/form";
 
 type Props = {
-  expenseAttributes: ExpenseAttributes;
+  expenses: Expenses;
   pagination: Pagination;
 };
 
-const AttributeTable = ({
-  expenseAttributes,
-  pagination,
-}: Props): JSX.Element => {
+const ExpenseTable = ({ expenses, pagination }: Props): JSX.Element => {
   const router = useRouter();
   const idRef = useRef("");
+  const { setExpense } = useExpenseMutation();
   const { refresh } = useExpenseAttributeMutation();
+  const { refresh: refreshExpense } = useExpenseMutation();
+  const { setExpenseAttributeCriteria } = useExpenseAttributeCriteriaMutation();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { fn: handleSubmit } = useDoubleClickPrevention(
     async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
       await delay(1000);
       console.log(event, "asdf");
-      await expenseAttributeService.delete({
+      await expenseService.delete({
         id: idRef.current,
       });
-      refresh();
+      refreshExpense();
     }
   );
   const cancelRef = useRef<HTMLButtonElement>(null);
-  const rows = expenseAttributes.map((value, index) => {
-    const { id, name, category } = value;
+  const rows = expenses.map((value, index) => {
+    const {
+      id,
+      description,
+      price,
+      attributeId,
+      attributeName,
+      paymentDate,
+      category,
+    } = value;
     const { page, perPage } = pagination;
     const indexValue = index + 1 + (page - 1) * perPage;
     const handleEditClick = (
       event: React.MouseEvent<HTMLButtonElement>
     ): void => {
       console.log(event);
-      if (id !== undefined) {
-        router.push(`/home/attribute/${id}`);
-      }
+      setExpense((currVal) => {
+        return {
+          ...currVal,
+          id,
+          description,
+          price,
+          paymentDate,
+          attributeId,
+          attributeName,
+          category,
+        };
+      });
+      setExpenseAttributeCriteria((currVal) => {
+        return {
+          ...currVal,
+          category,
+          page: 1,
+          perPage: 100,
+        };
+      });
+      refresh();
+      router.push(`/home/expense/edit`);
     };
     const handleTrashClick = (
       event: React.MouseEvent<HTMLButtonElement>
@@ -79,7 +110,10 @@ const AttributeTable = ({
     return (
       <Tr key={index}>
         <Td>{indexValue}</Td>
-        <Td>{name}</Td>
+        <Td>{description}</Td>
+        <Td>{price}</Td>
+        <Td>{paymentDate}</Td>
+        <Td>{attributeName}</Td>
         <Td>{category}</Td>
         <Td>
           <Stack spacing={2} direction="row">
@@ -110,6 +144,9 @@ const AttributeTable = ({
           <Thead position="sticky" top={0} zIndex="docked" bg="gray.50">
             <Tr>
               <Th>#</Th>
+              <Th>説明</Th>
+              <Th>金額</Th>
+              <Th>支払日</Th>
               <Th>属性名</Th>
               <Th>分類</Th>
               <Th></Th>
@@ -154,4 +191,4 @@ const AttributeTable = ({
     </>
   );
 };
-export default AttributeTable;
+export default ExpenseTable;

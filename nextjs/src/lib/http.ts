@@ -1,15 +1,17 @@
-const get = async <T>({
+const _get = async <T>({
   url,
+  queries,
   headers,
 }: {
   url: string;
+  queries?: Queries;
   headers?: Headers;
 }): Promise<HttpResponse<T>> => {
-  const response = await send({ url, method: "GET", headers });
+  const response = await send({ url, queries, method: "GET", headers });
   return await resolve(response);
 };
 
-const post = async <T, R>({
+const _post = async <T, R>({
   url,
   headers,
   requestBody,
@@ -22,7 +24,7 @@ const post = async <T, R>({
   return await resolve(response);
 };
 
-const postNoBody = async <T>({
+const _postNoBody = async <T>({
   url,
   headers,
   requestBody,
@@ -35,7 +37,7 @@ const postNoBody = async <T>({
   return await resolveNoBody(response);
 };
 
-const put = async <T>({
+const _put = async <T>({
   url,
   headers,
   requestBody,
@@ -48,13 +50,26 @@ const put = async <T>({
   return await resolveNoBody(response);
 };
 
+const _delete = async ({
+  url,
+  headers,
+}: {
+  url: string;
+  headers?: Headers;
+}): Promise<HttpResponse<void>> => {
+  const response = await send({ url, method: "DELETE", headers });
+  return await resolveNoBody(response);
+};
+
 const send = async <T>({
   url,
+  queries,
   method,
   headers,
   requestBody,
 }: {
   url: string;
+  queries?: Queries;
   method: Method;
   headers?: Headers;
   requestBody?: T;
@@ -64,7 +79,24 @@ const send = async <T>({
     controller.abort();
   }, 3000);
   try {
-    return await fetch(url, {
+    const urlValue = new URL(url);
+    if (queries !== undefined) {
+      const _queries = Object.entries(queries)
+        .filter((value) => {
+          const [, v] = value;
+          return v !== undefined;
+        })
+        .reduce((previousValue, currentValue) => {
+          const [k, v] = currentValue;
+          return {
+            ...previousValue,
+            [k]: v,
+          };
+        }, {});
+      console.log(new URLSearchParams(_queries).toString());
+      urlValue.search = new URLSearchParams(_queries).toString();
+    }
+    return await fetch(urlValue, {
       method,
       headers: {
         ...headers,
@@ -72,6 +104,7 @@ const send = async <T>({
       },
       body: JSON.stringify(requestBody),
       signal: controller.signal,
+      mode: "cors",
     });
   } finally {
     clearTimeout(timeout);
@@ -126,9 +159,11 @@ const resolveError = async <R>(
   throw new Error("unknown http status");
 };
 
-type Method = "GET" | "POST" | "PUT";
+type Method = "GET" | "POST" | "PUT" | "DELETE";
 
-export type Headers = Record<string, string>;
+type Headers = Record<string, string>;
+
+type Queries = Record<string, string | undefined>;
 
 type Success<T> = {
   type: "success";
@@ -148,14 +183,15 @@ type ServerError = {
   body: string;
 };
 
-export type HttpResponse<T> =
+type HttpResponse<T> =
   | Readonly<Success<T>>
   | Readonly<ClientError>
   | Readonly<ServerError>;
 
 export const http = {
-  get,
-  post,
-  postNoBody,
-  put,
+  get: _get,
+  post: _post,
+  postNoBody: _postNoBody,
+  put: _put,
+  delete: _delete,
 };

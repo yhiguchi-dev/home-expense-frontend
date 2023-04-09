@@ -51,16 +51,39 @@ const PaginationComponent = ({
       onItemClick(page.current);
     };
     return (
-      <Box key={index} onClick={handleClick}>
+      <Box
+        key={index}
+        onClick={handleClick}
+        _hover={{
+          background: "white",
+          color: "teal.500",
+        }}
+      >
         {value}
       </Box>
     );
   });
   return (
     <Stack direction="row">
-      <Box onClick={handlePreviousClick}>Previous</Box>
+      <Box
+        onClick={handlePreviousClick}
+        _hover={{
+          background: "white",
+          color: "teal.500",
+        }}
+      >
+        Previous
+      </Box>
       {paginationItem}
-      <Box onClick={handleNextClick}>Next</Box>
+      <Box
+        onClick={handleNextClick}
+        _hover={{
+          background: "white",
+          color: "teal.500",
+        }}
+      >
+        Next
+      </Box>
     </Stack>
   );
 };

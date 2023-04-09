@@ -6,19 +6,21 @@ import React, { Suspense, useCallback } from "react";
 
 import { useDoubleClickPrevention } from "@/hooks/double-click-prevention";
 import {
-  useExpenseAttributeSummary,
-  useExpenseAttributeCriteriaMutation,
-} from "@/hooks/store/expense-attribute";
-import AttributeTable from "@/ui/dashboard/attribute-table";
+  useExpenseCriteriaMutation,
+  useExpenseSummary,
+} from "@/hooks/store/expense";
+import { useExpenseAttributeCriteriaMutation } from "@/hooks/store/expense-attribute";
+import ExpenseTable from "@/ui/dashboard/expense-table";
 import PaginationComponent from "@/ui/dashboard/pagination-component";
 
-const Attribute = (): JSX.Element => {
-  const { expenseAttributes, pagination } = useExpenseAttributeSummary();
+const Expense = (): JSX.Element => {
+  const { expenses, pagination } = useExpenseSummary();
+  const { setExpenseCriteria } = useExpenseCriteriaMutation();
   const { setExpenseAttributeCriteria } = useExpenseAttributeCriteriaMutation();
   const router = useRouter();
   const { fn: handlePreviousClick } = useDoubleClickPrevention(
     async (nextPage: number): Promise<void> => {
-      setExpenseAttributeCriteria((currVal) => {
+      setExpenseCriteria((currVal) => {
         return {
           ...currVal,
           page: nextPage,
@@ -28,7 +30,7 @@ const Attribute = (): JSX.Element => {
   );
   const { fn: handleNextClick } = useDoubleClickPrevention(
     async (nextPage: number): Promise<void> => {
-      setExpenseAttributeCriteria((currVal) => {
+      setExpenseCriteria((currVal) => {
         return {
           ...currVal,
           page: nextPage,
@@ -38,7 +40,7 @@ const Attribute = (): JSX.Element => {
   );
   const { fn: handleItemClick } = useDoubleClickPrevention(
     async (nextPage: number): Promise<void> => {
-      setExpenseAttributeCriteria((currVal) => {
+      setExpenseCriteria((currVal) => {
         return {
           ...currVal,
           page: nextPage,
@@ -50,9 +52,17 @@ const Attribute = (): JSX.Element => {
   const handleRegistrationClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>): void => {
       console.log(event);
-      router.push("/home/attribute/registration");
+      setExpenseAttributeCriteria((currVal) => {
+        return {
+          ...currVal,
+          category: "固定費",
+          page: 1,
+          perPage: 100,
+        };
+      });
+      router.push("/home/expense/registration");
     },
-    [router]
+    [router, setExpenseAttributeCriteria]
   );
 
   return (
@@ -61,7 +71,7 @@ const Attribute = (): JSX.Element => {
       rounded="2xl"
       shadow="base"
       width="2xl"
-      height="xs"
+      height="xl"
       overflow="hidden"
     >
       <Suspense fallback={<div>loading</div>}>
@@ -71,10 +81,7 @@ const Attribute = (): JSX.Element => {
           justifyContent="space-between"
         >
           <Box overflowY="scroll">
-            <AttributeTable
-              expenseAttributes={expenseAttributes}
-              pagination={pagination}
-            />
+            <ExpenseTable expenses={expenses} pagination={pagination} />
           </Box>
           <Center position="relative" padding={4}>
             <PaginationComponent
@@ -97,4 +104,4 @@ const Attribute = (): JSX.Element => {
     </Box>
   );
 };
-export default Attribute;
+export default Expense;

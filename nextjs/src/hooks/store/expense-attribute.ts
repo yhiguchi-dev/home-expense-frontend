@@ -15,6 +15,7 @@ import {
 const expenseAttributeCriteriaState = atom<ExpenseAttributeCriteria>({
   key: "expenseAttributeCriteriaState",
   default: {
+    category: undefined,
     page: 1,
     perPage: 20,
   },
@@ -24,6 +25,7 @@ const expenseAttributeQuery = selector({
   key: "expenseAttributeQuery",
   get: async ({ get }): Promise<ExpenseAttributeSummary> => {
     const criteria = get(expenseAttributeCriteriaState);
+    console.log(criteria);
     return await expenseAttributeService.get(criteria);
   },
 });
@@ -32,7 +34,7 @@ export const useExpenseAttributeSummary = (): ExpenseAttributeSummary => {
   return useRecoilValue(expenseAttributeQuery);
 };
 
-export const useExpenseCriteriaMutation = (): {
+export const useExpenseAttributeCriteriaMutation = (): {
   setExpenseAttributeCriteria: (
     valOrUpdater:
       | ((currVal: ExpenseAttributeCriteria) => ExpenseAttributeCriteria)

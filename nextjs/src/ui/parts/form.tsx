@@ -6,7 +6,7 @@ import React, {
 
 type Props = {
   onSubmit: FormEventHandler<HTMLFormElement>;
-  onFormInvalid: FormEventHandler<HTMLFormElement>;
+  onFormInvalid?: FormEventHandler<HTMLFormElement>;
 };
 
 const Form = ({
@@ -19,7 +19,9 @@ const Form = ({
       event.preventDefault();
       if (!event.currentTarget.checkValidity()) {
         event.stopPropagation();
-        onFormInvalid(event);
+        if (onFormInvalid !== undefined) {
+          onFormInvalid(event);
+        }
         return;
       }
       onSubmit(event);

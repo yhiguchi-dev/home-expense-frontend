@@ -3,6 +3,7 @@ import { type Pagination } from "@/lib/type/pagination";
 export type ExpenseAttributeCategory = "固定費" | "変動費";
 
 export type ExpenseAttributeCriteria = {
+  category?: string;
   page: number;
   perPage: number;
 };

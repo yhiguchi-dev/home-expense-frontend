@@ -50,3 +50,7 @@ export const promiseWithRetry = async <T>({
   }
   throw new RetryError("number of retries exceeded");
 };
+
+export const delay = async (waiting: number): Promise<void> => {
+  await new Promise((resolve) => setTimeout(resolve, waiting));
+};

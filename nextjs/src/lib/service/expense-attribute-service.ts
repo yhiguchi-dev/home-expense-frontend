@@ -1,4 +1,5 @@
 import { expenseAttributesApi } from "@/lib/api/v1-expense-attributes";
+import { delay } from "@/lib/promise";
 import {
   type ExpenseAttribute,
   type ExpenseAttributeCriteria,
@@ -8,28 +9,28 @@ import {
 } from "@/lib/type/expense-attribute";
 import { type Pagination } from "@/lib/type/pagination";
 
-const get = async ({
+const _get = async ({
+  category,
   page,
   perPage,
 }: ExpenseAttributeCriteria): Promise<ExpenseAttributeSummary> => {
-  const { get } = expenseAttributesApi;
+  await delay(1000);
   const {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    total_number,
+    total_number: totalNumber,
     page: _page,
-    perPage: _perPage,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    expense_attributes,
-  } = await get({
+    per_page: _perPage,
+    expense_attributes: expenseAttributes,
+  } = await expenseAttributesApi.get({
+    category,
     page,
     perPage,
   });
   const pagination: Pagination = {
-    totalNumber: total_number,
+    totalNumber,
     page: _page,
     perPage: _perPage,
   };
-  const expenseAttributes: ExpenseAttributes = expense_attributes.map(
+  const _expenseAttributes: ExpenseAttributes = expenseAttributes.map(
     (value) => {
       const { id, name, category } = value;
       if (isExpenseAttributeCategory(category)) {
@@ -44,12 +45,12 @@ const get = async ({
     }
   );
   return {
-    expenseAttributes,
+    expenseAttributes: _expenseAttributes,
     pagination,
   };
 };
 
-const register = async ({
+const _register = async ({
   name,
   category,
 }: {
@@ -59,7 +60,7 @@ const register = async ({
   await expenseAttributesApi.post({ name, category });
 };
 
-const update = async ({
+const _update = async ({
   id,
   name,
   category,
@@ -71,8 +72,13 @@ const update = async ({
   await expenseAttributesApi.put({ id, name, category });
 };
 
+const _delete = async ({ id }: { id: string }): Promise<void> => {
+  await expenseAttributesApi.delete({ id });
+};
+
 export const expenseAttributeService = {
-  get,
-  register,
-  update,
+  get: _get,
+  register: _register,
+  update: _update,
+  delete: _delete,
 };

@@ -5,38 +5,45 @@ type GetResponse = {
   total_number: number;
   page: number;
   per_page: number;
-  expense_attributes: [
+  expenses: [
     {
       id: string;
-      name: string;
-      category: string;
+      description: string;
+      price: number;
+      payment_date: string;
+      expense_attribute: {
+        id: string;
+        name: string;
+        category: string;
+      };
     }
   ];
 };
 
 type PostRequest = {
-  name: string;
-  category: string;
+  description: string;
+  attribute_id: string;
+  price: number;
+  payment_date: string;
 };
 
 type PutRequest = {
-  name: string;
-  category: string;
+  description: string;
+  attribute_id: string;
+  price: number;
+  payment_date: string;
 };
 
 const _get = async ({
-  category,
   page,
   perPage,
 }: {
-  category?: string;
   page: number;
   perPage: number;
 }): Promise<GetResponse> => {
   const response = await http.get<GetResponse>({
-    url: "http://127.0.0.1:8081/v1/expense-attributes",
+    url: "http://127.0.0.1:8081/v1/expenses",
     queries: {
-      category,
       page: page.toString(),
       per_page: perPage.toString(),
     },
@@ -49,12 +56,19 @@ const _get = async ({
   }
 };
 
-const _post = async ({ name, category }: PostRequest): Promise<void> => {
+const _post = async ({
+  description,
+  attribute_id: attributeId,
+  price,
+  payment_date: paymentDate,
+}: PostRequest): Promise<void> => {
   const response = await http.postNoBody<PostRequest>({
-    url: "http://127.0.0.1:8081/v1/expense-attributes",
+    url: "http://127.0.0.1:8081/v1/expenses",
     requestBody: {
-      name,
-      category,
+      description,
+      attribute_id: attributeId,
+      price,
+      payment_date: paymentDate,
     },
   });
   switch (response.type) {
@@ -67,14 +81,18 @@ const _post = async ({ name, category }: PostRequest): Promise<void> => {
 
 const _put = async ({
   id,
-  name,
-  category,
+  description,
+  attribute_id: attributeId,
+  price,
+  payment_date: paymentDate,
 }: { id: string } & PutRequest): Promise<void> => {
-  const response = await http.put<PutRequest>({
-    url: `http://127.0.0.1:8081/v1/expense-attributes/${id}`,
+  const response = await http.put<PostRequest>({
+    url: `http://127.0.0.1:8081/v1/expenses/${id}`,
     requestBody: {
-      name,
-      category,
+      description,
+      attribute_id: attributeId,
+      price,
+      payment_date: paymentDate,
     },
   });
   switch (response.type) {
@@ -87,7 +105,7 @@ const _put = async ({
 
 const _delete = async ({ id }: { id: string }): Promise<void> => {
   const response = await http.delete({
-    url: `http://127.0.0.1:8081/v1/expense-attributes/${id}`,
+    url: `http://127.0.0.1:8081/v1/expenses/${id}`,
   });
   switch (response.type) {
     case "success":
@@ -97,7 +115,7 @@ const _delete = async ({ id }: { id: string }): Promise<void> => {
   }
 };
 
-export const expenseAttributesApi = {
+export const expensesApi = {
   get: _get,
   post: _post,
   put: _put,
