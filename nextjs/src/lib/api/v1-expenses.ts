@@ -67,14 +67,15 @@ const _post = async ({
   price,
   payment_date: paymentDate,
 }: PostRequest): Promise<void> => {
+  const requestBody = {
+    description,
+    attribute_id: attributeId,
+    price,
+    payment_date: paymentDate,
+  };
   const response = await http.postNoBody<PostRequest>({
     url: `${env.backendUrl}/v1/expenses`,
-    requestBody: {
-      description,
-      attribute_id: attributeId,
-      price,
-      payment_date: paymentDate,
-    },
+    requestBody,
   });
   switch (response.type) {
     case "success":
@@ -95,14 +96,15 @@ const _put = async ({
   price,
   payment_date: paymentDate,
 }: { id: string } & PutRequest): Promise<void> => {
+  const requestBody = {
+    description,
+    attribute_id: attributeId,
+    price,
+    payment_date: paymentDate,
+  };
   const response = await http.put<PostRequest>({
     url: `${env.backendUrl}/v1/expenses/${id}`,
-    requestBody: {
-      description,
-      attribute_id: attributeId,
-      price,
-      payment_date: paymentDate,
-    },
+    requestBody,
   });
   switch (response.type) {
     case "success":
