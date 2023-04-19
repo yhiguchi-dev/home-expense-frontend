@@ -1,4 +1,4 @@
-FROM node:18-alpine AS deps
+FROM node:19-alpine AS deps
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ FROM deps AS builder
 COPY . .
 RUN pnpm build
 
-FROM node:18-alpine AS runner
+FROM node:19-alpine AS runner
 
 WORKDIR /app
 
