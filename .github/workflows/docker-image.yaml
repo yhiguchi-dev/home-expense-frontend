@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  NEXT_PUBLIC_BACKEND_URL: ${{ vars.BACKEND_URL }}
+  BACKEND_URL: ${{ vars.BACKEND_URL }}
 jobs:
   push:
     runs-on: ubuntu-latest
