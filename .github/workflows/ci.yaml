@@ -6,7 +6,7 @@ on:
       - main
   workflow_dispatch:
 env:
-  BACKEND_URL: ${{ vars.BACKEND_URL }}
+  NEXT_PUBLIC_BACKEND_URL: ${{ vars.BACKEND_URL }}
 jobs:
   lint:
     runs-on: ubuntu-latest
