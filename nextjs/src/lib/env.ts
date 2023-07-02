@@ -1,6 +1,6 @@
 const env = {
   // backendUrl: process.env.NEXT_PUBLIC_BACKEND_URL ?? "",
-  backendUrl: "http://192.168.2.108:8080",
+  backendUrl: "http://home-expense-backend.home-expense.svc.cluster.local",
 };
 
 export default env;
