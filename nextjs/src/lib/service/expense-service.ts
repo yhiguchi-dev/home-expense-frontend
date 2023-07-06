@@ -47,7 +47,17 @@ const _get = async ({
       };
       return expense;
     }
-    throw Error("");
+    // TODO
+    const expense: Expense = {
+      id,
+      description,
+      price,
+      paymentDate,
+      attributeId,
+      attributeName,
+      category,
+    };
+    return expense;
   });
   return {
     expenses: _expenses,
