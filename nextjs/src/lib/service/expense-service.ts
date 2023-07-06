@@ -34,6 +34,15 @@ const _get = async ({
       price,
       payment_date: paymentDate,
     } = value;
+    if (expenseAttribute == null) {
+      const expense: Expense = {
+        id,
+        description,
+        price,
+        paymentDate,
+      };
+      return expense;
+    }
     const { id: attributeId, name, category } = expenseAttribute;
     if (isExpenseAttributeCategory(category)) {
       const expense: Expense = {
@@ -47,17 +56,7 @@ const _get = async ({
       };
       return expense;
     }
-    // TODO
-    const expense: Expense = {
-      id,
-      description,
-      price,
-      paymentDate,
-      attributeId,
-      attributeName,
-      category,
-    };
-    return expense;
+    throw new Error("");
   });
   return {
     expenses: _expenses,
