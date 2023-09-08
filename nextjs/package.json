@@ -23,8 +23,8 @@
     "recoil": "0.7.7"
   },
   "devDependencies": {
-    "@chakra-ui/next-js": "2.1.2",
-    "@chakra-ui/react": "2.5.5",
+    "@chakra-ui/next-js": "2.1.5",
+    "@chakra-ui/react": "2.8.1",
     "@emotion/react": "11.10.6",
     "@emotion/styled": "11.10.6",
     "@heroicons/react": "2.0.17",
