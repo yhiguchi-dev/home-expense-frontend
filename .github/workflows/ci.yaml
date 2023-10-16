@@ -1,80 +1,47 @@
 name: CI
-run-name: ${{ github.workflow }} (${{ github.ref_name }})
+run-name: Push Docker Image
 on:
   pull_request:
     branches:
       - main
   workflow_dispatch:
-env:
-  NEXT_PUBLIC_BACKEND_URL: ${{ vars.BACKEND_URL }}
 jobs:
   lint:
-    runs-on: ubuntu-latest
+    uses: yhiguchi-dev/reusable-workflow/.github/workflows/lint-with-pnpm.yaml@main
+    with:
+      node-version: ${{ matrix.node-version }}
+      lint-command: lint
+      working-directory: app
     strategy:
+      fail-fast: false
       matrix:
         node-version:
           - 18
+
+  pre-build-and-push:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.set-version.outputs.version }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: pnpm
-          cache-dependency-path: ./nextjs/pnpm-lock.yaml
-      - name: Install dependencies
-        run: pnpm install
-        working-directory: nextjs
-      - name: Run lint
-        run: pnpm lint
-        working-directory: nextjs
-#      - name: Run test
-#        run: pnpm test
-  build:
-    runs-on: ubuntu-latest
+      - name: Set Version
+        id: set-version
+        run: |
+          echo "version=$(pnpm pkg get version | tr -d \")" >> "${GITHUB_OUTPUT}"
+        working-directory: app
+  build-and-push:
+    uses: yhiguchi-dev/reusable-workflow/.github/workflows/docker-image-push-to-ghcr.yaml@main
+    with:
+      build-context: ${{ matrix.build-context }}
+      version: ${{ needs.pre-build-and-push.outputs.version }}
     needs:
+      - pre-build-and-push
       - lint
     strategy:
+      fail-fast: false
       matrix:
         build-context:
-          - nextjs
-    steps:
-      - uses: actions/checkout@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-        with:
-          install: true
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build ${{ matrix.build-context }}
-        uses: docker/build-push-action@v4
-        with:
-          context: ./${{ matrix.build-context }}
-          load: true
-          tags: ghcr.io/${{ github.repository }}-${{ matrix.build-context }}:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-      - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: ghcr.io/${{ github.repository }}-${{ matrix.build-context }}:latest
-          format: table
-          exit-code: 1
-          ignore-unfixed: true
-          vuln-type: os,library
-          severity: CRITICAL,HIGH
-      - name: Push ${{ matrix.build-context }}
-        uses: docker/build-push-action@v4
-        with:
-          context: ./${{ matrix.build-context }}
-          push: true
-          tags: ghcr.io/${{ github.repository }}-${{ matrix.build-context }}:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          - app
