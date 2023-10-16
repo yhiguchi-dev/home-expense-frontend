@@ -45,3 +45,5 @@ jobs:
       matrix:
         build-context:
           - app
+        platform:
+          - linux/amd64
