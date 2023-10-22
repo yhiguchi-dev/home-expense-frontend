@@ -115,10 +115,9 @@ const _getSummary = async ({
           response: responseBody,
         };
       }
-      // TODO
+
       throw new Error("");
     case "failure":
-      // TODO
       throw response.error;
   }
 };
@@ -139,7 +138,6 @@ const _get = async ({
     case "success":
       return await response.body<GetResponse>(getResponse);
     case "failure":
-      // TODO
       throw response.error;
   }
 };
@@ -169,7 +167,6 @@ const _post = async ({
     case "success":
       return;
     case "failure":
-      // TODO
       throw response.error;
   }
 };
@@ -200,7 +197,6 @@ const _put = async ({
     case "success":
       return;
     case "failure":
-      // TODO
       throw response.error;
   }
 };
@@ -214,7 +210,6 @@ const _delete = async ({ id }: { id: string }): Promise<void> => {
     case "success":
       return;
     case "failure":
-      // TODO
       throw response.error;
   }
 };
