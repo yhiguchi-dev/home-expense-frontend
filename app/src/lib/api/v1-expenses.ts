@@ -102,7 +102,6 @@ const _getSummary = async ({
     },
     extension,
   });
-  console.log(response.headers);
   switch (response.type) {
     case "success":
       const { headers } = response;
@@ -118,10 +117,9 @@ const _getSummary = async ({
       }
       // TODO
       throw new Error("");
-    case "clientError":
-    case "serverError":
+    case "failure":
       // TODO
-      throw new Error("");
+      throw response.error;
   }
 };
 
@@ -140,10 +138,9 @@ const _get = async ({
   switch (response.type) {
     case "success":
       return await response.body<GetResponse>(getResponse);
-    case "clientError":
-    case "serverError":
+    case "failure":
       // TODO
-      throw new Error("");
+      throw response.error;
   }
 };
 
@@ -171,10 +168,9 @@ const _post = async ({
   switch (response.type) {
     case "success":
       return;
-    case "clientError":
-    case "serverError":
+    case "failure":
       // TODO
-      throw new Error("");
+      throw response.error;
   }
 };
 
@@ -203,10 +199,9 @@ const _put = async ({
   switch (response.type) {
     case "success":
       return;
-    case "clientError":
-    case "serverError":
+    case "failure":
       // TODO
-      throw new Error("");
+      throw response.error;
   }
 };
 
@@ -218,10 +213,9 @@ const _delete = async ({ id }: { id: string }): Promise<void> => {
   switch (response.type) {
     case "success":
       return;
-    case "clientError":
-    case "serverError":
+    case "failure":
       // TODO
-      throw new Error("");
+      throw response.error;
   }
 };
 

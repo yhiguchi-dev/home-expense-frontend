@@ -1,3 +1,8 @@
+import {
+  ClientError,
+  ServerError,
+  UnknownHttpStatusError,
+} from "@/lib/http/error";
 import { HttpRequest, HttpResponse, RequestBody } from "@/lib/http/type";
 import { json } from "@/lib/json";
 import { JTDSchema } from "@/lib/json/type";
@@ -5,36 +10,34 @@ import { JTDSchema } from "@/lib/json/type";
 const _get = async (
   params: Omit<HttpRequest, "method">,
 ): Promise<HttpResponse> => {
-  const response = await send({ ...params, method: "GET" });
-  console.log(response);
-  return resolve(response);
+  return await sendAndResolve({ ...params, method: "GET" });
 };
 
 const _post = async (
   params: Omit<HttpRequest, "method">,
 ): Promise<HttpResponse> => {
-  const response = await send({
-    ...params,
-    method: "POST",
-  });
-  return resolve(response);
+  return await sendAndResolve({ ...params, method: "POST" });
 };
 
 const _put = async (
   params: Omit<HttpRequest, "method">,
 ): Promise<HttpResponse> => {
-  const response = await send({
-    ...params,
-    method: "PUT",
-  });
-  return resolve(response);
+  return await sendAndResolve({ ...params, method: "PUT" });
 };
 
 const _delete = async (
   params: Omit<HttpRequest, "method">,
 ): Promise<HttpResponse> => {
-  const response = await send({ ...params, method: "DELETE" });
-  return resolve(response);
+  return await sendAndResolve({ ...params, method: "DELETE" });
+};
+
+const sendAndResolve = async (params: HttpRequest): Promise<HttpResponse> => {
+  try {
+    const response = await send({ ...params });
+    return resolveWithResponse(response);
+  } catch (e: unknown) {
+    return resolveWithError(e);
+  }
 };
 
 const send = async ({
@@ -97,10 +100,10 @@ const serializeRequestBody = (requestBody?: RequestBody) => {
     const { serialize } = json;
     return serialize(requestBody.schema, requestBody.data);
   }
-  return undefined;
+  return;
 };
 
-const resolve = (response: Response): HttpResponse => {
+const resolveWithResponse = (response: Response): HttpResponse => {
   const body = async <T>(schema: JTDSchema): Promise<T> => {
     const { parse } = json;
     const responseJson: unknown = await response.json();
@@ -124,21 +127,33 @@ const resolve = (response: Response): HttpResponse => {
   const code = response.status;
   if (code >= 400 && code <= 499) {
     return {
-      type: "clientError",
-      code,
-      headers,
-      body,
+      type: "failure",
+      error: ClientError(code, headers, body),
     };
   }
   if (code >= 500 && code <= 599) {
     return {
-      type: "serverError",
-      code,
-      headers,
-      body,
+      type: "failure",
+      error: ServerError(code, headers, body),
     };
   }
-  throw UnknownHttpStatusError(code, `unknown http status code:${code}`);
+  return {
+    type: "failure",
+    error: UnknownHttpStatusError(code, headers, body),
+  };
+};
+
+const resolveWithError = (e: unknown): HttpResponse => {
+  if (e instanceof Error) {
+    return {
+      type: "failure",
+      error: e,
+    };
+  }
+  return {
+    type: "failure",
+    error: Error(String(e)),
+  };
 };
 
 export const http = {
