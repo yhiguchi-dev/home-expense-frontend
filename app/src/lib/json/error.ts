@@ -8,7 +8,7 @@ interface JSONParseErrorConstructor extends ErrorConstructor {
   readonly prototype: JSONParseError;
 }
 
-declare const JSONParseError: JSONParseErrorConstructor;
+export declare const JSONParseError: JSONParseErrorConstructor;
 
 interface JSONSerializeError extends Error {
   name: "JSONSerializeError";
@@ -20,4 +20,4 @@ interface JSONSerializeErrorConstructor extends ErrorConstructor {
   readonly prototype: JSONSerializeError;
 }
 
-declare const JSONSerializeError: JSONSerializeErrorConstructor;
+export declare const JSONSerializeError: JSONSerializeErrorConstructor;

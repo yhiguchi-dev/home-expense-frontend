@@ -4,26 +4,28 @@ interface ClientError extends Error {
   name: "ClientError";
   code: number;
   headers?: Record<string, string>;
-  body: <T>(schema: JTDSchema) => Promise<T>;
+  body?: <T>(schema: JTDSchema) => Promise<T>;
 }
 
 interface ClientErrorConstructor extends ErrorConstructor {
   new (
     code: number,
     headers?: Record<string, string>,
-    body: <T>(schema: JTDSchema) => Promise<T>,
+    body?: <T>(schema: JTDSchema) => Promise<T>,
     message?: string,
+    options?: ErrorOptions,
   ): ClientError;
   (
     code: number,
     headers?: Record<string, string>,
-    body: <T>(schema: JTDSchema) => Promise<T>,
+    body?: <T>(schema: JTDSchema) => Promise<T>,
     message?: string,
+    options?: ErrorOptions,
   ): ClientError;
   readonly prototype: ClientError;
 }
 
-declare const ClientError: ClientErrorConstructor;
+export declare const ClientError: ClientErrorConstructor;
 
 interface ServerError extends Error {
   name: "ServerError";
@@ -36,19 +38,21 @@ interface ServerErrorConstructor extends ErrorConstructor {
   new (
     code: number,
     headers?: Record<string, string>,
-    body: <T>(schema: JTDSchema) => Promise<T>,
+    body?: <T>(schema: JTDSchema) => Promise<T>,
     message?: string,
+    options?: ErrorOptions,
   ): ServerError;
   (
     code: number,
     headers?: Record<string, string>,
-    body: <T>(schema: JTDSchema) => Promise<T>,
+    body?: <T>(schema: JTDSchema) => Promise<T>,
     message?: string,
+    options?: ErrorOptions,
   ): ServerError;
   readonly prototype: ServerError;
 }
 
-declare const ServerError: ServerErrorConstructor;
+export declare const ServerError: ServerErrorConstructor;
 
 interface UnknownHttpStatusError extends Error {
   name: "UnknownHttpStatusError";
@@ -61,16 +65,18 @@ interface UnknownHttpStatusErrorConstructor extends ErrorConstructor {
   new (
     code: number,
     headers?: Record<string, string>,
-    body: <T>(schema: JTDSchema) => Promise<T>,
+    body?: <T>(schema: JTDSchema) => Promise<T>,
     message?: string,
+    options?: ErrorOptions,
   ): UnknownHttpStatusError;
   (
     code: number,
     headers?: Record<string, string>,
-    body: <T>(schema: JTDSchema) => Promise<T>,
+    body?: <T>(schema: JTDSchema) => Promise<T>,
     message?: string,
+    options?: ErrorOptions,
   ): UnknownHttpStatusError;
   readonly prototype: UnknownHttpStatusError;
 }
 
-declare const UnknownHttpStatusError: UnknownHttpStatusErrorConstructor;
+export declare const UnknownHttpStatusError: UnknownHttpStatusErrorConstructor;
