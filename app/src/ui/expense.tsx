@@ -79,7 +79,7 @@ const Expense = ({ expenses, pagination }: Props): ReactElement => {
             onMoveNext={handleNextClick}
             onMovePage={handlePageClick}
           />
-          <div>
+          <div className="add">
             <button onClick={handleRegistrationClick}>追加</button>
           </div>
         </div>

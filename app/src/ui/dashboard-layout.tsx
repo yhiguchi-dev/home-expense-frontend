@@ -11,19 +11,28 @@ const DashboardLayout = ({
   return (
     <div className={style.dashboard}>
       <div>
-        <ul>
-          <li>
-            <Link href="/home">Home</Link>
-          </li>
-          <li>
-            <Link href="/expense-attribute">経費属性</Link>
-          </li>
-          <li>
-            <Link href="/expense">経費</Link>
-          </li>
-        </ul>
+        <div className="background">
+          <div className="side-bar">
+            <ul className="bar-text">
+              <li>
+                <Link href="/home">Home</Link>
+              </li>
+              <li>
+                <Link href="/expense-attribute">経費属性</Link>
+              </li>
+              <li>
+                <Link href="/expense">経費</Link>
+              </li>
+            </ul>
+          </div>
+          <div className="margin">
+            <div className={style.topBar}>
+              <text className="topbar-text">家庭用</text>
+            </div>
+            <div className="expense-table-background">{children}</div>
+          </div>
+        </div>
       </div>
-      <div>{children}</div>
     </div>
   );
 };

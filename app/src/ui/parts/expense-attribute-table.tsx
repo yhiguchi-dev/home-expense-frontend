@@ -42,10 +42,10 @@ const ExpenseAttributeTable = ({
     };
     return (
       <tr key={index}>
-        <td>{indexValue}</td>
-        <td>{name}</td>
-        <td>{category}</td>
-        <td>
+        <td className="table-no">{indexValue}</td>
+        <td className="table-attribute">{name}</td>
+        <td className="table-category">{category}</td>
+        <td className="table-edit">
           <div>
             <button onClick={handleEditClick}>edit</button>
             <button onClick={handleTrashClick}>delete</button>
@@ -69,13 +69,13 @@ const ExpenseAttributeTable = ({
   };
   return (
     <>
-      <table>
+      <table className="expense-attribute_table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>属性名</th>
-            <th>分類</th>
-            <th></th>
+            <th className="table-no-header">No.</th>
+            <th className="table-attribute-header">属性名</th>
+            <th className="table-category-header">分類</th>
+            <th className="table-edit-header">編集</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

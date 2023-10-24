@@ -16,9 +16,9 @@ const ExpenseAttributeForm = ({
   return (
     <form action={onSubmit}>
       <input type="hidden" name="expenseAttributeId" value={id} />
-      <label>属性名</label>
+      <label className="form-edit-label">属性名</label>
       <input type="text" name="name" defaultValue={name} required />
-      <label>分類</label>
+      <label className="form-edit-label">分類</label>
       <select name="category" defaultValue={category}>
         <option value="固定費">固定費</option>
         <option value="変動費">変動費</option>

@@ -79,6 +79,7 @@ const ExpenseAttribute = ({
   return (
     <div>
       <select
+        className="category-box"
         name="category"
         defaultValue={category}
         onChange={handleCategoryChange}
@@ -101,7 +102,7 @@ const ExpenseAttribute = ({
             onMoveNext={handleNextClick}
             onMovePage={handlePageClick}
           />
-          <div>
+          <div className="add">
             <button onClick={handleRegistrationClick}>追加</button>
           </div>
         </div>
