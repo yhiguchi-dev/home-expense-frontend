@@ -64,24 +64,22 @@ const Expense = ({ expenses, pagination }: Props): ReactElement => {
 
   return (
     <div>
-      <div>
-        <div>
+      <div className="foo">
+        <div className="foo2">
           <ExpenseTable
             expenses={expenses}
             pagination={pagination}
             onEdit={handleEdit}
           />
         </div>
-        <div>
-          <PaginationComponent
-            pagination={pagination}
-            onMovePrevious={handleMovePrevious}
-            onMoveNext={handleMoveNext}
-            onMovePage={handleMovePage}
-          />
-          <div className="add">
-            <button onClick={handleRegistrationClick}>追加</button>
-          </div>
+        <PaginationComponent
+          pagination={pagination}
+          onMovePrevious={handleMovePrevious}
+          onMoveNext={handleMoveNext}
+          onMovePage={handleMovePage}
+        />
+        <div className="add">
+          <button onClick={handleRegistrationClick}>追加</button>
         </div>
       </div>
     </div>

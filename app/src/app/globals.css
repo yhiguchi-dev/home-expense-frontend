@@ -151,14 +151,14 @@ input{
   overflow: auto;
   border-collapse: separate;
   border-spacing: 0;
-  margin-left: 50px;
-  margin-top: 10px;
+  width: 100%;
+  /*margin-left: 50px;*/
+  /*margin-top: 10px;*/
 }
 
 /* ヘッダー固定*/
 .expense-attribute_table thead th {
   /* 縦スクロール時に固定する */
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   /* tbody内のセルより手前に表示する */
@@ -292,20 +292,17 @@ input{
   display: flex;
   justify-content: center;
 
-  /*  なんか＋１１しないと合わない */
-  width: calc(var(--tableNoWidth) + 11px + var(--tableAttributeWidth) + 11px + var(--tableCategoryWidth) + 11px + var(--tableEditWidth) + 11px);
+  width: 100%;
   height: 40px;
-  flex-shrink: 0;
-  margin-left: 50px;
-  display: flex;
-  justify-content: center;
+
   align-items: center;
 
-  border-radius: 0px 0px 15px 15px;
+  border-radius: 0 0 15px 15px;
   border-right: 1px solid #DEDEDE;
   border-bottom: 1px solid #DEDEDE;
   border-left: 1px solid #DEDEDE;
   background: #FFF;
+  box-sizing: border-box;
 }
 
 /* pagenation文字スタイル */
@@ -339,11 +336,10 @@ input{
 /* 経費テーブルスタイル */
 
 .expense_table{
-  overflow: auto;
+  overflow: scroll;
+  height: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  margin-left: 10px;
-  margin-top: 10px;
 }
 
 /* ヘッダー文字スタイル */
@@ -375,9 +371,8 @@ input{
 }
 
 /* ヘッダー固定*/
-.expense-table thead th {
+.expense_table thead th {
   /* 縦スクロール時に固定する */
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   /* tbody内のセルより手前に表示する */
@@ -450,29 +445,6 @@ input{
   background: #FFF;
 }
 
-  /* 経費ページネーションスタイル */
-  .pagenation-expense{
-    display: flex;
-    justify-content: center;
-  
-    /*  なんか＋１１しないと合わない */
-    /* width: calc(var(--tableNoWidth) + 11px + var(--tableAttributeWidth) + 11px + var(--tableCategoryWidth) + 11px + var(--tableEditWidth) 
-                + 11px + var(--tableDescriptionWidth) + 11px + var(--tablePriceWidth) + 11px +  var(--tablePaymentDateWidth) + 11px); */
-    width: 735px;
-    height: 40px;
-    flex-shrink: 0;
-    margin-left: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-    border-radius: 0px 0px 15px 15px;
-    border-right: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    border-left: 1px solid #DEDEDE;
-    background: #FFF;
-  }
-
 /* 編集画面ラベルスタイル */
 .form-edit-label{
   display: flex;
@@ -488,4 +460,15 @@ input{
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+
+.foo {
+  padding: 10px;
+}
+
+
+.foo2 {
+  overflow-y: scroll;
+  /*overflow-y: hidden;*/
+  height: 560px;
 }
