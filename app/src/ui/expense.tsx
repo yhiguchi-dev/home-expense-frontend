@@ -14,7 +14,7 @@ interface Props {
 
 const Expense = ({ expenses, pagination }: Props): ReactElement => {
   const router = useRouter();
-  const handlePreviousClick = useCallback(
+  const handleMovePrevious = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
         page: page.toString(),
@@ -25,7 +25,7 @@ const Expense = ({ expenses, pagination }: Props): ReactElement => {
     [router],
   );
 
-  const handleNextClick = useCallback(
+  const handleMoveNext = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
         page: page.toString(),
@@ -36,7 +36,7 @@ const Expense = ({ expenses, pagination }: Props): ReactElement => {
     [router],
   );
 
-  const handlePageClick = useCallback(
+  const handleMovePage = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
         page: page.toString(),
@@ -55,7 +55,7 @@ const Expense = ({ expenses, pagination }: Props): ReactElement => {
     [router],
   );
 
-  const handleEditClick = useCallback(
+  const handleEdit = useCallback(
     (id: string) => {
       router.push(`/expense/${id}`);
     },
@@ -69,15 +69,15 @@ const Expense = ({ expenses, pagination }: Props): ReactElement => {
           <ExpenseTable
             expenses={expenses}
             pagination={pagination}
-            onEdit={handleEditClick}
+            onEdit={handleEdit}
           />
         </div>
         <div>
           <PaginationComponent
             pagination={pagination}
-            onMovePrevious={handlePreviousClick}
-            onMoveNext={handleNextClick}
-            onMovePage={handlePageClick}
+            onMovePrevious={handleMovePrevious}
+            onMoveNext={handleMoveNext}
+            onMovePage={handleMovePage}
           />
           <div className="add">
             <button onClick={handleRegistrationClick}>追加</button>
