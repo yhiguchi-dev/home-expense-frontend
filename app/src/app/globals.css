@@ -1,107 +1,474 @@
-:root {
-  --max-width: 1100px;
-  --border-radius: 12px;
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
-    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
-    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+:root{
+  --backgroundcolor : #E0F2F5;
+  --textcolor : #757575;
+  --tableheadercolor : #EFEFEF;
 
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-
-  --primary-glow: conic-gradient(
-    from 180deg at 50% 50%,
-    #16abff33 0deg,
-    #0885ff33 55deg,
-    #54d6ff33 120deg,
-    #0071ff33 160deg,
-    transparent 360deg
-  );
-  --secondary-glow: radial-gradient(
-    rgba(255, 255, 255, 1),
-    rgba(255, 255, 255, 0)
-  );
-
-  --tile-start-rgb: 239, 245, 249;
-  --tile-end-rgb: 228, 232, 233;
-  --tile-border: conic-gradient(
-    #00000080,
-    #00000040,
-    #00000030,
-    #00000020,
-    #00000010,
-    #00000010,
-    #00000080
-  );
-
-  --callout-rgb: 238, 240, 241;
-  --callout-border-rgb: 172, 175, 176;
-  --card-rgb: 180, 185, 188;
-  --card-border-rgb: 131, 134, 135;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(
-      to bottom right,
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0),
-      rgba(1, 65, 255, 0.3)
-    );
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(
-      #ffffff80,
-      #ffffff40,
-      #ffffff30,
-      #ffffff20,
-      #ffffff10,
-      #ffffff10,
-      #ffffff80
-    );
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  --tableNoWidth : 102px;
+  --tableAttributeWidth : 200px;
+  --tableCategoryWidth : 200px;
+  --tableEditWidth : 150px;
+  --tableDescriptionWidth : 200px;
+  --tablePriceWidth : 200px;
+  --tablePaymentDateWidth : 150px;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  text-decoration:none; 
+}
+a:link {
+  color: var(--textcolor);
+}
+a:visited{
+  color: var(--textcolor);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+a:hover{
+  color: var(--textcolor);
+}
+
+a:active{
+  color: var(--textcolor);
+}
+
+button{
+  color: var(--textcolor);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-right: 10px;
+}
+
+select{
+  color: var(--textcolor);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+input{
+  color: var(--textcolor);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.category-box{
+  margin-left: 50px;
+  margin-top: 10px;
+}
+
+.background {
+  display: flex;
+  direction: row;
+  width: 1133px;
+  height: 744px;
+  padding: 30px 36px;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--backgroundcolor);
+}
+
+.side-bar {
+  display: flex;
+  width: 242px;
+  height: 684px;
+  padding: 40px 30px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 0;
+
+  border-radius: 15px;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+/* bar文字スタイル */
+.bar-text {
+  width: 188px;
+  list-style: none;
+  color: var(--textcolor);
+
+  font-family: Noto Sans JP;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.margin{
+  width: 810px;
+  height: 780px;
+  margin: 10px;
+}
+
+/* topbar文字スタイル */
+.topbar-text{
+  display: flex;
+  width: 810px;
+  height: 55px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+
+  color: var(--textcolor);
+  text-align: center;
+
+  font-family: Noto Sans JP;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* viewコンテンツ背景スタイル */
+.expense-table-background {
+  width: 820px;
+  height: 697px;
+  flex-shrink: 0;
+
+  background-color: #FFFFFF99;
+  border-radius: 15px;
+}
+
+/* ここから　*/
+/* 経費属性テーブルスタイル */
+
+.expense-attribute_table{
+  overflow: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  /*margin-left: 50px;*/
+  /*margin-top: 10px;*/
+}
+
+/* ヘッダー固定*/
+.expense-attribute_table thead th {
+  /* 縦スクロール時に固定する */
+  position: sticky;
+  top: 0;
+  /* tbody内のセルより手前に表示する */
+  z-index: 1;
+}
+
+/* ヘッダー文字スタイル */
+.expense-attribute_table th {
+  color: var(--textcolor);
+
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* 内容文字スタイル */
+.expense-attribute_table td {
+  color: var(--textcolor);
+
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 10px;
+
+  white-space: nowrap;
+}
+
+/* No.ヘッダー */
+.table-no-header{ 
+  width: var(--tableNoWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  border-radius: 15px 0px 0px 0px;
+  border-top: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  border-left: 1px solid #DEDEDE;
+  background: var(--tableheadercolor);
+}
+
+/* 属性名ヘッダー */
+.table-attribute-header{ 
+  width: var(--tableAttributeWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  border-top: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  background: var(--tableheadercolor);
+}
+
+/* 分類ヘッダー */
+.table-category-header{ 
+  width: var(--tableCategoryWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  border-top: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  background: var(--tableheadercolor);
+}
+
+/* 編集ヘッダー */
+.table-edit-header{ 
+  width: var(--tableEditWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  border-radius: 0px 15px 0px 0px;
+  border-top: 1px solid #DEDEDE;
+  border-right: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  background: var(--tableheadercolor);
+}
+
+/* No.内容 */
+.table-no{ 
+  width: var(--tableNoWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #DEDEDE;
+  border-left: 1px solid #DEDEDE;
+  background: #FFF;
+}
+
+/* 属性名内容 */
+.table-attribute{ 
+  width: var(--tableAttributeWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #DEDEDE;
+  background: #FFF;
+}
+
+/* 分類内容 */
+.table-category{ 
+  width: var(--tableCategoryWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #DEDEDE;
+  background: #FFF;
+}
+
+/* 編集内容 */
+.table-edit{ 
+  width: var(--tableEditWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-right: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  background: #FFF;
+}
+
+  /* 経費属性ページネーションスタイル */
+.pagenation{
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 40px;
+
+  align-items: center;
+
+  border-radius: 0 0 15px 15px;
+  border-right: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  border-left: 1px solid #DEDEDE;
+  background: #FFF;
+  box-sizing: border-box;
+}
+
+/* pagenation文字スタイル */
+.pagenation-text{
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 5px;
+
+  color: var(--textcolor);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* 追加ボタンスタイル */
+.add{
+  width: calc(var(--tableNoWidth) + 11px + var(--tableAttributeWidth) + 11px + var(--tableCategoryWidth) + 11px + var(--tableEditWidth) + 11px);
+  height: 40px;
+  flex-shrink: 0;
+  margin-left: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+/* ここまで */
+
+
+
+/* 経費テーブルスタイル */
+
+.expense_table{
+  overflow: scroll;
+  height: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* ヘッダー文字スタイル */
+.expense_table th {
+  color: var(--textcolor);
+
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* 内容文字スタイル */
+.expense_table td {
+  color: var(--textcolor);
+
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 10px;
+
+  white-space: nowrap;
+}
+
+/* ヘッダー固定*/
+.expense_table thead th {
+  /* 縦スクロール時に固定する */
+  position: sticky;
+  top: 0;
+  /* tbody内のセルより手前に表示する */
+  z-index: 1;
+}
+
+/* 説明ヘッダー */
+.table-description-header{ 
+  width: var(--tableDescriptionWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  border-top: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  background: var(--tableheadercolor);
+}
+
+/* 金額ヘッダー */
+.table-price-header{ 
+  width: var(--tablePriceWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  border-top: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  background: var(--tableheadercolor);
+}
+
+/* 支払日ヘッダー */
+.table-paymentDate-header{ 
+  width: var(--tablePaymentDateWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  border-top: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  background: var(--tableheadercolor);
+}
+
+/* 説明内容 */
+.table-description{ 
+  width: var(--tableDescriptionWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #DEDEDE;
+  background: #FFF;
+}
+
+/* 金額内容 */
+.table-price{ 
+  width: var(--tablePriceWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #DEDEDE;
+  background: #FFF;
+}
+
+/* 支払日内容 */
+.table-paymentDate{ 
+  width: var(--tablePaymentDateWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #DEDEDE;
+  background: #FFF;
+}
+
+/* 編集画面ラベルスタイル */
+.form-edit-label{
+  display: flex;
+  width: 200px;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+
+  color: var(--textcolor);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.foo {
+  padding: 10px;
+}
+
+
+.foo2 {
+  overflow-y: scroll;
+  /*overflow-y: hidden;*/
+  height: 560px;
 }

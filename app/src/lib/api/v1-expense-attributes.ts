@@ -89,12 +89,10 @@ const _getSummary = async ({
           response: responseBody,
         };
       }
-      // TODO
+
       throw new Error("");
-    case "clientError":
-    case "serverError":
-      // TODO
-      throw Error();
+    case "failure":
+      throw response.error;
   }
 };
 
@@ -113,10 +111,8 @@ const _get = async ({
   switch (response.type) {
     case "success":
       return await response.body<GetResponse>(getResponse);
-    case "clientError":
-    case "serverError":
-      // TODO
-      throw new Error("");
+    case "failure":
+      throw response.error;
   }
 };
 
@@ -137,10 +133,8 @@ const _post = async ({ name, category }: PostRequest): Promise<void> => {
   switch (response.type) {
     case "success":
       return;
-    case "clientError":
-    case "serverError":
-      // TODO
-      throw new Error("");
+    case "failure":
+      throw response.error;
   }
 };
 
@@ -165,10 +159,8 @@ const _put = async ({
   switch (response.type) {
     case "success":
       return;
-    case "clientError":
-    case "serverError":
-      // TODO
-      throw new Error("");
+    case "failure":
+      throw response.error;
   }
 };
 
@@ -180,10 +172,8 @@ const _delete = async ({ id }: { id: string }): Promise<void> => {
   switch (response.type) {
     case "success":
       return;
-    case "clientError":
-    case "serverError":
-      // TODO
-      throw new Error("");
+    case "failure":
+      throw response.error;
   }
 };
 

@@ -54,13 +54,13 @@ const ExpenseTable = ({
     }).format(price);
     return (
       <tr key={index}>
-        <td>{indexValue}</td>
-        <td>{description}</td>
-        <td>{formattedPrice}</td>
-        <td>{paymentDate}</td>
-        <td>{attributeName}</td>
-        <td>{category}</td>
-        <td>
+        <td className="table-no">{indexValue}</td>
+        <td className="table-description">{description}</td>
+        <td className="table-price">{formattedPrice}</td>
+        <td className="table-paymentDate">{paymentDate}</td>
+        <td className="table-attribute">{attributeName}</td>
+        <td className="table-category">{category}</td>
+        <td className="table-edit">
           <div>
             <button onClick={handleEditClick}>edit</button>
             <button onClick={handleTrashClick}>delete</button>
@@ -84,16 +84,16 @@ const ExpenseTable = ({
   };
   return (
     <>
-      <table>
+      <table className="expense_table">
         <thead>
           <tr>
-            <th>#</th>
-            <th>説明</th>
-            <th>金額</th>
-            <th>支払日</th>
-            <th>属性名</th>
-            <th>分類</th>
-            <th></th>
+            <th className="table-no-header">#</th>
+            <th className="table-description-header">説明</th>
+            <th className="table-price-header">金額</th>
+            <th className="table-paymentDate-header">支払日</th>
+            <th className="table-attribute-header">属性名</th>
+            <th className="table-category-header">分類</th>
+            <th className="table-edit-header"></th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

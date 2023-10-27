@@ -1,4 +1,7 @@
+import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
+
+import style from "./dashboard-layout.module.css";
 
 const DashboardLayout = ({
   children,
@@ -6,23 +9,28 @@ const DashboardLayout = ({
   children: ReactNode;
 }): ReactElement => {
   return (
-    <div>
+    <div className={style.dashboard}>
       <div>
-        <div>
-          <div>
-            <ul>
+        <div className="background">
+          <div className="side-bar">
+            <ul className="bar-text">
               <li>
-                <a href="/home">Home</a>
+                <Link href="/home">Home</Link>
               </li>
               <li>
-                <a href="/expense-attribute">経費属性</a>
+                <Link href="/expense-attribute">経費属性</Link>
               </li>
               <li>
-                <a href="/expense">経費</a>
+                <Link href="/expense">経費</Link>
               </li>
             </ul>
           </div>
-          <div>{children}</div>
+          <div className="margin">
+            <div className={style.topBar}>
+              <text className="topbar-text">家庭用</text>
+            </div>
+            <div className="expense-table-background">{children}</div>
+          </div>
         </div>
       </div>
     </div>

@@ -31,21 +31,9 @@ interface Success {
   body: <T>(schema: JTDSchema) => Promise<T>;
 }
 
-interface ClientError {
-  type: "clientError";
-  code: number;
-  headers?: Record<string, string>;
-  body: <T>(schema: JTDSchema) => Promise<T>;
+interface Failure {
+  type: "failure";
+  error: Error;
 }
 
-interface ServerError {
-  type: "serverError";
-  code: number;
-  headers?: Record<string, string>;
-  body: <T>(schema: JTDSchema) => Promise<T>;
-}
-
-export type HttpResponse =
-  | Readonly<Success>
-  | Readonly<ClientError>
-  | Readonly<ServerError>;
+export type HttpResponse = Readonly<Success> | Readonly<Failure>;

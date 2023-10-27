@@ -19,7 +19,7 @@ const ExpenseAttribute = ({
   pagination,
 }: Props): ReactElement => {
   const router = useRouter();
-  const handlePreviousClick = useCallback(
+  const handleMovePrevious = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
         page: page.toString(),
@@ -30,7 +30,7 @@ const ExpenseAttribute = ({
     [router],
   );
 
-  const handleNextClick = useCallback(
+  const handleMoveNext = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
         page: page.toString(),
@@ -41,7 +41,7 @@ const ExpenseAttribute = ({
     [router],
   );
 
-  const handlePageClick = useCallback(
+  const handleMovePage = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
         page: page.toString(),
@@ -60,7 +60,7 @@ const ExpenseAttribute = ({
     [router],
   );
 
-  const handleEditClick = useCallback(
+  const handleEdit = useCallback(
     (id: string) => {
       router.push(`/expense-attribute/${id}`);
     },
@@ -79,6 +79,7 @@ const ExpenseAttribute = ({
   return (
     <div>
       <select
+        className="category-box"
         name="category"
         defaultValue={category}
         onChange={handleCategoryChange}
@@ -86,24 +87,22 @@ const ExpenseAttribute = ({
         <option value="固定費">固定費</option>
         <option value="変動費">変動費</option>
       </select>
-      <div>
-        <div>
+      <div className="foo">
+        <div className="foo2">
           <ExpenseAttributeTable
             expenseAttributes={expenseAttributes}
             pagination={pagination}
-            onEdit={handleEditClick}
+            onEdit={handleEdit}
           />
         </div>
-        <div>
-          <PaginationComponent
-            pagination={pagination}
-            onMovePrevious={handlePreviousClick}
-            onMoveNext={handleNextClick}
-            onMovePage={handlePageClick}
-          />
-          <div>
-            <button onClick={handleRegistrationClick}>追加</button>
-          </div>
+        <PaginationComponent
+          pagination={pagination}
+          onMovePrevious={handleMovePrevious}
+          onMoveNext={handleMoveNext}
+          onMovePage={handleMovePage}
+        />
+        <div className="add">
+          <button onClick={handleRegistrationClick}>追加</button>
         </div>
       </div>
     </div>

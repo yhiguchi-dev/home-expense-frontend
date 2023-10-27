@@ -37,7 +37,11 @@ const PaginationComponent = ({
 
   const paginationItem = items.map((value, index) => {
     if (typeof value === "string") {
-      return <div key={index}>{value}</div>;
+      return (
+        <div className="pagenation-text" key={index}>
+          {value}
+        </div>
+      );
     }
     const { page } = value;
     const handleClick = (): void => {
@@ -48,16 +52,20 @@ const PaginationComponent = ({
       }
     };
     return (
-      <div key={index} onClick={handleClick}>
+      <div className="pagenation-text" key={index} onClick={handleClick}>
         {page}
       </div>
     );
   });
   return (
-    <div>
-      <div onClick={handlePreviousClick}>Previous</div>
+    <div className="pagenation">
+      <div className="pagenation-text" onClick={handlePreviousClick}>
+        Previous
+      </div>
       {paginationItem}
-      <div onClick={handleNextClick}>Next</div>
+      <div className="pagenation-text" onClick={handleNextClick}>
+        Next
+      </div>
     </div>
   );
 };
