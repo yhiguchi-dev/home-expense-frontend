@@ -2,6 +2,7 @@
 import { revalidateTag } from "next/cache";
 
 import { expensesApi } from "@/lib/api/v1-expenses";
+import { expensesAggregateApi } from "@/lib/api/v1-expenses-aggregate";
 import { Expense, Expenses } from "@/lib/expense";
 import { Pagination } from "@/lib/pagination/pagination";
 import { isString } from "@/lib/type-guard";
@@ -50,6 +51,89 @@ export const getExpenseSummary = async ({
   return {
     expenses: _expenses,
     pagination,
+  };
+};
+
+export const getExpenseAggregate = async ({
+  year,
+  month,
+  tag,
+}: {
+  year: number;
+  month: number;
+  tag: string;
+}): Promise<{
+  totalAmount: number;
+  fixed: {
+    totalAmount: number;
+    expenses: Expenses;
+  };
+  variable: {
+    totalAmount: number;
+    expenses: Expenses;
+  };
+}> => {
+  const response = await expensesAggregateApi.get({
+    year,
+    month,
+    extension: {
+      next: { tags: [tag] },
+    },
+  });
+  const { total_amount, variable_expense_detail, fixed_expense_detail } =
+    response;
+  const fixedExpenses: Expenses = fixed_expense_detail.expenses.map((value) => {
+    const {
+      id,
+      description,
+      expense_attribute: expenseAttribute,
+      price,
+      payment_date: paymentDate,
+    } = value;
+    const { id: attributeId, name, category } = expenseAttribute;
+    const expense: Expense = {
+      id,
+      description,
+      price,
+      paymentDate,
+      attributeId,
+      attributeName: name,
+      category: category,
+    };
+    return expense;
+  });
+  const variableExpenses: Expenses = variable_expense_detail.expenses.map(
+    (value) => {
+      const {
+        id,
+        description,
+        expense_attribute: expenseAttribute,
+        price,
+        payment_date: paymentDate,
+      } = value;
+      const { id: attributeId, name, category } = expenseAttribute;
+      const expense: Expense = {
+        id,
+        description,
+        price,
+        paymentDate,
+        attributeId,
+        attributeName: name,
+        category: category,
+      };
+      return expense;
+    },
+  );
+  return {
+    totalAmount: total_amount,
+    fixed: {
+      totalAmount: fixed_expense_detail.total_amount,
+      expenses: fixedExpenses,
+    },
+    variable: {
+      totalAmount: variable_expense_detail.total_amount,
+      expenses: variableExpenses,
+    },
   };
 };
 

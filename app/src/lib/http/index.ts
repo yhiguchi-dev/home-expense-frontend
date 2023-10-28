@@ -1,8 +1,3 @@
-import {
-  ClientError,
-  ServerError,
-  UnknownHttpStatusError,
-} from "@/lib/http/error";
 import { HttpRequest, HttpResponse, RequestBody } from "@/lib/http/type";
 import { json } from "@/lib/json";
 import { JTDSchema } from "@/lib/json/type";
@@ -124,22 +119,23 @@ const resolveWithResponse = (response: Response): HttpResponse => {
       body,
     };
   }
+  // FIXME error
   const code = response.status;
   if (code >= 400 && code <= 499) {
     return {
       type: "failure",
-      error: ClientError(code, headers, body),
+      error: Error(""),
     };
   }
   if (code >= 500 && code <= 599) {
     return {
       type: "failure",
-      error: ServerError(code, headers, body),
+      error: Error(""),
     };
   }
   return {
     type: "failure",
-    error: UnknownHttpStatusError(code, headers, body),
+    error: Error(""),
   };
 };
 
