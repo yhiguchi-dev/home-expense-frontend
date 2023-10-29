@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, ReactElement, useCallback, useState } from "react";
 
-import { Expenses } from "@/lib/expense";
+import { ExpenseAttributeAggregates } from "@/lib/expense-attribute";
 
 interface Props {
   year: number;
@@ -10,11 +10,11 @@ interface Props {
   totalAmount: number;
   fixed: {
     totalAmount: number;
-    expenses: Expenses;
+    attributeAggregates: ExpenseAttributeAggregates;
   };
   variable: {
     totalAmount: number;
-    expenses: Expenses;
+    attributeAggregates: ExpenseAttributeAggregates;
   };
 }
 
@@ -57,40 +57,30 @@ const ExpenseAggregate = ({
     style: "currency",
     currency: "JPY",
   }).format(variable.totalAmount);
-  const fixedExpenses = fixed.expenses
-    .slice()
-    .sort((a, b) => {
-      return a.price > b.price ? -1 : 1;
-    })
-    .map((value, index) => {
-      const { description, price } = value;
-      const formattedAmount = new Intl.NumberFormat("ja-JP", {
-        style: "currency",
-        currency: "JPY",
-      }).format(price);
-      return (
-        <div key={index}>
-          {description} {formattedAmount}
-        </div>
-      );
-    });
-  const variableExpenses = variable.expenses
-    .slice()
-    .sort((a, b) => {
-      return a.price > b.price ? -1 : 1;
-    })
-    .map((value, index) => {
-      const { description, price } = value;
-      const formattedAmount = new Intl.NumberFormat("ja-JP", {
-        style: "currency",
-        currency: "JPY",
-      }).format(price);
-      return (
-        <div key={index}>
-          {description} {formattedAmount}
-        </div>
-      );
-    });
+  const fixedExpenses = fixed.attributeAggregates.map((value, index) => {
+    const { name, totalAmount } = value;
+    const formattedAmount = new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+    }).format(totalAmount);
+    return (
+      <div key={index}>
+        {name} {formattedAmount}
+      </div>
+    );
+  });
+  const variableExpenses = variable.attributeAggregates.map((value, index) => {
+    const { name, totalAmount } = value;
+    const formattedAmount = new Intl.NumberFormat("ja-JP", {
+      style: "currency",
+      currency: "JPY",
+    }).format(totalAmount);
+    return (
+      <div key={index}>
+        {name} {formattedAmount}
+      </div>
+    );
+  });
   return (
     <div>
       <input type="month" value={yearMonth} onChange={handleYearMonthChange} />

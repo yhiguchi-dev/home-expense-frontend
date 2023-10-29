@@ -1,9 +1,14 @@
 "use server";
 import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
 
 import { expensesApi } from "@/lib/api/v1-expenses";
 import { expensesAggregateApi } from "@/lib/api/v1-expenses-aggregate";
 import { Expense, Expenses } from "@/lib/expense";
+import {
+  ExpenseAttributeAggregate,
+  ExpenseAttributeAggregates,
+} from "@/lib/expense-attribute";
 import { Pagination } from "@/lib/pagination/pagination";
 import { isString } from "@/lib/type-guard";
 
@@ -72,11 +77,11 @@ export const getExpenseAggregate = async ({
   totalAmount: number;
   fixed: {
     totalAmount: number;
-    expenses: Expenses;
+    attributeAggregates: ExpenseAttributeAggregates;
   };
   variable: {
     totalAmount: number;
-    expenses: Expenses;
+    attributeAggregates: ExpenseAttributeAggregates;
   };
 }> => {
   const response = await expensesAggregateApi.get({
@@ -88,57 +93,35 @@ export const getExpenseAggregate = async ({
   });
   const { total_amount, variable_expense_detail, fixed_expense_detail } =
     response;
-  const fixedExpenses: Expenses = fixed_expense_detail.expenses.map((value) => {
-    const {
-      id,
-      description,
-      expense_attribute: expenseAttribute,
-      price,
-      payment_date: paymentDate,
-    } = value;
-    const { id: attributeId, name, category } = expenseAttribute;
-    const expense: Expense = {
-      id,
-      description,
-      price,
-      paymentDate,
-      attributeId,
-      attributeName: name,
-      category: category,
-    };
-    return expense;
-  });
-  const variableExpenses: Expenses = variable_expense_detail.expenses.map(
-    (value) => {
-      const {
-        id,
-        description,
-        expense_attribute: expenseAttribute,
-        price,
-        payment_date: paymentDate,
-      } = value;
-      const { id: attributeId, name, category } = expenseAttribute;
-      const expense: Expense = {
-        id,
-        description,
-        price,
-        paymentDate,
-        attributeId,
-        attributeName: name,
-        category: category,
+  const fixedAggregates: ExpenseAttributeAggregates =
+    fixed_expense_detail.attribute_aggregates.map((value) => {
+      const { attribute_id, attribute_name, total_amount } = value;
+      const aggregate: ExpenseAttributeAggregate = {
+        id: attribute_id,
+        name: attribute_name,
+        totalAmount: total_amount,
       };
-      return expense;
-    },
-  );
+      return aggregate;
+    });
+  const variableAggregates: ExpenseAttributeAggregates =
+    variable_expense_detail.attribute_aggregates.map((value) => {
+      const { attribute_id, attribute_name, total_amount } = value;
+      const aggregate: ExpenseAttributeAggregate = {
+        id: attribute_id,
+        name: attribute_name,
+        totalAmount: total_amount,
+      };
+      return aggregate;
+    });
   return {
     totalAmount: total_amount,
     fixed: {
       totalAmount: fixed_expense_detail.total_amount,
-      expenses: fixedExpenses,
+      attributeAggregates: fixedAggregates,
     },
     variable: {
       totalAmount: variable_expense_detail.total_amount,
-      expenses: variableExpenses,
+      attributeAggregates: variableAggregates,
     },
   };
 };
@@ -194,6 +177,7 @@ export const registerExpense = async (formData: FormData): Promise<void> => {
       price: parseInt(price),
       payment_date: paymentDate,
     });
+    redirect("/expense");
   }
 };
 
@@ -219,6 +203,7 @@ export const updateExpense = async (formData: FormData): Promise<void> => {
       price: parseInt(price),
       payment_date: paymentDate,
     });
+    redirect("/expense");
   }
 };
 
