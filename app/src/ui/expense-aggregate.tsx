@@ -57,30 +57,40 @@ const ExpenseAggregate = ({
     style: "currency",
     currency: "JPY",
   }).format(variable.totalAmount);
-  const fixedExpenses = fixed.expenses.map((value, index) => {
-    const { description, price } = value;
-    const formattedAmount = new Intl.NumberFormat("ja-JP", {
-      style: "currency",
-      currency: "JPY",
-    }).format(price);
-    return (
-      <div key={index}>
-        {description} {formattedAmount}
-      </div>
-    );
-  });
-  const variableExpenses = variable.expenses.map((value, index) => {
-    const { description, price } = value;
-    const formattedAmount = new Intl.NumberFormat("ja-JP", {
-      style: "currency",
-      currency: "JPY",
-    }).format(price);
-    return (
-      <div key={index}>
-        {description} {formattedAmount}
-      </div>
-    );
-  });
+  const fixedExpenses = fixed.expenses
+    .slice()
+    .sort((a, b) => {
+      return a.price > b.price ? -1 : 1;
+    })
+    .map((value, index) => {
+      const { description, price } = value;
+      const formattedAmount = new Intl.NumberFormat("ja-JP", {
+        style: "currency",
+        currency: "JPY",
+      }).format(price);
+      return (
+        <div key={index}>
+          {description} {formattedAmount}
+        </div>
+      );
+    });
+  const variableExpenses = variable.expenses
+    .slice()
+    .sort((a, b) => {
+      return a.price > b.price ? -1 : 1;
+    })
+    .map((value, index) => {
+      const { description, price } = value;
+      const formattedAmount = new Intl.NumberFormat("ja-JP", {
+        style: "currency",
+        currency: "JPY",
+      }).format(price);
+      return (
+        <div key={index}>
+          {description} {formattedAmount}
+        </div>
+      );
+    });
   return (
     <div>
       <input type="month" value={yearMonth} onChange={handleYearMonthChange} />

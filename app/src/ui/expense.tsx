@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { ReactElement, useCallback } from "react";
+import React, { ChangeEvent, ReactElement, useCallback, useState } from "react";
 
 import { Expenses } from "@/lib/expense";
 import { Pagination } from "@/lib/pagination/pagination";
@@ -10,41 +10,76 @@ import PaginationComponent from "@/ui/parts/pagination-component";
 interface Props {
   expenses: Expenses;
   pagination: Pagination;
+  year: number;
+  month: number;
 }
 
-const Expense = ({ expenses, pagination }: Props): ReactElement => {
+const Expense = ({
+  expenses,
+  pagination,
+  year,
+  month,
+}: Props): ReactElement => {
   const router = useRouter();
+  const formattedYear = year.toString().padStart(2, "0");
+  const formattedMonth = month.toString().padStart(2, "0");
+  const [yearMonth, setYearMonth] = useState(
+    `${formattedYear}-${formattedMonth}`,
+  );
+  const handleYearMonthChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      const date = new Date(event.currentTarget.value);
+      const year = date.getFullYear().toString();
+      const month = (date.getMonth() + 1).toString();
+      const searchParams = new URLSearchParams({
+        year: year,
+        month: month,
+      }).toString();
+      setYearMonth(`${year.padStart(2, "0")}-${month.padStart(2, "0")}`);
+      router.push(`/expense?${searchParams}`);
+    },
+    [router],
+  );
   const handleMovePrevious = useCallback(
     (page: number, perPage: number) => {
+      const date = new Date(yearMonth);
       const searchParams = new URLSearchParams({
         page: page.toString(),
         per_page: perPage.toString(),
+        year: date.getFullYear().toString(),
+        month: (date.getMonth() + 1).toString(),
       });
       router.push(`/expense?${searchParams.toString()}`);
     },
-    [router],
+    [router, yearMonth],
   );
 
   const handleMoveNext = useCallback(
     (page: number, perPage: number) => {
+      const date = new Date(yearMonth);
       const searchParams = new URLSearchParams({
         page: page.toString(),
         per_page: perPage.toString(),
+        year: date.getFullYear().toString(),
+        month: (date.getMonth() + 1).toString(),
       });
       router.push(`/expense?${searchParams.toString()}`);
     },
-    [router],
+    [router, yearMonth],
   );
 
   const handleMovePage = useCallback(
     (page: number, perPage: number) => {
+      const date = new Date(yearMonth);
       const searchParams = new URLSearchParams({
         page: page.toString(),
         per_page: perPage.toString(),
+        year: date.getFullYear().toString(),
+        month: (date.getMonth() + 1).toString(),
       });
       router.push(`/expense?${searchParams.toString()}`);
     },
-    [router],
+    [router, yearMonth],
   );
 
   const handleRegistrationClick = useCallback(
@@ -66,6 +101,11 @@ const Expense = ({ expenses, pagination }: Props): ReactElement => {
     <div>
       <div className="foo">
         <div className="foo2">
+          <input
+            type="month"
+            value={yearMonth}
+            onChange={handleYearMonthChange}
+          />
           <ExpenseTable
             expenses={expenses}
             pagination={pagination}
