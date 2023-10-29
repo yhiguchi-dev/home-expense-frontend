@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         node-version:
-          - 18
+          - 20
 
   pre-build-and-push:
     runs-on: ubuntu-latest
