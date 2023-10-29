@@ -22,6 +22,8 @@ const HomePage = async ({ searchParams }: Props): Promise<ReactElement> => {
   const { totalAmount, fixed, variable } = aggregate;
   return (
     <ExpenseAggregate
+      year={year}
+      month={month}
       totalAmount={totalAmount}
       fixed={fixed}
       variable={variable}
