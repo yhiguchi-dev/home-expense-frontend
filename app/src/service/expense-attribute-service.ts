@@ -1,5 +1,6 @@
 "use server";
 import { revalidateTag } from "next/cache";
+import { redirect } from "next/navigation";
 
 import { expenseAttributesApi } from "@/lib/api/v1-expense-attributes";
 import {
@@ -79,6 +80,7 @@ export const registerExpenseAttribute = async (
   const category = formData.get("category");
   if (isString(name) && isExpenseAttributeCategory(category)) {
     await expenseAttributesApi.post({ name, category });
+    redirect("/expense-attribute");
   }
 };
 
@@ -90,6 +92,7 @@ export const updateExpenseAttribute = async (
   const category = formData.get("category");
   if (isString(id) && isString(name) && isExpenseAttributeCategory(category)) {
     await expenseAttributesApi.put({ id, name, category });
+    redirect("/expense-attribute");
   }
 };
 

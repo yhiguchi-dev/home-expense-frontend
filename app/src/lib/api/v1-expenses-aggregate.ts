@@ -13,21 +13,13 @@ const getAggregateResponse = {
         total_amount: {
           type: "int32",
         },
-        expenses: {
+        attribute_aggregates: {
           elements: {
             properties: {
-              id: { type: "string" },
-              description: { type: "string" },
-              price: {
+              attribute_id: { type: "string" },
+              attribute_name: { type: "string" },
+              total_amount: {
                 type: "int32",
-              },
-              payment_date: { type: "string" },
-              expense_attribute: {
-                properties: {
-                  id: { type: "string" },
-                  name: { type: "string" },
-                  category: { enum: ["固定費", "変動費"] },
-                },
               },
             },
           },
@@ -39,21 +31,13 @@ const getAggregateResponse = {
         total_amount: {
           type: "int32",
         },
-        expenses: {
+        attribute_aggregates: {
           elements: {
             properties: {
-              id: { type: "string" },
-              description: { type: "string" },
-              price: {
+              attribute_id: { type: "string" },
+              attribute_name: { type: "string" },
+              total_amount: {
                 type: "int32",
-              },
-              payment_date: { type: "string" },
-              expense_attribute: {
-                properties: {
-                  id: { type: "string" },
-                  name: { type: "string" },
-                  category: { enum: ["固定費", "変動費"] },
-                },
               },
             },
           },
