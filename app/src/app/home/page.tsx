@@ -12,12 +12,12 @@ interface Props {
 
 const HomePage = async ({ searchParams }: Props): Promise<ReactElement> => {
   const now = new Date(Date.now());
-  const { year = now.getFullYear(), month = now.getMonth() } = searchParams;
+  const { year = now.getFullYear(), month = now.getMonth() + 1 } = searchParams;
   console.log(year, month);
   const aggregate = await getExpenseAggregate({
     year,
     month,
-    tag: "expense-attribute",
+    tag: `expense-aggregate-${year}-${month}`,
   });
   const { totalAmount, fixed, variable } = aggregate;
   return (
