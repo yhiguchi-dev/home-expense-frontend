@@ -10,10 +10,14 @@ import { isString } from "@/lib/type-guard";
 export const getExpenseSummary = async ({
   page,
   perPage,
+  year,
+  month,
   tag,
 }: {
   page: number;
   perPage: number;
+  year: number;
+  month: number;
   tag: string;
 }): Promise<{
   expenses: Expenses;
@@ -23,6 +27,8 @@ export const getExpenseSummary = async ({
   const { pagination, response } = await expensesApi.getSummary({
     page,
     perPage,
+    year,
+    month,
     extension: {
       next: { tags: [tag] },
     },

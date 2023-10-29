@@ -87,10 +87,14 @@ type PutRequest = JTD<typeof putRequest>;
 const _getSummary = async ({
   page,
   perPage,
+  year,
+  month,
   extension,
 }: {
   page: number;
   perPage: number;
+  year: number;
+  month: number;
   extension: object;
 }): Promise<{ pagination: Pagination; response: GetSummaryResponse }> => {
   const response = await http.get({
@@ -99,6 +103,8 @@ const _getSummary = async ({
     queries: {
       page: page.toString(),
       per_page: perPage.toString(),
+      year: year.toString(),
+      month: month.toString(),
     },
     extension,
   });
