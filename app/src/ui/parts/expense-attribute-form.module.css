@@ -1,0 +1,57 @@
+/*
+  * 経費属性追加・編集 画面CSS *
+*/
+
+/* フォーム全体スタイル */
+.formStyle{
+  display: flex;
+  width: 40dvw;
+  padding: 20px;
+  height: 40px;
+  flex-direction: column;
+  color: var(--textcolor);
+  font-family: Noto Sans JP;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+/* 編集画面ラベルスタイル */
+.editLabel{
+    display: flex;
+    width: 200px;
+    /* height: 40px; */
+    flex-direction: column;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+   /* 各項目スタイル */
+  .editStyle{
+    display: flex;
+    /* width: 20dvw; */
+    flex-shrink: 0;
+    justify-content: start;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .formStyle label{
+    width: 4dvw;
+  }
+
+.formStyle input{
+    margin-left: 50px;
+  }
+  
+.formStyle select{
+    margin-left: 50px;
+  }
+
+.formStyle button{
+    width: 23vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

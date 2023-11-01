@@ -1,6 +1,7 @@
 import React, { ReactElement } from "react";
 
 import { paginate, Pagination } from "@/lib/pagination/pagination";
+import style from "./pagination-component.module.css"
 
 interface Props {
   pagination: Pagination;
@@ -38,7 +39,7 @@ const PaginationComponent = ({
   const paginationItem = items.map((value, index) => {
     if (typeof value === "string") {
       return (
-        <div className="pagenation-text" key={index}>
+        <div className={style.pagenationText} key={index}>
           {value}
         </div>
       );
@@ -52,18 +53,18 @@ const PaginationComponent = ({
       }
     };
     return (
-      <div className="pagenation-text" key={index} onClick={handleClick}>
+      <div className={style.pagenationText} key={index} onClick={handleClick}>
         {page}
       </div>
     );
   });
   return (
-    <div className="pagenation">
-      <div className="pagenation-text" onClick={handlePreviousClick}>
+    <div className={style.pagenation}>
+      <div className={style.pagenationText} onClick={handlePreviousClick}>
         Previous
       </div>
       {paginationItem}
-      <div className="pagenation-text" onClick={handleNextClick}>
+      <div className={style.pagenationText} onClick={handleNextClick}>
         Next
       </div>
     </div>

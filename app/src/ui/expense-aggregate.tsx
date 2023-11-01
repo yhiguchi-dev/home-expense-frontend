@@ -3,6 +3,8 @@ import { useRouter } from "next/navigation";
 import React, { ChangeEvent, ReactElement, useCallback, useState } from "react";
 
 import { ExpenseAttributeAggregates } from "@/lib/expense-attribute";
+import style from "./expense-aggregate.module.css";
+import { symlink } from "fs";
 
 interface Props {
   year: number;
@@ -82,23 +84,33 @@ const ExpenseAggregate = ({
     );
   });
   return (
-    <div>
-      <input type="month" value={yearMonth} onChange={handleYearMonthChange} />
-      <label>支出合計</label>
-      <div>{formattedTotalAmount}</div>
-      <label>内訳</label>
-      <details>
-        <summary>
-          <div>固定費 {formattedFixedTotalAmount}</div>
-        </summary>
-        {fixedExpenses}
-      </details>
-      <details>
-        <summary>
-          <div>変動費 {formattedVariableTotalAmount}</div>
-        </summary>
-        {variableExpenses}
-      </details>
+    <div className={style.textStyle}>
+      <input className={style.yearMonth} type="month" value={yearMonth} onChange={handleYearMonthChange} />
+      <div className={style.labelStyale}>
+        <label>支出合計</label>
+        <div>{formattedTotalAmount}</div>
+      </div>
+      <div>
+        <label className={style.labelStyale}>内訳</label>
+        <div className={style.amountStyle}>
+          <details>
+            <summary>
+              固定費 {formattedFixedTotalAmount}
+            </summary>
+            <div className={style.expensesStyle}>
+              {fixedExpenses}
+            </div>
+          </details>
+          <details>
+            <summary>
+              変動費 {formattedVariableTotalAmount}
+            </summary>
+            <div className={style.expensesStyle}>
+              {variableExpenses}
+            </div>
+          </details>
+        </div>
+      </div>
     </div>
   );
 };

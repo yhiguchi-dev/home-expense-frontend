@@ -2,6 +2,7 @@ import React, { ChangeEvent, ReactElement } from "react";
 
 import { Expense } from "@/lib/expense";
 import { ExpenseAttributes } from "@/lib/expense-attribute";
+import style from "./expense-form.module.css"
 
 interface Props {
   expense?: Expense | Record<string, never>;
@@ -32,43 +33,53 @@ const ExpenseForm = ({
     onCategoryChange(event.currentTarget.value);
   };
   return (
-    <form action={onSubmit}>
+    <form action={onSubmit} className={style.formStyle}>
       <input type="hidden" name="expenseId" value={id} />
-      <label>説明</label>
-      <input
-        type="text"
-        name="description"
-        defaultValue={description}
-        required
-      />
-      <label>金額</label>
-      <input
-        type="text"
-        name="price"
-        inputMode="numeric"
-        defaultValue={price}
-        required
-      />
-      <label>支払日</label>
-      <input
-        type="date"
-        name="paymentDate"
-        defaultValue={paymentDate}
-        required
-      />
-      <label>分類</label>
-      <select
-        name="category"
-        defaultValue={category}
-        onChange={handleCategoryChange}
-      >
-        <option value="固定費">固定費</option>
-        <option value="変動費">変動費</option>
-      </select>
-      <label>属性名</label>
-      <select name="attributeId" defaultValue={attributeId}>
-        {selectorOptions}
-      </select>
+      <div className={style.editStyle}>
+        <label>説明</label>
+        <input
+          type="text"
+          name="description"
+          defaultValue={description}
+          required
+        />
+      </div>
+      <div className={style.editStyle}>
+        <label>金額</label>
+        <input
+          type="text"
+          name="price"
+          inputMode="numeric"
+          defaultValue={price}
+          required
+        />
+      </div>
+      <div className={style.editStyle}>
+        <label>支払日</label>
+        <input
+          type="date"
+          name="paymentDate"
+          defaultValue={paymentDate}
+          required
+        />
+      </div>
+      <div className={style.editStyle}>
+        <label>分類</label>
+        <select
+          name="category"
+          defaultValue={category}
+          onChange={handleCategoryChange}
+        >
+          <option value="固定費">固定費</option>
+          <option value="変動費">変動費</option>
+        </select>
+      </div>
+      <div className={style.editStyle}>
+        <label>属性名</label>
+        <select name="attributeId" defaultValue={attributeId}>
+          {selectorOptions}
+        </select>
+      </div>
       <button type="submit">{buttonTitle}</button>
     </form>
   );
