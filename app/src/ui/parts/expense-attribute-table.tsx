@@ -6,7 +6,7 @@ import { Pagination } from "@/lib/pagination/pagination";
 import { deleteExpenseAttribute } from "@/service/expense-attribute-service";
 import Dialog from "@/ui/parts/dialog";
 
-import style from "./expense-attribute-table.module.css"
+import style from "./expense-attribute-table.module.css";
 
 interface Props {
   expenseAttributes: ExpenseAttributes;
