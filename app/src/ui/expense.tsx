@@ -100,12 +100,13 @@ const Expense = ({
   return (
     <div>
       <div className="foo">
+        <input
+          className="category-box"
+          type="month"
+          value={yearMonth}
+          onChange={handleYearMonthChange}
+        />
         <div className="foo2">
-          <input
-            type="month"
-            value={yearMonth}
-            onChange={handleYearMonthChange}
-          />
           <ExpenseTable
             expenses={expenses}
             pagination={pagination}

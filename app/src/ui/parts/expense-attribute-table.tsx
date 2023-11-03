@@ -6,6 +6,8 @@ import { Pagination } from "@/lib/pagination/pagination";
 import { deleteExpenseAttribute } from "@/service/expense-attribute-service";
 import Dialog from "@/ui/parts/dialog";
 
+import style from "./expense-attribute-table.module.css";
+
 interface Props {
   expenseAttributes: ExpenseAttributes;
   pagination: Pagination;
@@ -42,10 +44,10 @@ const ExpenseAttributeTable = ({
     };
     return (
       <tr key={index}>
-        <td className="table-no">{indexValue}</td>
-        <td className="table-attribute">{name}</td>
-        <td className="table-category">{category}</td>
-        <td className="table-edit">
+        <td className={style.no}>{indexValue}</td>
+        <td className={style.attribute}>{name}</td>
+        <td className={style.category}>{category}</td>
+        <td className={style.edit}>
           <div>
             <button onClick={handleEditClick}>edit</button>
             <button onClick={handleTrashClick}>delete</button>
@@ -69,13 +71,13 @@ const ExpenseAttributeTable = ({
   };
   return (
     <>
-      <table className="expense-attribute_table">
+      <table className={style.expenseAttributeTable}>
         <thead>
           <tr>
-            <th className="table-no-header">No.</th>
-            <th className="table-attribute-header">属性名</th>
-            <th className="table-category-header">分類</th>
-            <th className="table-edit-header">編集</th>
+            <th className={style.noHeader}>No.</th>
+            <th className={style.attributeHeader}>属性名</th>
+            <th className={style.categoryHeader}>分類</th>
+            <th className={style.editHeader}>編集</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

@@ -6,6 +6,8 @@ import { Pagination } from "@/lib/pagination/pagination";
 import { deleteExpense } from "@/service/expense-service";
 import Dialog from "@/ui/parts/dialog";
 
+import style from "./expense-table.module.css";
+
 interface Props {
   expenses: Expenses;
   pagination: Pagination;
@@ -54,13 +56,13 @@ const ExpenseTable = ({
     }).format(price);
     return (
       <tr key={index}>
-        <td className="table-no">{indexValue}</td>
-        <td className="table-description">{description}</td>
-        <td className="table-price">{formattedPrice}</td>
-        <td className="table-paymentDate">{paymentDate}</td>
-        <td className="table-attribute">{attributeName}</td>
-        <td className="table-category">{category}</td>
-        <td className="table-edit">
+        <td className={style.no}>{indexValue}</td>
+        <td className={style.description}>{description}</td>
+        <td className={style.price}>{formattedPrice}</td>
+        <td className={style.paymentDate}>{paymentDate}</td>
+        <td className={style.attribute}>{attributeName}</td>
+        <td className={style.category}>{category}</td>
+        <td className={style.edit}>
           <div>
             <button onClick={handleEditClick}>edit</button>
             <button onClick={handleTrashClick}>delete</button>
@@ -84,16 +86,16 @@ const ExpenseTable = ({
   };
   return (
     <>
-      <table className="expense_table">
+      <table className={style.expenseTable}>
         <thead>
           <tr>
-            <th className="table-no-header">#</th>
-            <th className="table-description-header">説明</th>
-            <th className="table-price-header">金額</th>
-            <th className="table-paymentDate-header">支払日</th>
-            <th className="table-attribute-header">属性名</th>
-            <th className="table-category-header">分類</th>
-            <th className="table-edit-header"></th>
+            <th className={style.noHeader}>#</th>
+            <th className={style.descriptionHeader}>説明</th>
+            <th className={style.priceHeader}>金額</th>
+            <th className={style.paymentDateHeader}>支払日</th>
+            <th className={style.attributeHeader}>属性名</th>
+            <th className={style.categoryHeader}>分類</th>
+            <th className={style.editHeader}></th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

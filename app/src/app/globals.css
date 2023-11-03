@@ -2,6 +2,7 @@
   --backgroundcolor : #E0F2F5;
   --textcolor : #757575;
   --tableheadercolor : #EFEFEF;
+  --linecolor :#90E0F1;
 
   --tableNoWidth : 102px;
   --tableAttributeWidth : 200px;
@@ -64,16 +65,47 @@ input{
   padding-right: 5px;
 }
 
-.category-box{
-  margin-left: 50px;
+details{
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+summary{
+  cursor: pointer;
+  /* font-weight:bold; */
   margin-top: 10px;
 }
 
+.category-box{
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.foo {
+  /* padding: 10px; */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.foo2 {
+  overflow-y: scroll;
+  /*overflow-y: hidden;*/
+  height: 560px;
+  
+  background: #FFF;
+  border-right: 1px solid #DEDEDE;
+  border-bottom: 1px solid #DEDEDE;
+  border-left: 1px solid #DEDEDE;
+}
+
+/* 背景スタイル */
 .background {
   display: flex;
   direction: row;
-  width: 1133px;
-  height: 744px;
+  width: 100vw;
+  height: 100vh;
   padding: 30px 36px;
   justify-content: center;
   align-items: center;
@@ -81,10 +113,13 @@ input{
   background: var(--backgroundcolor);
 }
 
+/* サイドバースタイル */
 .side-bar {
   display: flex;
-  width: 242px;
-  height: 684px;
+  width: 15vw;
+  max-width : 242px;
+  height: 70vh;
+  max-height: 683px;
   padding: 40px 30px;
   flex-direction: column;
   justify-content: space-between;
@@ -96,7 +131,7 @@ input{
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-/* bar文字スタイル */
+/* サイドバー文字スタイル */
 .bar-text {
   width: 188px;
   list-style: none;
@@ -118,7 +153,7 @@ input{
 /* topbar文字スタイル */
 .topbar-text{
   display: flex;
-  width: 810px;
+  width: 55vw;
   height: 55px;
   flex-direction: column;
   justify-content: center;
@@ -136,192 +171,17 @@ input{
 
 /* viewコンテンツ背景スタイル */
 .expense-table-background {
-  width: 820px;
-  height: 697px;
+  width: 55.6vw;
+  height: 71vh;
   flex-shrink: 0;
 
   background-color: #FFFFFF99;
   border-radius: 15px;
 }
-
-/* ここから　*/
-/* 経費属性テーブルスタイル */
-
-.expense-attribute_table{
-  overflow: auto;
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
-  /*margin-left: 50px;*/
-  /*margin-top: 10px;*/
-}
-
-/* ヘッダー固定*/
-.expense-attribute_table thead th {
-  /* 縦スクロール時に固定する */
-  position: sticky;
-  top: 0;
-  /* tbody内のセルより手前に表示する */
-  z-index: 1;
-}
-
-/* ヘッダー文字スタイル */
-.expense-attribute_table th {
-  color: var(--textcolor);
-
-  font-family: Noto Sans JP;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  font-weight: bold;
-  text-align: left;
-  padding-left: 10px;
-}
-
-/* 内容文字スタイル */
-.expense-attribute_table td {
-  color: var(--textcolor);
-
-  font-family: Noto Sans JP;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding-left: 10px;
-
-  white-space: nowrap;
-}
-
-/* No.ヘッダー */
-.table-no-header{ 
-  width: var(--tableNoWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  border-radius: 15px 0px 0px 0px;
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  border-left: 1px solid #DEDEDE;
-  background: var(--tableheadercolor);
-}
-
-/* 属性名ヘッダー */
-.table-attribute-header{ 
-  width: var(--tableAttributeWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  background: var(--tableheadercolor);
-}
-
-/* 分類ヘッダー */
-.table-category-header{ 
-  width: var(--tableCategoryWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  background: var(--tableheadercolor);
-}
-
-/* 編集ヘッダー */
-.table-edit-header{ 
-  width: var(--tableEditWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  border-radius: 0px 15px 0px 0px;
-  border-top: 1px solid #DEDEDE;
-  border-right: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  background: var(--tableheadercolor);
-}
-
-/* No.内容 */
-.table-no{ 
-  width: var(--tableNoWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  /* border-top: 1px solid #DEDEDE; */
-  border-bottom: 1px solid #DEDEDE;
-  border-left: 1px solid #DEDEDE;
-  background: #FFF;
-}
-
-/* 属性名内容 */
-.table-attribute{ 
-  width: var(--tableAttributeWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  /* border-top: 1px solid #DEDEDE; */
-  border-bottom: 1px solid #DEDEDE;
-  background: #FFF;
-}
-
-/* 分類内容 */
-.table-category{ 
-  width: var(--tableCategoryWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  /* border-top: 1px solid #DEDEDE; */
-  border-bottom: 1px solid #DEDEDE;
-  background: #FFF;
-}
-
-/* 編集内容 */
-.table-edit{ 
-  width: var(--tableEditWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  /* border-top: 1px solid #DEDEDE; */
-  border-right: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  background: #FFF;
-}
-
-  /* 経費属性ページネーションスタイル */
-.pagenation{
-  display: flex;
-  justify-content: center;
-
-  width: 100%;
-  height: 40px;
-
-  align-items: center;
-
-  border-radius: 0 0 15px 15px;
-  border-right: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  border-left: 1px solid #DEDEDE;
-  background: #FFF;
-  box-sizing: border-box;
-}
-
-/* pagenation文字スタイル */
-.pagenation-text{
-  flex-direction: column;
-  flex-shrink: 0;
-  padding: 5px;
-
-  color: var(--textcolor);
-  font-family: Noto Sans JP;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
+  
 /* 追加ボタンスタイル */
 .add{
-  width: calc(var(--tableNoWidth) + 11px + var(--tableAttributeWidth) + 11px + var(--tableCategoryWidth) + 11px + var(--tableEditWidth) + 11px);
+  /* width: calc(var(--tableNoWidth) + 11px + var(--tableAttributeWidth) + 11px + var(--tableCategoryWidth) + 11px + var(--tableEditWidth) + 11px); */
   height: 40px;
   flex-shrink: 0;
   margin-left: 50px;
@@ -329,146 +189,4 @@ input{
   justify-content: end;
   align-items: center;
 }
-/* ここまで */
-
-
-
-/* 経費テーブルスタイル */
-
-.expense_table{
-  overflow: scroll;
-  height: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-/* ヘッダー文字スタイル */
-.expense_table th {
-  color: var(--textcolor);
-
-  font-family: Noto Sans JP;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  font-weight: bold;
-  text-align: left;
-  padding-left: 10px;
-}
-
-/* 内容文字スタイル */
-.expense_table td {
-  color: var(--textcolor);
-
-  font-family: Noto Sans JP;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  padding-left: 10px;
-
-  white-space: nowrap;
-}
-
-/* ヘッダー固定*/
-.expense_table thead th {
-  /* 縦スクロール時に固定する */
-  position: sticky;
-  top: 0;
-  /* tbody内のセルより手前に表示する */
-  z-index: 1;
-}
-
-/* 説明ヘッダー */
-.table-description-header{ 
-  width: var(--tableDescriptionWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  background: var(--tableheadercolor);
-}
-
-/* 金額ヘッダー */
-.table-price-header{ 
-  width: var(--tablePriceWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  background: var(--tableheadercolor);
-}
-
-/* 支払日ヘッダー */
-.table-paymentDate-header{ 
-  width: var(--tablePaymentDateWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  border-top: 1px solid #DEDEDE;
-  border-bottom: 1px solid #DEDEDE;
-  background: var(--tableheadercolor);
-}
-
-/* 説明内容 */
-.table-description{ 
-  width: var(--tableDescriptionWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  /* border-top: 1px solid #DEDEDE; */
-  border-bottom: 1px solid #DEDEDE;
-  background: #FFF;
-}
-
-/* 金額内容 */
-.table-price{ 
-  width: var(--tablePriceWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  /* border-top: 1px solid #DEDEDE; */
-  border-bottom: 1px solid #DEDEDE;
-  background: #FFF;
-}
-
-/* 支払日内容 */
-.table-paymentDate{ 
-  width: var(--tablePaymentDateWidth);
-  height: 40px;
-  flex-shrink: 0;
-
-  /* border-top: 1px solid #DEDEDE; */
-  border-bottom: 1px solid #DEDEDE;
-  background: #FFF;
-}
-
-/* 編集画面ラベルスタイル */
-.form-edit-label{
-  display: flex;
-  width: 200px;
-  height: 40px;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-
-  color: var(--textcolor);
-  font-family: Noto Sans JP;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
-
-.foo {
-  padding: 10px;
-}
-
-
-.foo2 {
-  overflow-y: scroll;
-  /*overflow-y: hidden;*/
-  height: 560px;
-}
+  

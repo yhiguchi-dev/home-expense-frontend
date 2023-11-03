@@ -2,6 +2,8 @@ import React, { ReactElement } from "react";
 
 import { ExpenseAttribute } from "@/lib/expense-attribute";
 
+import style from "./expense-attribute-form.module.css";
+
 interface Props {
   expenseAttribute?: ExpenseAttribute | Record<string, never>;
   onSubmit: (formData: FormData) => void;
@@ -14,15 +16,19 @@ const ExpenseAttributeForm = ({
 }: Props): ReactElement => {
   const { id, name, category } = expenseAttribute;
   return (
-    <form action={onSubmit}>
+    <form action={onSubmit} className={style.formStyle}>
       <input type="hidden" name="expenseAttributeId" value={id} />
-      <label className="form-edit-label">属性名</label>
-      <input type="text" name="name" defaultValue={name} required />
-      <label className="form-edit-label">分類</label>
-      <select name="category" defaultValue={category}>
-        <option value="固定費">固定費</option>
-        <option value="変動費">変動費</option>
-      </select>
+      <div className={style.editStyle}>
+        <label className={style.editLabel}>属性名</label>
+        <input type="text" name="name" defaultValue={name} required />
+      </div>
+      <div className={style.editStyle}>
+        <label className={style.editLabel}>分類</label>
+        <select name="category" defaultValue={category}>
+          <option value="固定費">固定費</option>
+          <option value="変動費">変動費</option>
+        </select>
+      </div>
       <button type="submit">{buttonTitle}</button>
     </form>
   );
