@@ -12,8 +12,8 @@ const DashboardLayout = ({
     <div className={style.dashboard}>
       <div>
         <div className="background">
-          <div className="side-bar">
-            <ul className="bar-text">
+          <div className="sideBar">
+            <ul className="barText">
               <li>
                 <Link href="/home">Home</Link>
               </li>
@@ -27,9 +27,9 @@ const DashboardLayout = ({
           </div>
           <div className="margin">
             <div className={style.topBar}>
-              <text className="topbar-text">家庭用</text>
+              <text className="topbarText">家庭用</text>
             </div>
-            <div className="expense-table-background">{children}</div>
+            <div className="expenseTableBackground">{children}</div>
           </div>
         </div>
       </div>
