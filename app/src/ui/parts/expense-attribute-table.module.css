@@ -9,15 +9,18 @@
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    /*margin-left: 50px;*/
-    /*margin-top: 10px;*/
+
+    /* margin-left: 50px; */
+
+    /* margin-top: 10px; */
   }
   
-  /* ヘッダー固定*/
+  /* ヘッダー固定 */
   .expenseAttributeTable thead th {
     /* 縦スクロール時に固定する */
     position: sticky;
     top: 0;
+
     /* tbody内のセルより手前に表示する */
     z-index: 1;
   }
@@ -25,11 +28,9 @@
   /* ヘッダー文字スタイル */
   .expenseAttributeTable th {
     color: var(--textcolor);
-  
-    font-family: Noto Sans JP;
+    font-family: "Noto Sans JP";
     font-size: 14px;
     font-style: normal;
-    font-weight: 400;
     line-height: normal;
     font-weight: bold;
     text-align: left;
@@ -38,18 +39,14 @@
   
   /* 内容文字スタイル */
   .expenseAttributeTable td {
-    
     max-height: 40px;
-
     color: var(--textcolor);
-  
-    font-family: Noto Sans JP;
+    font-family: "Noto Sans JP";
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     padding-left: 10px;
-  
     white-space: nowrap;
   }
   
@@ -58,8 +55,7 @@
     width: var(--tableNoWidth);
     height: 40px;
     flex-shrink: 0;
-  
-    border-radius: 15px 0px 0px 0px;
+    border-radius: 15px 0 0;
     border-top: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;
     border-left: 1px solid #DEDEDE;
@@ -71,7 +67,6 @@
     width: var(--tableAttributeWidth);
     height: 40px;
     flex-shrink: 0;
-  
     border-top: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;
     background: var(--tableheadercolor);
@@ -82,7 +77,6 @@
     width: var(--tableCategoryWidth);
     height: 40px;
     flex-shrink: 0;
-  
     border-top: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;
     background: var(--tableheadercolor);
@@ -93,8 +87,7 @@
     width: var(--tableEditWidth);
     height: 40px;
     flex-shrink: 0;
-  
-    border-radius: 0px 15px 0px 0px;
+    border-radius: 0 15px 0 0;
     border-top: 1px solid #DEDEDE;
     border-right: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;

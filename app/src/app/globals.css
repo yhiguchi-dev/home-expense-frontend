@@ -3,7 +3,6 @@
   --textcolor : #757575;
   --tableheadercolor : #EFEFEF;
   --linecolor :#90E0F1;
-
   --tableNoWidth : 102px;
   --tableAttributeWidth : 200px;
   --tableCategoryWidth : 200px;
@@ -16,9 +15,11 @@
 a {
   text-decoration:none; 
 }
+
 a:link {
   color: var(--textcolor);
 }
+
 a:visited{
   color: var(--textcolor);
 }
@@ -33,7 +34,7 @@ a:active{
 
 button{
   color: var(--textcolor);
-  font-family: Noto Sans JP;
+  font-family: "Noto Sans JP";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -45,7 +46,7 @@ button{
 
 select{
   color: var(--textcolor);
-  font-family: Noto Sans JP;
+  font-family: "Noto Sans JP";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -56,7 +57,7 @@ select{
 
 input{
   color: var(--textcolor);
-  font-family: Noto Sans JP;
+  font-family: "Noto Sans JP";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -72,6 +73,7 @@ details{
 
 summary{
   cursor: pointer;
+
   /* font-weight:bold; */
   margin-top: 10px;
 }

@@ -4,16 +4,15 @@
 
 /* テキスト設定 */
 .textStyle{
-
     color: var(--textcolor);
     text-align: left;
+
     /* サイドバー文字スタイル */
-    font-family: Noto Sans JP;
+    font-family: "Noto Sans JP";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
     margin: 20px;
 }
 
@@ -29,7 +28,6 @@
     width: 45vw;
     height: 3vh;
     justify-content: space-between;
-
     margin-top: 20px;
     margin-bottom: 20px;
 
@@ -38,6 +36,7 @@
 
     /* 文字スタイル */
     font-size: 23px;
+
     /* font-weight:bold;  */
 }
 
@@ -45,6 +44,7 @@
 .amountStyle{
     width: 45vw;
     height: 52vh;
+
     /* justify-content: space-between; */
     border-radius: 15px;
     border: 1px solid #DEDEDE;

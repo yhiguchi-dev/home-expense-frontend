@@ -10,7 +10,7 @@
   height: 40px;
   flex-direction: column;
   color: var(--textcolor);
-  font-family: Noto Sans JP;
+  font-family: "Noto Sans JP";
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -21,6 +21,7 @@
 .editLabel{
     display: flex;
     width: 200px;
+
     /* height: 40px; */
     flex-direction: column;
     justify-content: center;
@@ -30,6 +31,7 @@
    /* 各項目スタイル */
   .editStyle{
     display: flex;
+
     /* width: 20dvw; */
     flex-shrink: 0;
     justify-content: start;

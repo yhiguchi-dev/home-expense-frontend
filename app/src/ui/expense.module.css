@@ -14,9 +14,9 @@
 
 .foo2 {
     overflow-y: scroll;
-    /*overflow-y: hidden;*/
-    height: 560px;
 
+    /* overflow-y: hidden; */
+    height: 560px;
     background: #FFF;
     border-right: 1px solid #DEDEDE;
     border-bottom: 1px solid #DEDEDE;
