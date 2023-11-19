@@ -19,7 +19,7 @@
     flex-shrink: 0;
     padding: 5px;
     color: var(--textcolor);
-    font-family: "Noto Sans JP";
+    font-family: var(--font-noto-sans-jp);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

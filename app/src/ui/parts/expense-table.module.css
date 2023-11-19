@@ -14,7 +14,7 @@
   /* ヘッダー文字スタイル */
   .expenseTable th {
     color: var(--textcolor);
-    font-family: "Noto Sans JP";
+    font-family: var(--font-noto-sans-jp);
     font-size: 14px;
     font-style: normal;
     line-height: normal;
@@ -26,7 +26,7 @@
   /* 内容文字スタイル */
   .expenseTable td {
     color: var(--textcolor);
-    font-family: "Noto Sans JP";
+    font-family: var(--font-noto-sans-jp);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

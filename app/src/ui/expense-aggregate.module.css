@@ -8,7 +8,7 @@
     text-align: left;
 
     /* サイドバー文字スタイル */
-    font-family: "Noto Sans JP";
+    font-family: var(--font-noto-sans-jp);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;

@@ -34,7 +34,7 @@ a:active{
 
 button{
   color: var(--textcolor);
-  font-family: "Noto Sans JP";
+  font-family: var(--font-noto-sans-jp);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -46,7 +46,7 @@ button{
 
 select{
   color: var(--textcolor);
-  font-family: "Noto Sans JP";
+  font-family: var(--font-noto-sans-jp);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -57,7 +57,7 @@ select{
 
 input{
   color: var(--textcolor);
-  font-family: "Noto Sans JP";
+  font-family: var(--font-noto-sans-jp);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -76,4 +76,11 @@ summary{
 
   /* font-weight:bold; */
   margin-top: 10px;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  padding: 30px 36px;
+  background: var(--backgroundcolor);
 }
