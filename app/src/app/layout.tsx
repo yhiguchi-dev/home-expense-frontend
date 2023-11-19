@@ -1,11 +1,15 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Sans_JP } from "next/font/google";
 import { ReactElement, ReactNode } from "react";
 
 import DashboardLayout from "@/ui/dashboard-layout";
 
-const inter = Inter({ subsets: ["latin"] });
+const noto = Noto_Sans_JP({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans-jp",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,7 +19,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: ReactNode }): ReactElement => {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body className={noto.className}>
         <DashboardLayout>{children}</DashboardLayout>
       </body>
     </html>

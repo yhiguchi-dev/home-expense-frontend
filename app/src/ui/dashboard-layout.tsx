@@ -1,5 +1,9 @@
-import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
+
+import LinkComponent from "@/ui/link-component";
+import Box from "@/ui/parts/layout/Box";
+import SideBar from "@/ui/parts/side-bar";
+import TopBar from "@/ui/parts/top-bar";
 
 import style from "./dashboard-layout.module.css";
 
@@ -8,31 +12,27 @@ const DashboardLayout = ({
 }: {
   children: ReactNode;
 }): ReactElement => {
+  const attributes = [
+    {
+      title: "Home",
+      path: "/home",
+    },
+    {
+      title: "経費属性",
+      path: "/expense-attribute",
+    },
+    {
+      title: "経費",
+      path: "/expense",
+    },
+  ];
   return (
-    <div className={style.dashboard}>
-      <div>
-        <div className="background">
-          <div className="side-bar">
-            <ul className="bar-text">
-              <li>
-                <Link href="/home">Home</Link>
-              </li>
-              <li>
-                <Link href="/expense-attribute">経費属性</Link>
-              </li>
-              <li>
-                <Link href="/expense">経費</Link>
-              </li>
-            </ul>
-          </div>
-          <div className="margin">
-            <div className={style.topBar}>
-              <text className="topbar-text">家庭用</text>
-            </div>
-            <div className="expense-table-background">{children}</div>
-          </div>
-        </div>
-      </div>
+    <div className={style.parent}>
+      <SideBar linkComponent={LinkComponent} attributes={attributes} />
+      <Box width="100%" height="100%">
+        <TopBar />
+        <div className={style.expenseTableBackground}>{children}</div>
+      </Box>
     </div>
   );
 };

@@ -3,58 +3,58 @@
 */
 
 /* テキスト設定 */
-.textStyle{
+.textStyle {
+  color: var(--textcolor);
+  text-align: left;
 
-    color: var(--textcolor);
-    text-align: left;
-    /* サイドバー文字スタイル */
-    font-family: Noto Sans JP;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    margin: 20px;
+  /* サイドバー文字スタイル */
+  font-family: var(--font-noto-sans-jp);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 20px;
 }
 
 /* 月選択カレンダースタイル */
-.yearMonth{
-    margin-top: 10px;
-    font-size: 17px;
+.yearMonth {
+  margin-top: 10px;
+  font-size: 17px;
 }
 
 /* labelスタイル */
-.labelStyale{
-    display: flex;
-    width: 45vw;
-    height: 3vh;
-    justify-content: space-between;
+.labelStyale {
+  display: flex;
+  width: 45vw;
+  height: 3vh;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 20px;
 
-    margin-top: 20px;
-    margin-bottom: 20px;
+  /* 線スタイル */
+  border-bottom: 5px solid var(--linecolor);
 
-    /* 線スタイル */
-    border-bottom: 5px solid var(--linecolor);
+  /* 文字スタイル */
+  font-size: 23px;
 
-    /* 文字スタイル */
-    font-size: 23px;
-    /* font-weight:bold;  */
+  /* font-weight:bold;  */
 }
 
 /* 内訳スタイル */
-.amountStyle{
-    width: 45vw;
-    height: 52vh;
-    /* justify-content: space-between; */
-    border-radius: 15px;
-    border: 1px solid #DEDEDE;
-    background: #FFF;
+.amountStyle {
+  width: 45vw;
+  height: 52vh;
+
+  /* justify-content: space-between; */
+  border-radius: 15px;
+  border: 1px solid #dedede;
+  background: #fff;
 }
 
 /* 内訳明細スタイル */
-.expensesStyle{
-    font-size: 18px;
-    max-height: 28vh;
-    overflow-y: scroll;
-    margin-left: 20px;
+.expensesStyle {
+  font-size: 18px;
+  max-height: 28vh;
+  overflow-y: scroll;
+  margin-left: 20px;
 }

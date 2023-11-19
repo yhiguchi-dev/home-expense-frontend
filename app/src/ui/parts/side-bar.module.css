@@ -1,0 +1,18 @@
+/* サイドバースタイル */
+.sideBar {
+  max-width: 242px;
+  height: 70vh;
+  max-height: 683px;
+  padding: 40px 30px;
+  border-radius: 15px;
+  background: #fff;
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 25%);
+  width: 188px;
+  list-style: none;
+  color: var(--textcolor);
+  font-family: var(--font-noto-sans-jp);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

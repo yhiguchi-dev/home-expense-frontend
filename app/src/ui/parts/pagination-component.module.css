@@ -1,31 +1,27 @@
-  /* ページネーションスタイル */
-  .pagenation{
-    display: flex;
-    justify-content: center;
-  
-    width: 100%;
-    height: 40px;
-  
-    align-items: center;
-  
-    border-radius: 0 0 15px 15px;
-    border-right: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    border-left: 1px solid #DEDEDE;
-    background: #FFF;
-    box-sizing: border-box;
-  }
-    
-  /* pagenation文字スタイル */
-  .pagenationText{
-    flex-direction: column;
-    flex-shrink: 0;
-    padding: 5px;
-  
-    color: var(--textcolor);
-    font-family: Noto Sans JP;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+/* ページネーションスタイル */
+.pagenation {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  align-items: center;
+  border-radius: 0 0 15px 15px;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  border-left: 1px solid #dedede;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+/* pagenation文字スタイル */
+.pagenationText {
+  flex-direction: column;
+  flex-shrink: 0;
+  padding: 5px;
+  color: var(--textcolor);
+  font-family: var(--font-noto-sans-jp);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

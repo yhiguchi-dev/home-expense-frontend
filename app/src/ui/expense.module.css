@@ -1,0 +1,33 @@
+.category-box {
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.foo {
+  /* padding: 10px; */
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.foo2 {
+  overflow-y: scroll;
+
+  /* overflow-y: hidden; */
+  height: 560px;
+  background: #fff;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  border-left: 1px solid #dedede;
+}
+
+/* 追加ボタンスタイル */
+.add {
+  /* width: calc(var(--tableNoWidth) + 11px + var(--tableAttributeWidth) + 11px + var(--tableCategoryWidth) + 11px + var(--tableEditWidth) + 11px); */
+  height: 40px;
+  flex-shrink: 0;
+  margin-left: 50px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
