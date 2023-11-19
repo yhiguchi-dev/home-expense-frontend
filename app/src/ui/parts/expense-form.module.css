@@ -3,46 +3,46 @@
 */
 
 /* フォーム全体スタイル */
-.formStyle{
-    display: flex;
-    width: 40dvw;
-    padding: 20px;
-    height: 40px;
-    flex-direction: column;
-    color: var(--textcolor);
-    font-family: var(--font-noto-sans-jp);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-  }
+.formStyle {
+  display: flex;
+  width: 40dvw;
+  padding: 20px;
+  height: 40px;
+  flex-direction: column;
+  color: var(--textcolor);
+  font-family: var(--font-noto-sans-jp);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
-  /* 各項目スタイル */
-  .editStyle{
-    display: flex;
+/* 各項目スタイル */
+.editStyle {
+  display: flex;
 
-    /* width: 20dvw; */
-    flex-shrink: 0;
-    justify-content: start;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+  /* width: 20dvw; */
+  flex-shrink: 0;
+  justify-content: start;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 
-.formStyle label{
-    width: 4dvw;
-  }
+.formStyle label {
+  width: 4dvw;
+}
 
-.formStyle input{
-    margin-left: 50px;
-  }
-  
-.formStyle select{
-    margin-left: 50px;
-  }
+.formStyle input {
+  margin-left: 50px;
+}
 
-.formStyle button{
-    width: 23vw;
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.formStyle select {
+  margin-left: 50px;
+}
+
+.formStyle button {
+  width: 23vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }

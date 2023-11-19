@@ -1,38 +1,38 @@
-:root{
-  --backgroundcolor : #E0F2F5;
-  --textcolor : #757575;
-  --tableheadercolor : #EFEFEF;
-  --linecolor :#90E0F1;
-  --tableNoWidth : 102px;
-  --tableAttributeWidth : 200px;
-  --tableCategoryWidth : 200px;
-  --tableEditWidth : 150px;
-  --tableDescriptionWidth : 200px;
-  --tablePriceWidth : 200px;
-  --tablePaymentDateWidth : 150px;
+:root {
+  --backgroundcolor: #e0f2f5;
+  --textcolor: #757575;
+  --tableheadercolor: #efefef;
+  --linecolor: #90e0f1;
+  --tableNoWidth: 102px;
+  --tableAttributeWidth: 200px;
+  --tableCategoryWidth: 200px;
+  --tableEditWidth: 150px;
+  --tableDescriptionWidth: 200px;
+  --tablePriceWidth: 200px;
+  --tablePaymentDateWidth: 150px;
 }
 
 a {
-  text-decoration:none; 
+  text-decoration: none;
 }
 
 a:link {
   color: var(--textcolor);
 }
 
-a:visited{
+a:visited {
   color: var(--textcolor);
 }
 
-a:hover{
+a:hover {
   color: var(--textcolor);
 }
 
-a:active{
+a:active {
   color: var(--textcolor);
 }
 
-button{
+button {
   color: var(--textcolor);
   font-family: var(--font-noto-sans-jp);
   font-size: 14px;
@@ -44,7 +44,7 @@ button{
   margin-right: 10px;
 }
 
-select{
+select {
   color: var(--textcolor);
   font-family: var(--font-noto-sans-jp);
   font-size: 14px;
@@ -55,7 +55,7 @@ select{
   padding-right: 5px;
 }
 
-input{
+input {
   color: var(--textcolor);
   font-family: var(--font-noto-sans-jp);
   font-size: 14px;
@@ -66,12 +66,12 @@ input{
   padding-right: 5px;
 }
 
-details{
+details {
   margin-left: 10px;
   margin-bottom: 10px;
 }
 
-summary{
+summary {
   cursor: pointer;
 
   /* font-weight:bold; */

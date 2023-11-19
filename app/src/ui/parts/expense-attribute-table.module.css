@@ -4,136 +4,134 @@
 
 /* 経費属性テーブルスタイル */
 
-.expenseAttributeTable{
-    overflow: auto;
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 100%;
+.expenseAttributeTable {
+  overflow: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
 
-    /* margin-left: 50px; */
+  /* margin-left: 50px; */
 
-    /* margin-top: 10px; */
-  }
-  
-  /* ヘッダー文字スタイル */
-  .expenseAttributeTable th {
-    /* 縦スクロール時に固定する */
-    position: sticky;
-    top: 0;
+  /* margin-top: 10px; */
+}
 
-    /* tbody内のセルより手前に表示する */
-    z-index: 1;
-    color: var(--textcolor);
-    font-family: var(--font-noto-sans-jp);
-    font-size: 14px;
-    font-style: normal;
-    line-height: normal;
-    font-weight: bold;
-    text-align: left;
-    padding-left: 10px;
-  }
-  
-  /* 内容文字スタイル */
-  .expenseAttributeTable td {
-    max-height: 40px;
-    color: var(--textcolor);
-    font-family: var(--font-noto-sans-jp);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding-left: 10px;
-    white-space: nowrap;
-  }
-  
-  /* No.ヘッダー */
-  .noHeader{ 
-    width: var(--tableNoWidth);
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 15px 0 0;
-    border-top: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    border-left: 1px solid #DEDEDE;
-    background: var(--tableheadercolor);
-  }
-  
-  /* 属性名ヘッダー */
-  .attributeHeader{ 
-    width: var(--tableAttributeWidth);
-    height: 40px;
-    flex-shrink: 0;
-    border-top: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    background: var(--tableheadercolor);
-  }
-  
-  /* 分類ヘッダー */
-  .categoryHeader{ 
-    width: var(--tableCategoryWidth);
-    height: 40px;
-    flex-shrink: 0;
-    border-top: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    background: var(--tableheadercolor);
-  }
-  
-  /* 編集ヘッダー */
-  .editHeader{ 
-    width: var(--tableEditWidth);
-    height: 40px;
-    flex-shrink: 0;
-    border-radius: 0 15px 0 0;
-    border-top: 1px solid #DEDEDE;
-    border-right: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    background: var(--tableheadercolor);
-  }
-  
-  /* No.内容 */
-  .no{ 
-    width: var(--tableNoWidth);
-    height: 40px;
-    flex-shrink: 0;
-  
-    /* border-top: 1px solid #DEDEDE; */
-    border-bottom: 1px solid #DEDEDE;
-    border-left: 1px solid #DEDEDE;
-    background: #FFF;
-  }
-  
-  /* 属性名内容 */
-  .attribute{ 
-    width: var(--tableAttributeWidth);
-    height: 40px;
-    flex-shrink: 0;
-  
-    /* border-top: 1px solid #DEDEDE; */
-    border-bottom: 1px solid #DEDEDE;
-    background: #FFF;
-  }
-  
-  /* 分類内容 */
-  .category{ 
-    width: var(--tableCategoryWidth);
-    height: 40px;
-    flex-shrink: 0;
-  
-    /* border-top: 1px solid #DEDEDE; */
-    border-bottom: 1px solid #DEDEDE;
-    background: #FFF;
-  }
-  
-  /* 編集内容 */
-  .edit{ 
-    width: var(--tableEditWidth);
-    height: 40px;
-    flex-shrink: 0;
-  
-    /* border-top: 1px solid #DEDEDE; */
-    border-right: 1px solid #DEDEDE;
-    border-bottom: 1px solid #DEDEDE;
-    background: #FFF;
-  }
-  
- 
+/* ヘッダー文字スタイル */
+.expenseAttributeTable th {
+  /* 縦スクロール時に固定する */
+  position: sticky;
+  top: 0;
+
+  /* tbody内のセルより手前に表示する */
+  z-index: 1;
+  color: var(--textcolor);
+  font-family: var(--font-noto-sans-jp);
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* 内容文字スタイル */
+.expenseAttributeTable td {
+  max-height: 40px;
+  color: var(--textcolor);
+  font-family: var(--font-noto-sans-jp);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding-left: 10px;
+  white-space: nowrap;
+}
+
+/* No.ヘッダー */
+.noHeader {
+  width: var(--tableNoWidth);
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 15px 0 0;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  border-left: 1px solid #dedede;
+  background: var(--tableheadercolor);
+}
+
+/* 属性名ヘッダー */
+.attributeHeader {
+  width: var(--tableAttributeWidth);
+  height: 40px;
+  flex-shrink: 0;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  background: var(--tableheadercolor);
+}
+
+/* 分類ヘッダー */
+.categoryHeader {
+  width: var(--tableCategoryWidth);
+  height: 40px;
+  flex-shrink: 0;
+  border-top: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  background: var(--tableheadercolor);
+}
+
+/* 編集ヘッダー */
+.editHeader {
+  width: var(--tableEditWidth);
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 0 15px 0 0;
+  border-top: 1px solid #dedede;
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  background: var(--tableheadercolor);
+}
+
+/* No.内容 */
+.no {
+  width: var(--tableNoWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #dedede;
+  border-left: 1px solid #dedede;
+  background: #fff;
+}
+
+/* 属性名内容 */
+.attribute {
+  width: var(--tableAttributeWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #dedede;
+  background: #fff;
+}
+
+/* 分類内容 */
+.category {
+  width: var(--tableCategoryWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-bottom: 1px solid #dedede;
+  background: #fff;
+}
+
+/* 編集内容 */
+.edit {
+  width: var(--tableEditWidth);
+  height: 40px;
+  flex-shrink: 0;
+
+  /* border-top: 1px solid #DEDEDE; */
+  border-right: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  background: #fff;
+}

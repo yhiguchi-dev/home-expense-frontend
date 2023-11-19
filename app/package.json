@@ -7,13 +7,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "pnpm lint:next && pnpm lint:prettier && pnpm lint:stylelint",
+    "lint": "pnpm lint:next && pnpm lint:stylelint && pnpm lint:prettier",
     "lint:next": "next lint",
-    "lint:prettier": "prettier --check --ignore-path .gitignore '{**/*,*}.{js,cjs,ts,jsx,tsx}'",
+    "lint:prettier": "prettier --check --ignore-path .gitignore '{**/*,*}.{js,cjs,ts,jsx,tsx,css}'",
     "lint:stylelint": "stylelint '**/*.css'",
     "fix": "pnpm fix:next && pnpm fix:prettier && pnpm fix:stylelint",
     "fix:next": "next lint --fix",
-    "fix:prettier": "prettier --write --ignore-path .gitignore '{**/*,*}.{js,cjs,ts,jsx,tsx}'",
+    "fix:prettier": "prettier --write --ignore-path .gitignore '{**/*,*}.{js,cjs,ts,jsx,tsx,css}'",
     "fix:stylelint": "stylelint '**/*.css' --fix"
   },
   "dependencies": {
