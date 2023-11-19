@@ -15,18 +15,14 @@
     /* margin-top: 10px; */
   }
   
-  /* ヘッダー固定 */
-  .expenseAttributeTable thead th {
+  /* ヘッダー文字スタイル */
+  .expenseAttributeTable th {
     /* 縦スクロール時に固定する */
     position: sticky;
     top: 0;
 
     /* tbody内のセルより手前に表示する */
     z-index: 1;
-  }
-  
-  /* ヘッダー文字スタイル */
-  .expenseAttributeTable th {
     color: var(--textcolor);
     font-family: var(--font-noto-sans-jp);
     font-size: 14px;

@@ -1,5 +1,7 @@
 import { PropsWithChildren, ReactElement } from "react";
 
+import { Spacing, spacing } from "@/ui/parts/layout/type";
+
 interface Props {
   display?: "none" | "inline-flex" | "flex";
   direction?: "row" | "column" | "row-reverse" | "column-reverse";
@@ -19,7 +21,9 @@ const Flex = ({
   children,
 }: PropsWithChildren<Props>): ReactElement => {
   const gapSpacing = gap ? spacing[gap] : null;
-  const _gap = direction.startsWith("row") ? {"row-gap": gapSpacing} : {"column-gap": gapSpacing};
+  const _gap = direction.startsWith("row")
+    ? { "row-gap": gapSpacing }
+    : { "column-gap": gapSpacing };
   const style = {
     display: display,
     "flex-flow": direction,
