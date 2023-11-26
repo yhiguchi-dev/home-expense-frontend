@@ -22,34 +22,37 @@ const ExpenseAttribute = ({
   const handleMovePrevious = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
+        category,
         page: page.toString(),
         per_page: perPage.toString(),
       });
       router.push(`/expense-attribute?${searchParams.toString()}`);
     },
-    [router],
+    [category, router],
   );
 
   const handleMoveNext = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
+        category,
         page: page.toString(),
         per_page: perPage.toString(),
       });
       router.push(`/expense-attribute?${searchParams.toString()}`);
     },
-    [router],
+    [category, router],
   );
 
   const handleMovePage = useCallback(
     (page: number, perPage: number) => {
       const searchParams = new URLSearchParams({
+        category,
         page: page.toString(),
         per_page: perPage.toString(),
       });
       router.push(`/expense-attribute?${searchParams.toString()}`);
     },
-    [router],
+    [category, router],
   );
 
   const handleRegistrationClick = useCallback(
