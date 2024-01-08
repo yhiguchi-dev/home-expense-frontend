@@ -1,5 +1,5 @@
-name: CI
-run-name: Push Docker Image
+name: Continuous Integration
+run-name: Continuous Integration
 on:
   pull_request:
     branches:
@@ -20,34 +20,3 @@ jobs:
       matrix:
         node-version:
           - 20
-
-  pre-build-and-push:
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.set-version.outputs.version }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - name: Set Version
-        id: set-version
-        run: |
-          echo "version=$(pnpm pkg get version | tr -d \")" >> "${GITHUB_OUTPUT}"
-        working-directory: app
-  build-and-push:
-    uses: yhiguchi-dev/reusable-workflow/.github/workflows/docker-image-push-to-ghcr.yaml@main
-    with:
-      build-context: ${{ matrix.build-context }}
-      version: ${{ needs.pre-build-and-push.outputs.version }}
-      platform: ${{ matrix.platform }}
-    needs:
-      - pre-build-and-push
-      - lint
-    strategy:
-      fail-fast: false
-      matrix:
-        build-context:
-          - app
-        platform:
-          - linux/amd64

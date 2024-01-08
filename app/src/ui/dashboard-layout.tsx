@@ -17,8 +17,16 @@ const DashboardLayout = ({
       path: "/home",
     },
     {
+      title: "収入属性",
+      path: "/income-attribute",
+    },
+    {
       title: "経費属性",
       path: "/expense-attribute",
+    },
+    {
+      title: "収入",
+      path: "/income",
     },
     {
       title: "経費",

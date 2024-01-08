@@ -12,13 +12,15 @@ interface Props {
   attributes: Attribute[];
 }
 
-const SideBar = ({ linkComponent, attributes }: Props): ReactElement => {
-  const Link = linkComponent;
+const SideBar = ({
+  linkComponent: LinkComponent,
+  attributes,
+}: Props): ReactElement => {
   const mapped = attributes.map((value, index) => {
     const { title, path } = value;
     return (
       <li key={index}>
-        <Link href={path}>{title}</Link>
+        <LinkComponent href={path}>{title}</LinkComponent>
       </li>
     );
   });
