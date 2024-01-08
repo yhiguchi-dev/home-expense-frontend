@@ -2,97 +2,83 @@
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, ReactElement, useCallback, useState } from "react";
 
-import { Expenses } from "@/lib/expense";
+import { Incomes } from "@/lib/income";
 import { Pagination } from "@/lib/pagination/pagination";
-import ExpenseTable from "@/ui/parts/expense-table";
+import IncomeTable from "@/ui/parts/income-table";
 import PaginationComponent from "@/ui/parts/pagination-component";
 
 interface Props {
-  expenses: Expenses;
+  incomes: Incomes;
   pagination: Pagination;
   year: number;
-  month: number;
 }
 
-const Expense = ({
-  expenses,
-  pagination,
-  year,
-  month,
-}: Props): ReactElement => {
+const Income = ({ incomes, pagination, year }: Props): ReactElement => {
   const router = useRouter();
   const formattedYear = year.toString();
-  const formattedMonth = month.toString().padStart(2, "0");
-  const [yearMonth, setYearMonth] = useState(
-    `${formattedYear}-${formattedMonth}`,
-  );
-  const handleYearMonthChange = useCallback(
+  const [displayYear, setDisplayYear] = useState(formattedYear);
+  const handleYearChange = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       const date = new Date(event.currentTarget.value);
       const year = date.getFullYear().toString();
-      const month = (date.getMonth() + 1).toString();
       const searchParams = new URLSearchParams({
         year: year,
-        month: month,
       }).toString();
-      setYearMonth(`${year}-${month.padStart(2, "0")}`);
-      router.push(`/expense?${searchParams}`);
+      setDisplayYear(year);
+      router.push(`/income?${searchParams}`);
     },
     [router],
   );
   const handleMovePrevious = useCallback(
     (page: number, perPage: number) => {
-      const date = new Date(yearMonth);
+      const date = new Date(displayYear);
       const searchParams = new URLSearchParams({
         page: page.toString(),
         per_page: perPage.toString(),
         year: date.getFullYear().toString(),
-        month: (date.getMonth() + 1).toString(),
       });
-      router.push(`/expense?${searchParams.toString()}`);
+      router.push(`/income?${searchParams.toString()}`);
     },
-    [router, yearMonth],
+    [router, displayYear],
   );
 
   const handleMoveNext = useCallback(
     (page: number, perPage: number) => {
-      const date = new Date(yearMonth);
+      const date = new Date(displayYear);
       const searchParams = new URLSearchParams({
         page: page.toString(),
         per_page: perPage.toString(),
         year: date.getFullYear().toString(),
-        month: (date.getMonth() + 1).toString(),
       });
-      router.push(`/expense?${searchParams.toString()}`);
+      router.push(`/income?${searchParams.toString()}`);
     },
-    [router, yearMonth],
+    [router, displayYear],
   );
 
   const handleMovePage = useCallback(
     (page: number, perPage: number) => {
-      const date = new Date(yearMonth);
+      const date = new Date(displayYear);
       const searchParams = new URLSearchParams({
         page: page.toString(),
         per_page: perPage.toString(),
         year: date.getFullYear().toString(),
-        month: (date.getMonth() + 1).toString(),
       });
-      router.push(`/expense?${searchParams.toString()}`);
+      router.push(`/income?${searchParams.toString()}`);
     },
-    [router, yearMonth],
+    [router, displayYear],
   );
 
   const handleRegistrationClick = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>): void => {
       console.log(event);
-      router.push("/expense/registration");
+      router.push("/income/registration");
     },
     [router],
   );
 
   const handleEdit = useCallback(
     (id: string) => {
-      router.push(`/expense/${id}`);
+      router.push(`/income/${id}`);
     },
     [router],
   );
@@ -102,13 +88,16 @@ const Expense = ({
       <div className="foo">
         <input
           className="category-box"
-          type="month"
-          value={yearMonth}
-          onChange={handleYearMonthChange}
+          type="number"
+          min="1900"
+          max="2099"
+          step="1"
+          value={displayYear}
+          onChange={handleYearChange}
         />
         <div className="foo2">
-          <ExpenseTable
-            expenses={expenses}
+          <IncomeTable
+            incomes={incomes}
             pagination={pagination}
             onEdit={handleEdit}
           />
@@ -126,4 +115,4 @@ const Expense = ({
     </div>
   );
 };
-export default Expense;
+export default Income;
