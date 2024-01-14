@@ -74,6 +74,8 @@ export const getExpenseAggregate = async ({
   month: number;
   tag: string;
 }): Promise<{
+  incomeTotalAmount: number;
+  disposalIncomeAmount: number;
   totalAmount: number;
   fixed: {
     totalAmount: number;
@@ -91,8 +93,13 @@ export const getExpenseAggregate = async ({
       next: { tags: [tag] },
     },
   });
-  const { total_amount, variable_expense_detail, fixed_expense_detail } =
-    response;
+  const {
+    income_total_amount,
+    disposal_income_amount,
+    total_amount,
+    variable_expense_detail,
+    fixed_expense_detail,
+  } = response;
   const fixedAggregates: ExpenseAttributeAggregates =
     fixed_expense_detail.attribute_aggregates.map((value) => {
       const { attribute_id, attribute_name, total_amount } = value;
@@ -114,6 +121,8 @@ export const getExpenseAggregate = async ({
       return aggregate;
     });
   return {
+    incomeTotalAmount: income_total_amount,
+    disposalIncomeAmount: disposal_income_amount,
     totalAmount: total_amount,
     fixed: {
       totalAmount: fixed_expense_detail.total_amount,

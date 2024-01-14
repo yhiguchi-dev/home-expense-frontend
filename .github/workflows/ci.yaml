@@ -20,3 +20,18 @@ jobs:
       matrix:
         node-version:
           - 20
+  build-and-lint-docker-image:
+    uses: yhiguchi-dev/reusable-workflow/.github/workflows/docker-image.yaml@main
+    with:
+      build-context: ${{ matrix.build-context }}
+      version: lint
+      platform: ${{ matrix.platform }}
+    needs:
+      - lint
+    strategy:
+      fail-fast: false
+      matrix:
+        build-context:
+          - app
+        platform:
+          - linux/amd64

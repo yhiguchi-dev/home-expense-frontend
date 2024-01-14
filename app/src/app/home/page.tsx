@@ -19,11 +19,19 @@ const HomePage = async ({ searchParams }: Props): Promise<ReactElement> => {
     month,
     tag: `expense-aggregate-${year}-${month}`,
   });
-  const { totalAmount, fixed, variable } = aggregate;
+  const {
+    incomeTotalAmount,
+    disposalIncomeAmount,
+    totalAmount,
+    fixed,
+    variable,
+  } = aggregate;
   return (
     <ExpenseAggregate
       year={year}
       month={month}
+      incomeTotalAmount={incomeTotalAmount}
+      disposalIncomeAmount={disposalIncomeAmount}
       totalAmount={totalAmount}
       fixed={fixed}
       variable={variable}
