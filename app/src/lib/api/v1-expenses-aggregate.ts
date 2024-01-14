@@ -5,6 +5,12 @@ import { JTD } from "@/lib/json/type";
 
 const getAggregateResponse = {
   properties: {
+    income_total_amount: {
+      type: "int32",
+    },
+    disposal_income_amount: {
+      type: "int32",
+    },
     total_amount: {
       type: "int32",
     },

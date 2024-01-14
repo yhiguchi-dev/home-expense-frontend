@@ -9,6 +9,8 @@ import style from "./expense-aggregate.module.css";
 interface Props {
   year: number;
   month: number;
+  incomeTotalAmount: number;
+  disposalIncomeAmount: number;
   totalAmount: number;
   fixed: {
     totalAmount: number;
@@ -23,6 +25,8 @@ interface Props {
 const ExpenseAggregate = ({
   year,
   month,
+  incomeTotalAmount,
+  disposalIncomeAmount,
   totalAmount,
   fixed,
   variable,
@@ -47,6 +51,14 @@ const ExpenseAggregate = ({
     },
     [router],
   );
+  const formattedIncomeTotalAmount = new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+  }).format(incomeTotalAmount);
+  const formattedDisposalIncomeAmount = new Intl.NumberFormat("ja-JP", {
+    style: "currency",
+    currency: "JPY",
+  }).format(disposalIncomeAmount);
   const formattedTotalAmount = new Intl.NumberFormat("ja-JP", {
     style: "currency",
     currency: "JPY",
@@ -92,8 +104,16 @@ const ExpenseAggregate = ({
         onChange={handleYearMonthChange}
       />
       <div className={style.labelStyale}>
+        <label>収入合計</label>
+        <div>{formattedIncomeTotalAmount}</div>
+      </div>
+      <div className={style.labelStyale}>
         <label>支出合計</label>
         <div>{formattedTotalAmount}</div>
+      </div>
+      <div className={style.labelStyale}>
+        <label>収入 - 支出</label>
+        <div>{formattedDisposalIncomeAmount}</div>
       </div>
       <div>
         <label className={style.labelStyale}>内訳</label>
