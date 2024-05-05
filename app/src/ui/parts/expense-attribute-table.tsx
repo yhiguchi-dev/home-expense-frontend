@@ -1,12 +1,11 @@
 import React, { ReactElement, useState } from "react";
 
+import style from "./expense-attribute-table.module.css";
 import { ExpenseAttributes } from "@/lib/expense-attribute";
 import { useDialog } from "@/lib/hooks/dialog";
 import { Pagination } from "@/lib/pagination/pagination";
 import { deleteExpenseAttribute } from "@/service/expense-attribute-service";
 import Dialog from "@/ui/parts/dialog";
-
-import style from "./expense-attribute-table.module.css";
 
 interface Props {
   expenseAttributes: ExpenseAttributes;
@@ -83,7 +82,7 @@ const ExpenseAttributeTable = ({
         <tbody>{rows}</tbody>
       </table>
       <Dialog ref={ref} onClick={onClose}>
-        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+        {}
         <form action={deleteExpenseAttribute}>
           <h2>経費属性の削除</h2>
           <p>削除したデータは復元できません。削除しますか？</p>

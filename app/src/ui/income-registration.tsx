@@ -1,5 +1,5 @@
 "use client";
-/* eslint-disable @typescript-eslint/no-misused-promises */
+
 import React, { ReactElement } from "react";
 
 import { IncomeAttributes } from "@/lib/income-attribute";

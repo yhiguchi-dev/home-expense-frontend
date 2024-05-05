@@ -2,9 +2,8 @@
 import { useRouter } from "next/navigation";
 import React, { ChangeEvent, ReactElement, useCallback, useState } from "react";
 
-import { ExpenseAttributeAggregates } from "@/lib/expense-attribute";
-
 import style from "./expense-aggregate.module.css";
+import { ExpenseAttributeAggregates } from "@/lib/expense-attribute";
 
 interface Props {
   year: number;
