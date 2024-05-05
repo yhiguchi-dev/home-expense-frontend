@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 "use client";
 import { useRouter } from "next/navigation";
 import React, { ReactElement, useCallback } from "react";

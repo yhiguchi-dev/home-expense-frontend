@@ -78,7 +78,7 @@ const _getSummary = async ({
     extension,
   });
   switch (response.type) {
-    case "success":
+    case "success": {
       const { headers } = response;
       if (headers) {
         const pagination = parseLinkHeader(headers);
@@ -91,6 +91,7 @@ const _getSummary = async ({
       }
 
       throw new Error("");
+    }
     case "failure":
       throw response.error;
   }

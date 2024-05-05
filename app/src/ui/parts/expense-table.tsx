@@ -1,12 +1,11 @@
 import React, { ReactElement, useState } from "react";
 
+import style from "./expense-table.module.css";
 import { Expenses } from "@/lib/expense";
 import { useDialog } from "@/lib/hooks/dialog";
 import { Pagination } from "@/lib/pagination/pagination";
 import { deleteExpense } from "@/service/expense-service";
 import Dialog from "@/ui/parts/dialog";
-
-import style from "./expense-table.module.css";
 
 interface Props {
   expenses: Expenses;
@@ -101,7 +100,7 @@ const ExpenseTable = ({
         <tbody>{rows}</tbody>
       </table>
       <Dialog ref={ref} onClick={onClose}>
-        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+        {}
         <form action={deleteExpense}>
           <h2>経費の削除</h2>
           <p>削除したデータは復元できません。削除しますか？</p>

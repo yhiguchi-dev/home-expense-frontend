@@ -1,9 +1,8 @@
 import React, { ReactElement } from "react";
 
+import style from "./expense-form.module.css";
 import { Income } from "@/lib/income";
 import { IncomeAttributes } from "@/lib/income-attribute";
-
-import style from "./expense-form.module.css";
 
 interface Props {
   income?: Income | Record<string, never>;

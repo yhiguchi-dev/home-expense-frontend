@@ -1,12 +1,11 @@
 import React, { ReactElement, useState } from "react";
 
+import style from "./expense-attribute-table.module.css";
 import { useDialog } from "@/lib/hooks/dialog";
 import { IncomeAttributes } from "@/lib/income-attribute";
 import { Pagination } from "@/lib/pagination/pagination";
 import { deleteIncomeAttribute } from "@/service/income-attribute-service";
 import Dialog from "@/ui/parts/dialog";
-
-import style from "./expense-attribute-table.module.css";
 
 interface Props {
   incomeAttributes: IncomeAttributes;
@@ -81,7 +80,7 @@ const IncomeAttributeTable = ({
         <tbody>{rows}</tbody>
       </table>
       <Dialog ref={ref} onClick={onClose}>
-        {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
+        {}
         <form action={deleteIncomeAttribute}>
           <h2>収入属性の削除</h2>
           <p>削除したデータは復元できません。削除しますか？</p>
