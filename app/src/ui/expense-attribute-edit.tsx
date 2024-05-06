@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { ExpenseAttribute } from "@/lib/expense-attribute";
 import { updateExpenseAttribute } from "@/service/expense-attribute-service";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { getExpenseAttributeSummary } from "@/service/expense-attribute-service";
 import { getExpense } from "@/service/expense-service";

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import style from "./expense-form.module.css";
 import { Income } from "@/lib/income";

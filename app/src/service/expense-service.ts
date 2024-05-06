@@ -192,7 +192,12 @@ export const registerExpense = async (formData: FormData): Promise<void> => {
       price: parseInt(price),
       payment_date: paymentDate,
     });
-    redirect("/expense");
+    const now = new Date(Date.now());
+    const searchParams = new URLSearchParams({
+      year: now.getFullYear().toString(),
+      month: (now.getMonth() + 1).toString(),
+    }).toString();
+    redirect(`/expense?${searchParams}`);
   }
 };
 
@@ -218,7 +223,12 @@ export const updateExpense = async (formData: FormData): Promise<void> => {
       price: parseInt(price),
       payment_date: paymentDate,
     });
-    redirect("/expense");
+    const now = new Date(Date.now());
+    const searchParams = new URLSearchParams({
+      year: now.getFullYear().toString(),
+      month: (now.getMonth() + 1).toString(),
+    }).toString();
+    redirect(`/expense?${searchParams}`);
   }
 };
 

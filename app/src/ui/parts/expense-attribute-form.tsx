@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import style from "./expense-attribute-form.module.css";
 import { ExpenseAttribute } from "@/lib/expense-attribute";

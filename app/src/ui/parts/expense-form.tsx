@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactElement } from "react";
+import { ChangeEvent, ReactElement } from "react";
 
 import style from "./expense-form.module.css";
 import { Expense } from "@/lib/expense";

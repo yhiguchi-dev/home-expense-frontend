@@ -1,5 +1,3 @@
-import React from "react";
-
 import style from "@/ui/parts/top-bar.module.css";
 
 const TopBar = () => {

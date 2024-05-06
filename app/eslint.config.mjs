@@ -2,11 +2,10 @@ import pluginJs from "@eslint/js";
 import nextPlugin from "@next/eslint-plugin-next";
 import eslintConfigPrettier from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
-import reactPlugin from "eslint-plugin-react";
+import pluginReactConfig from "eslint-plugin-react/configs/jsx-runtime.js";
 import hooksPlugin from "eslint-plugin-react-hooks";
 import globals from "globals";
 import tseslint from "typescript-eslint";
-// import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
 
 // https://github.com/vercel/next.js/discussions/49337#discussioncomment-6009130
 export default [
@@ -16,16 +15,14 @@ export default [
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-  // pluginReactConfig,
+  pluginReactConfig,
   eslintConfigPrettier,
   {
     plugins: {
-      react: reactPlugin,
       "react-hooks": hooksPlugin,
       "@next/next": nextPlugin,
     },
     rules: {
-      ...reactPlugin.configs["jsx-runtime"].rules,
       ...hooksPlugin.configs.recommended.rules,
       ...nextPlugin.configs["core-web-vitals"].rules,
       "@next/next/no-img-element": "error",

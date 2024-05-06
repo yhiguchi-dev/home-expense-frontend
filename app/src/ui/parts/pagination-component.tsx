@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import style from "./pagination-component.module.css";
 import { paginate, Pagination } from "@/lib/pagination/pagination";

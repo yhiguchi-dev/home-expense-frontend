@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { getExpenseAggregate } from "@/service/expense-service";
 import ExpenseAggregate from "@/ui/expense-aggregate";

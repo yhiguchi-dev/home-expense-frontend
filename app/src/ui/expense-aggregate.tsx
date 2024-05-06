@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, ReactElement, useCallback, useState } from "react";
+import { ChangeEvent, ReactElement, useCallback, useState } from "react";
 
 import style from "./expense-aggregate.module.css";
 import { ExpenseAttributeAggregates } from "@/lib/expense-attribute";
