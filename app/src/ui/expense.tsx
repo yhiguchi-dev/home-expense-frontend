@@ -88,6 +88,8 @@ const Expense = ({
       const _query = {
         ...queryParam,
         year,
+        page: undefined,
+        per_page: undefined,
       };
       setQueryParam(cleanUpObject(_query));
       const searchParams = new URLSearchParams({
@@ -101,13 +103,15 @@ const Expense = ({
   const handleMonthChange = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
       const month = event.currentTarget.value;
-      const _query = {
+      const _query = cleanUpObject({
         ...queryParam,
         ...(month !== "" ? { month } : { month: undefined }),
-      };
-      setQueryParam(cleanUpObject(_query));
+        page: undefined,
+        per_page: undefined,
+      });
+      setQueryParam(_query);
       const searchParams = new URLSearchParams({
-        ...cleanUpObject(_query),
+        ..._query,
       }).toString();
       router.push(`/expense?${searchParams}`);
     },
@@ -118,25 +122,42 @@ const Expense = ({
     (event: ChangeEvent<HTMLSelectElement>) => {
       const _category = event.currentTarget.value;
       if (isExpenseAttributeCategory(_category)) {
-        const _query = {
+        const _query = cleanUpObject({
           ...queryParam,
           category: _category,
-        };
+          page: undefined,
+          per_page: undefined,
+        });
         const searchParams = new URLSearchParams(_query).toString();
         setQueryParam(_query);
         router.push(`/expense?${searchParams}`);
+        return;
       }
+      const _query = cleanUpObject({
+        ...queryParam,
+        category: undefined,
+        attributeId: undefined,
+        page: undefined,
+        per_page: undefined,
+      });
+      const searchParams = new URLSearchParams(_query).toString();
+      router.push(`/expense?${searchParams}`);
     },
     [router, queryParam],
   );
 
   const handleAttributeIdChange = useCallback(
     (event: ChangeEvent<HTMLSelectElement>) => {
-      const _query = {
+      const attributeId = event.currentTarget.value;
+      const _query = cleanUpObject({
         ...queryParam,
-        attributeId: event.currentTarget.value,
-      };
-      const searchParams = new URLSearchParams(_query).toString();
+        ...(attributeId !== "" ? { attributeId } : { attributeId: undefined }),
+        page: undefined,
+        per_page: undefined,
+      });
+      const searchParams = new URLSearchParams({
+        ..._query,
+      }).toString();
       setQueryParam(_query);
       router.push(`/expense?${searchParams}`);
     },
@@ -238,7 +259,7 @@ const Expense = ({
           value={queryParam.month}
           onChange={handleMonthChange}
         >
-          <option key={0} value="" />
+          <option value="" />
           {monthOptions}
         </select>
         <label>月</label>
@@ -249,7 +270,7 @@ const Expense = ({
             defaultValue={queryParam.category}
             onChange={handleCategoryChange}
           >
-            <option />
+            <option value="" />
             <option value="固定費">固定費</option>
             <option value="変動費">変動費</option>
           </select>
@@ -259,6 +280,7 @@ const Expense = ({
             defaultValue={queryParam.attributeId}
             onChange={handleAttributeIdChange}
           >
+            <option value="" />
             {expenseAttributesOptions}
           </select>
         </div>
