@@ -12,7 +12,7 @@ interface Props {
     year?: number;
     month?: number;
     category?: string;
-    attributeName?: string;
+    attributeId?: string;
   };
 }
 
@@ -23,7 +23,7 @@ const ExpensePage = async ({ searchParams }: Props): Promise<ReactElement> => {
     year,
     month,
     category,
-    attributeName,
+    attributeId,
   } = searchParams;
   const _category = isExpenseAttributeCategory(category) ? category : undefined;
   const getExpenseAttributeIfCategoryExists = async () => {
@@ -46,8 +46,8 @@ const ExpensePage = async ({ searchParams }: Props): Promise<ReactElement> => {
     year,
     month,
     category: _category,
-    attributeName,
-    tag: `expense-${page}-${perPage}-${year}-${month}-${category}-${attributeName}`,
+    attributeId,
+    tag: `expense-${page}-${perPage}-${year}-${month}-${category}-${attributeId}`,
   });
   console.log(pagination);
   console.log(month);
@@ -59,7 +59,7 @@ const ExpensePage = async ({ searchParams }: Props): Promise<ReactElement> => {
       month={month}
       category={_category}
       expenseAttributes={expenseAttributes}
-      attributeName={attributeName}
+      attributeId={attributeId}
     />
   );
 };
