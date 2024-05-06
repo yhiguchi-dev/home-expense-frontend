@@ -10,6 +10,11 @@ const DashboardLayout = ({
 }: {
   children: ReactNode;
 }): ReactElement => {
+  const now = new Date(Date.now());
+  const searchParams = new URLSearchParams({
+    year: now.getFullYear().toString(),
+    month: (now.getMonth() + 1).toString(),
+  }).toString();
   const attributes = [
     {
       title: "Home",
@@ -29,7 +34,7 @@ const DashboardLayout = ({
     },
     {
       title: "経費",
-      path: "/expense",
+      path: `/expense?${searchParams}`,
     },
   ];
   return (

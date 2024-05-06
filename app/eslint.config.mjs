@@ -6,6 +6,7 @@ import reactPlugin from "eslint-plugin-react";
 import hooksPlugin from "eslint-plugin-react-hooks";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+// import pluginReactConfig from "eslint-plugin-react/configs/recommended.js";
 
 // https://github.com/vercel/next.js/discussions/49337#discussioncomment-6009130
 export default [
@@ -15,6 +16,7 @@ export default [
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
+  // pluginReactConfig,
   eslintConfigPrettier,
   {
     plugins: {
