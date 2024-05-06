@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { Income } from "@/lib/income";
 import { IncomeAttributes } from "@/lib/income-attribute";

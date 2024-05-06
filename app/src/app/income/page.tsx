@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { getIncomeSummary } from "@/service/income-service";
 import Income from "@/ui/income";

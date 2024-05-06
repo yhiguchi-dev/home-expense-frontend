@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { isExpenseAttributeCategory } from "@/lib/expense-attribute";
 import { getExpenseAttributeSummary } from "@/service/expense-attribute-service";
@@ -51,6 +51,7 @@ const ExpensePage = async ({ searchParams }: Props): Promise<ReactElement> => {
   });
   console.log(pagination);
   console.log(month);
+  console.log(crypto.randomUUID());
   return (
     <Expense
       expenses={expenses}

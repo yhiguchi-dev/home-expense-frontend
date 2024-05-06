@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { ReactElement, useCallback } from "react";
+import { ReactElement, useCallback } from "react";
 
 import { ExpenseAttributes } from "@/lib/expense-attribute";
 import { registerExpense } from "@/service/expense-service";

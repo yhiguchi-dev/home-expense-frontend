@@ -1,4 +1,4 @@
-import React, { ReactElement, ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 import style from "./dashboard-layout.module.css";
 import LinkComponent from "@/ui/link-component";

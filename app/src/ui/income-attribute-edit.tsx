@@ -1,5 +1,5 @@
 "use client";
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 
 import { IncomeAttribute } from "@/lib/income-attribute";
 import { updateIncomeAttribute } from "@/service/income-attribute-service";

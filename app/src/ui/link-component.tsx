@@ -1,6 +1,6 @@
 import { LinkProps } from "next/dist/client/link";
 import Link from "next/link";
-import React, { AnchorHTMLAttributes, ReactElement } from "react";
+import { AnchorHTMLAttributes, ReactElement } from "react";
 
 type Props = Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof LinkProps> &
   LinkProps;
