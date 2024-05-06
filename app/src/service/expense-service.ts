@@ -17,12 +17,16 @@ export const getExpenseSummary = async ({
   perPage,
   year,
   month,
+  category,
+  attributeId,
   tag,
 }: {
   page: number;
   perPage: number;
-  year: number;
-  month: number;
+  year?: number;
+  month?: number;
+  category?: string;
+  attributeId?: string;
   tag: string;
 }): Promise<{
   expenses: Expenses;
@@ -34,6 +38,8 @@ export const getExpenseSummary = async ({
     perPage,
     year,
     month,
+    category,
+    attributeId,
     extension: {
       next: { tags: [tag] },
     },

@@ -89,12 +89,16 @@ const _getSummary = async ({
   perPage,
   year,
   month,
+  category,
+  attributeId,
   extension,
 }: {
   page: number;
   perPage: number;
-  year: number;
-  month: number;
+  year?: number;
+  month?: number;
+  category?: string;
+  attributeId?: string;
   extension: object;
 }): Promise<{ pagination: Pagination; response: GetSummaryResponse }> => {
   const response = await http.get({
@@ -103,8 +107,10 @@ const _getSummary = async ({
     queries: {
       page: page.toString(),
       per_page: perPage.toString(),
-      year: year.toString(),
-      month: month.toString(),
+      ...(year && { year: year.toString() }),
+      ...(month && { month: month.toString() }),
+      category,
+      attribute_id: attributeId,
     },
     extension,
   });
