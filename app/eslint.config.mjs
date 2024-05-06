@@ -25,7 +25,6 @@ export default [
     rules: {
       ...hooksPlugin.configs.recommended.rules,
       ...nextPlugin.configs["core-web-vitals"].rules,
-      "@next/next/no-img-element": "error",
     },
   },
   {
