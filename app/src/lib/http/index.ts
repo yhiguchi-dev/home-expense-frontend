@@ -1,6 +1,6 @@
-import { HttpRequest, HttpResponse, RequestBody } from "@/lib/http/type";
+import type { HttpRequest, HttpResponse, RequestBody } from "@/lib/http/type";
 import { json } from "@/lib/json";
-import { JTDSchema } from "@/lib/json/type";
+import type { JTDSchema } from "@/lib/json/type";
 
 const _get = async (
   params: Omit<HttpRequest, "method">,

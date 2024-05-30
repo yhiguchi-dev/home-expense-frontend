@@ -1,9 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { ReactElement, useCallback } from "react";
+import type React from "react";
+import { type ReactElement, useCallback } from "react";
 
-import { IncomeAttributes } from "@/lib/income-attribute";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { IncomeAttributes } from "@/lib/income-attribute";
+import type { Pagination } from "@/lib/pagination/pagination";
 import IncomeAttributeTable from "@/ui/parts/income-attribute-table";
 import PaginationComponent from "@/ui/parts/pagination-component";
 

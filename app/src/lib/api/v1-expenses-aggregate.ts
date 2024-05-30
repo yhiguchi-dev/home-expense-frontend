@@ -1,7 +1,7 @@
 import * as process from "process";
 
 import { http } from "@/lib/http";
-import { JTD } from "@/lib/json/type";
+import type { JTD } from "@/lib/json/type";
 
 const getAggregateResponse = {
   properties: {

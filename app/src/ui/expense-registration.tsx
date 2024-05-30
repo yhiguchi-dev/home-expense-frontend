@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { ReactElement, useCallback } from "react";
+import { type ReactElement, useCallback } from "react";
 
-import { ExpenseAttributes } from "@/lib/expense-attribute";
+import type { ExpenseAttributes } from "@/lib/expense-attribute";
 import { registerExpense } from "@/service/expense-service";
 import ExpenseForm from "@/ui/parts/expense-form";
 

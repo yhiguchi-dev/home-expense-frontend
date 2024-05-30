@@ -1,7 +1,7 @@
 import Ajv from "ajv/dist/jtd";
 
 import { JSONParseError, JSONSerializeError } from "@/lib/json/error";
-import { JTDSchema } from "@/lib/json/type";
+import type { JTDSchema } from "@/lib/json/type";
 
 const ajv = new Ajv();
 

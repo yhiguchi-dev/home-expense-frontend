@@ -1,8 +1,8 @@
-import { ChangeEvent, ReactElement } from "react";
+import type { ChangeEvent, ReactElement } from "react";
 
+import type { Expense } from "@/lib/expense";
+import type { ExpenseAttributes } from "@/lib/expense-attribute";
 import style from "./expense-form.module.css";
-import { Expense } from "@/lib/expense";
-import { ExpenseAttributes } from "@/lib/expense-attribute";
 
 interface Props {
   expense?: Expense | Record<string, never>;

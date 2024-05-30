@@ -1,4 +1,4 @@
-import { JTDSchema } from "@/lib/json/type";
+import type { JTDSchema } from "@/lib/json/type";
 
 interface ClientError extends Error {
   name: "ClientError";

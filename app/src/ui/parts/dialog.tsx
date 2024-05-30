@@ -1,4 +1,5 @@
-import React, { forwardRef, ReactElement } from "react";
+import type React from "react";
+import { type ReactElement, forwardRef } from "react";
 
 type Props = React.ComponentProps<"dialog">;
 

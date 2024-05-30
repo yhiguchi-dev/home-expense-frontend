@@ -1,8 +1,8 @@
 import process from "process";
 
 import { http } from "@/lib/http";
-import { JTD } from "@/lib/json/type";
-import { Pagination, parseLinkHeader } from "@/lib/pagination/pagination";
+import type { JTD } from "@/lib/json/type";
+import { type Pagination, parseLinkHeader } from "@/lib/pagination/pagination";
 
 const getSummaryResponse = {
   properties: {

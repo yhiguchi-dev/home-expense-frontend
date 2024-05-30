@@ -1,7 +1,7 @@
 "use client";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
-import { IncomeAttribute } from "@/lib/income-attribute";
+import type { IncomeAttribute } from "@/lib/income-attribute";
 import { updateIncomeAttribute } from "@/service/income-attribute-service";
 import IncomeAttributeForm from "@/ui/parts/income-attribute-form";
 

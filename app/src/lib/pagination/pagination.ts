@@ -41,8 +41,8 @@ export const parseLinkHeader = (
         return {
           ...previousValue,
           [rel]: {
-            page: parseInt(page),
-            perPage: parseInt(perPage),
+            page: Number.parseInt(page),
+            perPage: Number.parseInt(perPage),
           },
         };
       }

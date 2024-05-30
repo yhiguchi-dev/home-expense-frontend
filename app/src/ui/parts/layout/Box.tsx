@@ -1,6 +1,6 @@
-import { PropsWithChildren, ReactElement } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
 
-import { Spacing, spacing } from "@/ui/parts/layout/type";
+import { type Spacing, spacing } from "@/ui/parts/layout/type";
 
 interface Props {
   display?: "none" | "inline" | "inline-block" | "block";

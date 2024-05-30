@@ -1,9 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, ReactElement, useCallback, useState } from "react";
+import type React from "react";
+import {
+  type ChangeEvent,
+  type ReactElement,
+  useCallback,
+  useState,
+} from "react";
 
-import { Incomes } from "@/lib/income";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { Incomes } from "@/lib/income";
+import type { Pagination } from "@/lib/pagination/pagination";
 import IncomeTable from "@/ui/parts/income-table";
 import PaginationComponent from "@/ui/parts/pagination-component";
 
