@@ -1,0 +1,32 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "box.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "Box",
+          "superclass": {
+            "name": "HTMLElement"
+          },
+          "tagName": "box",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "box",
+          "declaration": {
+            "name": "Box",
+            "module": "box.js"
+          }
+        }
+      ]
+    }
+  ]
+}
