@@ -3,8 +3,8 @@ import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { incomeAttributesApi } from "@/lib/api/v1-income-attributes";
-import { IncomeAttribute, IncomeAttributes } from "@/lib/income-attribute";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { IncomeAttribute, IncomeAttributes } from "@/lib/income-attribute";
+import type { Pagination } from "@/lib/pagination/pagination";
 import { isString } from "@/lib/type-guard";
 
 export const getIncomeAttributeSummary = async ({

@@ -1,7 +1,7 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
+import type { ExpenseAttribute } from "@/lib/expense-attribute";
 import style from "./expense-attribute-form.module.css";
-import { ExpenseAttribute } from "@/lib/expense-attribute";
 
 interface Props {
   expenseAttribute?: ExpenseAttribute | Record<string, never>;

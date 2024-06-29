@@ -1,20 +1,22 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, {
-  ChangeEvent,
-  ReactElement,
+import type React from "react";
+import {
+  type ChangeEvent,
+  type ReactElement,
   useCallback,
   useEffect,
   useState,
 } from "react";
+import "@/ui/parts/layout/Example"
 
-import { Expenses } from "@/lib/expense";
+import type { Expenses } from "@/lib/expense";
 import {
-  ExpenseAttributeCategory,
-  ExpenseAttributes,
+  type ExpenseAttributeCategory,
+  type ExpenseAttributes,
   isExpenseAttributeCategory,
 } from "@/lib/expense-attribute";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { Pagination } from "@/lib/pagination/pagination";
 import style from "@/ui/parts/expense-form.module.css";
 import ExpenseTable from "@/ui/parts/expense-table";
 import PaginationComponent from "@/ui/parts/pagination-component";
@@ -248,60 +250,61 @@ const Expense = ({
   });
 
   return (
-    <div>
-      <div className="foo">
-        <select name="year" value={queryParam.year} onChange={handleYearChange}>
-          {yearOptions}
-        </select>
-        <label>年</label>
-        <select
-          name="month"
-          value={queryParam.month}
-          onChange={handleMonthChange}
-        >
-          <option value="" />
-          {monthOptions}
-        </select>
-        <label>月</label>
-        <div className={style.editStyle}>
-          <label>分類</label>
-          <select
-            name="category"
-            defaultValue={queryParam.category}
-            onChange={handleCategoryChange}
-          >
-            <option value="" />
-            <option value="固定費">固定費</option>
-            <option value="変動費">変動費</option>
-          </select>
-          <label>属性名</label>
-          <select
-            name="attributeId"
-            defaultValue={queryParam.attributeId}
-            onChange={handleAttributeIdChange}
-          >
-            <option value="" />
-            {expenseAttributesOptions}
-          </select>
-        </div>
-        <div className="foo2">
-          <ExpenseTable
-            expenses={expenses}
-            pagination={pagination}
-            onEdit={handleEdit}
-          />
-        </div>
-        <PaginationComponent
-          pagination={pagination}
-          onMovePrevious={handleMovePrevious}
-          onMoveNext={handleMoveNext}
-          onMovePage={handleMovePage}
-        />
-        <div className="add">
-          <button onClick={handleRegistrationClick}>追加</button>
-        </div>
+      <div>
+          <example-webcomponent />
+          <div className="foo">
+              <select name="year" value={queryParam.year} onChange={handleYearChange}>
+                  {yearOptions}
+              </select>
+              <label>年</label>
+              <select
+                  name="month"
+                  value={queryParam.month}
+                  onChange={handleMonthChange}
+              >
+                  <option value=""/>
+                  {monthOptions}
+              </select>
+              <label>月</label>
+              <div className={style.editStyle}>
+                  <label>分類</label>
+                  <select
+                      name="category"
+                      defaultValue={queryParam.category}
+                      onChange={handleCategoryChange}
+                  >
+                      <option value=""/>
+                      <option value="固定費">固定費</option>
+                      <option value="変動費">変動費</option>
+                  </select>
+                  <label>属性名</label>
+                  <select
+                      name="attributeId"
+                      defaultValue={queryParam.attributeId}
+                      onChange={handleAttributeIdChange}
+                  >
+                      <option value=""/>
+                      {expenseAttributesOptions}
+                  </select>
+              </div>
+              <div className="foo2">
+                  <ExpenseTable
+                      expenses={expenses}
+                      pagination={pagination}
+                      onEdit={handleEdit}
+                  />
+              </div>
+              <PaginationComponent
+                  pagination={pagination}
+                  onMovePrevious={handleMovePrevious}
+                  onMoveNext={handleMoveNext}
+                  onMovePage={handleMovePage}
+              />
+              <div className="add">
+                  <button onClick={handleRegistrationClick}>追加</button>
+              </div>
+          </div>
       </div>
-    </div>
   );
 };
 export default Expense;

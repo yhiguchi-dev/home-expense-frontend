@@ -3,8 +3,8 @@ import { revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { incomesApi } from "@/lib/api/v1-incomes";
-import { Income, Incomes } from "@/lib/income";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { Income, Incomes } from "@/lib/income";
+import type { Pagination } from "@/lib/pagination/pagination";
 import { isString } from "@/lib/type-guard";
 
 export const getIncomeSummary = async ({
@@ -103,7 +103,7 @@ export const registerIncome = async (formData: FormData): Promise<void> => {
     await incomesApi.post({
       description,
       attribute_id: attributeId,
-      amount: parseInt(amount),
+      amount: Number.parseInt(amount),
       receive_date: receiveDate,
     });
     redirect("/income");
@@ -129,7 +129,7 @@ export const updateIncome = async (formData: FormData): Promise<void> => {
       id,
       description,
       attribute_id: attributeId,
-      amount: parseInt(amount),
+      amount: Number.parseInt(amount),
       receive_date: receiveDate,
     });
     redirect("/income");

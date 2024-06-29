@@ -1,8 +1,8 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
+import type { Income } from "@/lib/income";
+import type { IncomeAttributes } from "@/lib/income-attribute";
 import style from "./expense-form.module.css";
-import { Income } from "@/lib/income";
-import { IncomeAttributes } from "@/lib/income-attribute";
 
 interface Props {
   income?: Income | Record<string, never>;

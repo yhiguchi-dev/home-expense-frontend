@@ -1,9 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { ChangeEvent, ReactElement, useCallback } from "react";
+import type React from "react";
+import { type ChangeEvent, type ReactElement, useCallback } from "react";
 
-import { ExpenseAttributes } from "@/lib/expense-attribute";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { ExpenseAttributes } from "@/lib/expense-attribute";
+import type { Pagination } from "@/lib/pagination/pagination";
 import ExpenseAttributeTable from "@/ui/parts/expense-attribute-table";
 import PaginationComponent from "@/ui/parts/pagination-component";
 

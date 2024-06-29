@@ -1,4 +1,4 @@
-import { ComponentType, PropsWithChildren, ReactElement } from "react";
+import type { ComponentType, PropsWithChildren, ReactElement } from "react";
 
 import style from "@/ui/parts/side-bar.module.css";
 

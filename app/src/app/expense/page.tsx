@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import { isExpenseAttributeCategory } from "@/lib/expense-attribute";
 import { getExpenseAttributeSummary } from "@/service/expense-attribute-service";

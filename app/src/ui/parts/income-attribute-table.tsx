@@ -1,11 +1,12 @@
-import React, { ReactElement, useState } from "react";
+import type React from "react";
+import { type ReactElement, useState } from "react";
 
-import style from "./expense-attribute-table.module.css";
 import { useDialog } from "@/lib/hooks/dialog";
-import { IncomeAttributes } from "@/lib/income-attribute";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { IncomeAttributes } from "@/lib/income-attribute";
+import type { Pagination } from "@/lib/pagination/pagination";
 import { deleteIncomeAttribute } from "@/service/income-attribute-service";
 import Dialog from "@/ui/parts/dialog";
+import style from "./expense-attribute-table.module.css";
 
 interface Props {
   incomeAttributes: IncomeAttributes;

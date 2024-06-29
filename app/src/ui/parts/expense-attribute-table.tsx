@@ -1,11 +1,12 @@
-import React, { ReactElement, useState } from "react";
+import type React from "react";
+import { type ReactElement, useState } from "react";
 
-import style from "./expense-attribute-table.module.css";
-import { ExpenseAttributes } from "@/lib/expense-attribute";
+import type { ExpenseAttributes } from "@/lib/expense-attribute";
 import { useDialog } from "@/lib/hooks/dialog";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { Pagination } from "@/lib/pagination/pagination";
 import { deleteExpenseAttribute } from "@/service/expense-attribute-service";
 import Dialog from "@/ui/parts/dialog";
+import style from "./expense-attribute-table.module.css";
 
 interface Props {
   expenseAttributes: ExpenseAttributes;

@@ -4,11 +4,11 @@ import { redirect } from "next/navigation";
 
 import { expenseAttributesApi } from "@/lib/api/v1-expense-attributes";
 import {
-  ExpenseAttribute,
-  ExpenseAttributes,
+  type ExpenseAttribute,
+  type ExpenseAttributes,
   isExpenseAttributeCategory,
 } from "@/lib/expense-attribute";
-import { Pagination } from "@/lib/pagination/pagination";
+import type { Pagination } from "@/lib/pagination/pagination";
 import { isString } from "@/lib/type-guard";
 
 export const getExpenseAttributeSummary = async ({

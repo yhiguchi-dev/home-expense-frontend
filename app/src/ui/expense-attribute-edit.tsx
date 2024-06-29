@@ -1,7 +1,7 @@
 "use client";
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
-import { ExpenseAttribute } from "@/lib/expense-attribute";
+import type { ExpenseAttribute } from "@/lib/expense-attribute";
 import { updateExpenseAttribute } from "@/service/expense-attribute-service";
 import ExpenseAttributeForm from "@/ui/parts/expense-attribute-form";
 

@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import type { ReactElement } from "react";
 
 import { getExpenseAttributeSummary } from "@/service/expense-attribute-service";
 import ExpenseRegistration from "@/ui/expense-registration";

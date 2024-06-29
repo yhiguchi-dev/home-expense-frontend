@@ -1,9 +1,9 @@
-import { ReactElement, ReactNode } from "react";
+import type { ReactElement, ReactNode } from "react";
 
-import style from "./dashboard-layout.module.css";
 import LinkComponent from "@/ui/link-component";
 import SideBar from "@/ui/parts/side-bar";
 import TopBar from "@/ui/parts/top-bar";
+import style from "./dashboard-layout.module.css";
 
 const DashboardLayout = ({
   children,
